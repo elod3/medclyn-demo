@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Peretele Viu MedClyn</title>
+<meta name="description" content="Demo de concept pentru rebuild-ul site-ului MedClyn: un perete real de faianță contaminată pe care îl ștergi cu mâna și apare suprafața antibacteriană. Nu este site-ul oficial MedClyn.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%20%20%3Cpolygon%20points%3D%224%2C4%2096%2C4%2072%2C28%2028%2C28%22%20fill%3D%22%2324BFCD%22/%3E%20%20%3Cpolygon%20points%3D%2296%2C4%2096%2C96%2072%2C72%2072%2C28%22%20fill%3D%22%231479B1%22/%3E%20%20%3Cpolygon%20points%3D%2296%2C96%204%2C96%2028%2C72%2072%2C72%22%20fill%3D%22%23203874%22/%3E%20%20%3Cpolygon%20points%3D%224%2C96%204%2C4%2028%2C28%2028%2C72%22%20fill%3D%22%231878A8%22/%3E%20%20%3Cline%20x1%3D%22100%22%20y1%3D%220%22%20x2%3D%2270%22%20y2%3D%2230%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22/%3E%20%20%3Cline%20x1%3D%220%22%20y1%3D%22100%22%20x2%3D%2230%22%20y2%3D%2270%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="css/app.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.js",
+    "three/addons/": "./vendor/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<div id="loader">
+  <div class="lrow">
+    <span class="data idx">MEDCLYN / DEMO</span>
+    <span class="track"><b id="loader-bar"></b></span>
+    <span class="data idx">se încarcă peretele</span>
+  </div>
+</div>
+
+<header class="hud">
+  <a class="brand" href="#hero" aria-label="MedClyn">
+    <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="4,4 96,4 72,28 28,28" fill="#24BFCD"/>
+      <polygon points="96,4 96,96 72,72 72,28" fill="#1479B1"/>
+      <polygon points="96,96 4,96 28,72 72,72" fill="#2A4C98"/>
+      <polygon points="4,96 4,4 28,28 28,72" fill="#1878A8"/>
+      <line x1="100" y1="0" x2="70" y2="30" class="gap"/>
+      <line x1="0" y1="100" x2="30" y2="70" class="gap"/>
+    </svg>
+    <span class="brand-word"><b>M</b>ed<b>C</b>lyn</span>
+  </a>
+  <nav class="index data" aria-label="Cuprins">
+    <a href="#conformitate"><b>01</b>Conformitate</a>
+    <a href="#santiere"><b>02</b>Șantiere</a>
+    <a href="#calcul"><b>03</b>Calcul</a>
+  </nav>
+  <p class="marker data"><s>demo de concept</s> · nu este site-ul oficial</p>
+</header>
+
+<div id="stage" aria-hidden="true">
+  <canvas id="cv-wall"></canvas>
+  <div id="nogl" hidden><p>Demo-ul are nevoie de WebGL. Deschide pagina într-un browser modern.</p></div>
+</div>
+
+<section id="hero">
+  <div class="hero-grad"></div>
+  <div class="hero-copy">
+    <div class="wrap">
+      <div class="hero-tools">
+        <p class="data wall-hint" id="hint">↖ trage cu mâna peste perete</p>
+        <button class="data" id="reset" type="button">contaminează la loc</button>
+      </div>
+      <h1 class="wipe" data-reveal>Rostul e <em>casa bacteriilor.</em><br>Noi scoatem rostul.</h1>
+      <p class="lede" data-reveal data-reveal-group="hero">Placă din rășină poliesterică și fibră de sticlă, cu strat GelCoat de înaltă densitate. Porozitate zero, fără rosturi, montată peste peretele existent fără oprirea producției.</p>
+      <a class="hero-seal" href="#garantie" aria-label="Garanție 20 de ani la manoperă — vezi detaliile">
+        <span class="seal-shadow" aria-hidden="true"></span>
+        <span class="seal-hop"><svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+      <g class="seal-rim" fill="currentColor">
+        <path d="M60 2 66.6 9.4 75.7 5.6 79.4 14.7 89.2 13.6 89.9 23.4 99.5 25.5 96.9 35 105.6 39.6 100 47.6 107 54.5 99.3 60.7 104.2 69.2 95.4 73.4 97.8 82.9 88.2 84.5 87.5 94.3 77.8 93.2 74.1 102.3 65.4 98 60 106.1 54.6 98 45.9 102.3 42.2 93.2 32.5 94.3 31.8 84.5 22.2 82.9 24.6 73.4 15.8 69.2 20.7 60.7 13 54.5 20 47.6 14.4 39.6 23.1 35 20.5 25.5 30.1 23.4 30.8 13.6 40.6 14.7 44.3 5.6 53.4 9.4Z"/>
+      </g>
+      <text x="60" y="52" text-anchor="middle" class="seal-t1">GARANȚIE</text>
+      <text x="60" y="78" text-anchor="middle" class="seal-t2">20 ANI</text>
+    </svg></span>
+      </a>
+      <dl class="sheet" data-reveal data-reveal-group="hero">
+        <div><dt>Grosime placă</dt><dd>1,6 – 2 mm</dd></div>
+        <div><dt>Fibră de sticlă</dt><dd>900 g/m²</dd></div>
+        <div><dt>Duritate Barcol</dt><dd>40 / 45 · UNI EN 59</dd></div>
+        <div><dt>Rezistență tracțiune</dt><dd>86 MPa</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 01 ══════════════ -->
+<section class="band" id="conformitate">
+  <div class="wrap">
+    <div class="shead">
+      <p class="kicker data" data-reveal><b class="idx">01</b>Conformitate</p>
+      <h2 class="wipe" data-reveal>Legea descrie placa înainte ca placa să existe.</h2>
+      <p class="sub" data-reveal>Regulamentul european de igienă alimentară nu spune „faianță”. Spune ce însușiri trebuie să aibă suprafața. Coloana din stânga e cerința. Coloana din dreapta e fișa tehnică.</p>
+    </div>
+
+    <div class="conform">
+      <div class="crow" data-reveal data-reveal-group="conform">
+        <p class="req">Materiale <i>impermeabile</i> și <i>neabsorbante</i>.</p>
+        <p class="ans">Porozitate zero. Rășină poliesterică armată cu fibră de sticlă 900 g/m², conținut de sticlă 30%, densitate 1,5 g/cm³.</p>
+        <span class="verdict">conform</span>
+      </div>
+      <div class="crow" data-reveal data-reveal-group="conform">
+        <p class="req">Materiale <i>lavabile</i>, ușor de curățat și, unde e nevoie, de dezinfectat.</p>
+        <p class="ans">Strat GelCoat continuu, luciu înalt, RAL 9010. Se spală cu jet și se dezinfectează fără să se degradeze.</p>
+        <span class="verdict">conform</span>
+      </div>
+      <div class="crow" data-reveal data-reveal-group="conform">
+        <p class="req">Materiale <i>netoxice</i>.</p>
+        <p class="ans">Avizat de Direcția Sanitar-Veterinară pentru spații de procesare alimentară.</p>
+        <span class="verdict">conform</span>
+      </div>
+      <div class="crow" data-reveal data-reveal-group="conform">
+        <p class="req">O <i>suprafață netedă</i> până la o înălțime potrivită operațiunilor.</p>
+        <p class="ans">Plăci de până la 3 m lățime și 10 m lungime. Cu cât placa e mai mare, cu atât sunt mai puține îmbinări.</p>
+        <span class="verdict">conform</span>
+      </div>
+      <div class="crow" data-reveal data-reveal-group="conform">
+        <p class="req">Tavane finisate astfel încât să <i>împiedice acumularea de murdărie</i> și să reducă condensul, <i>dezvoltarea mucegaiului</i> și desprinderea de particule.</p>
+        <p class="ans">Aceeași placă se montează și pe tavan. Fără rost, fără por, fără strat de vopsea care să se exfolieze.</p>
+        <span class="verdict">conform</span>
+      </div>
+      <div class="crow" id="garantie" data-reveal data-reveal-group="conform">
+        <p class="req">Suprafețe menținute în <i>stare bună</i>.</p>
+        <p class="ans">Garanție 20 de ani pe manoperă. Duritate Barcol 40/45, modul de flexibilitate 7100 MPa, aderență la montaj ~60 kg/cm².</p>
+        <span class="verdict">conform</span>
+      </div>
+    </div>
+
+    <p class="src data">Cerințele din coloana stângă sunt preluate din Regulamentul (CE) nr. 852/2004, Anexa II, Capitolul II — traducere de lucru din versiunea engleză a textului. Datele din dreapta sunt cele publicate de MedClyn.</p>
+  </div>
+</section>
+
+<!-- ══════════════ 02 ══════════════ -->
+<section class="band" id="santiere">
+  <div class="wrap">
+    <div class="shead">
+      <p class="kicker data" data-reveal><b class="idx">02</b>Șantiere</p>
+      <h2 class="wipe" data-reveal>Trei lucrări, cu cifrele lor.</h2>
+      <p class="sub" data-reveal>Întrebarea reală a unui director de fabrică nu e „cât de bună e placa”. E „cât îmi stă linia”. Astea sunt răspunsurile, din lucrări încheiate.</p>
+    </div>
+
+    <div class="jobs-scroll">
+      <table class="jobs">
+        <caption>Lucrări finalizate · sursă: studiile de caz publicate de MedClyn</caption>
+        <thead>
+          <tr>
+            <th scope="col">Șantier</th>
+            <th scope="col">Suprafață</th>
+            <th scope="col">Durată</th>
+            <th scope="col">Echipă</th>
+            <th scope="col">Oprire producție</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" data-reveal data-reveal-group="jobs">Ursus Breweries<small>Fabrica Ciucaș, Brașov. Pereți și tavane renovate fără demontarea utilajelor — plăcile au fost tăiate în bucăți ca să intre în spatele conductelor.</small></th>
+            <td class="num">1.000 m²</td>
+            <td class="num">40 zile</td>
+            <td class="num">12 oameni</td>
+            <td class="num">zero</td>
+          </tr>
+          <tr>
+            <th scope="row" data-reveal data-reveal-group="jobs">Abatorul de pui Bona Avis<small>Ianca, Brăila. Panouri sandwich vechi de 13–15 ani, revopsite la fiecare 2–3 ani, pe care vopseaua nu mai ținea. Placarea s-a montat direct peste ele.</small></th>
+            <td class="num">616 m²</td>
+            <td class="num">10 zile</td>
+            <td class="num">6–8 oameni</td>
+            <td class="num">2 h din 10</td>
+          </tr>
+          <tr>
+            <th scope="row" data-reveal data-reveal-group="jobs">AYT Măcelărie &amp; Market<small>București. Pereții de zidărie crăpaseră de la umiditate și vopseaua se exfolia — un risc alimentar direct, în propriile lor cuvinte.</small></th>
+            <td class="num">300 m² + 50 ml</td>
+            <td class="num">2 zile</td>
+            <td class="num">3 oameni</td>
+            <td class="num">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="src data">La Bona Avis, liniile automate de tranșare au fost reduse cu 2 ore dintr-un total de 10, iar echipa a lucrat în ture de după-amiază și noapte. După un an de probă, urmează încă 3.000 m² în aceeași unitate.</p>
+  </div>
+</section>
+
+<!-- ══════════════ 03 ══════════════ -->
+<section class="band" id="calcul">
+  <div class="wrap">
+    <div class="shead">
+      <p class="kicker data" data-reveal><b class="idx">03</b>Calcul</p>
+      <h2 class="wipe" data-reveal>Prețul, înainte de telefon.</h2>
+      <p class="sub" data-reveal>Toți concurenții din categorie ascund prețul în spatele unui formular. MedClyn îl are deja public în magazin. Atunci hai să-l și folosim: trei numere, și hala se construiește.</p>
+    </div>
+
+    <div class="calc">
+      <div id="room">
+        <span class="data tag" id="room-tag">hală 24,0 × 12,0 × 4,2 m</span>
+        <canvas id="cv-room"></canvas>
+      </div>
+
+      <div>
+        <div class="fields">
+          <div class="field">
+            <label for="in-l">Lungime (m)</label>
+            <input id="in-l" type="number" min="2" max="120" step="0.1" value="24">
+          </div>
+          <div class="field">
+            <label for="in-w">Lățime (m)</label>
+            <input id="in-w" type="number" min="2" max="120" step="0.1" value="12">
+          </div>
+          <div class="field">
+            <label for="in-h">Înălțime (m)</label>
+            <input id="in-h" type="number" min="2" max="14" step="0.1" value="4.2">
+          </div>
+        </div>
+        <label class="check" for="in-ceil"><input id="in-ceil" type="checkbox" checked> include tavanul</label>
+
+        <table class="bom">
+          <caption>Necesar estimat · prețuri publice din magazinul MedClyn</caption>
+          <tbody>
+            <tr><th>Placă antibacteriană 2 mm</th><td class="qty" id="q-placa">—</td><td class="val" id="v-placa">—</td></tr>
+            <tr><th>Profil de îmbinare</th><td class="qty" id="q-imbin">—</td><td class="val" id="v-imbin">—</td></tr>
+            <tr><th>Colțar interior</th><td class="qty" id="q-colt">—</td><td class="val" id="v-colt">—</td></tr>
+            <tr><th>Plintă de protecție</th><td class="qty" id="q-plinta">—</td><td class="val" id="v-plinta">—</td></tr>
+            <tr><th>Adeziv de mare aderență</th><td class="qty" id="q-adeziv">—</td><td class="val" id="v-adeziv">—</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><th>Total materiale</th><td class="qty" id="q-total">—</td><td class="val" id="v-total">—</td></tr>
+          </tfoot>
+        </table>
+
+        <button class="cta" id="cta" type="button">Cere oferta completă</button>
+        <p class="foot-note" id="cta-note"><strong>Estimare orientativă, doar materiale</strong>, la prețurile publice: placă 252,88 lei/m², profil de îmbinare 57,36 lei/ml, colțar 27,37 lei/ml, plintă 111,27 lei/ml, adeziv 53 lei. Manopera se cotează după măsurătoare la fața locului.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="data idx">Demo de concept · realizat pe baza informațiilor publice de pe medclyn.com · nu colectează date și nu preia comenzi</p>
+    <p class="data idx">three.js · texturi ambientCG CC0 · panoramă HDR Poly Haven CC0</p>
+  </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
