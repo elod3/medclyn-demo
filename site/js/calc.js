@@ -6,7 +6,7 @@
  */
 
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const PRICE = {
   placa:    252.88,   // lei / m²
@@ -41,6 +41,7 @@ const ROOM_FRAG = /* glsl */`
   uniform float uPanel;     // lățimea plăcii, m
   uniform float uPlinth;    // 1 = desenează plinta
   uniform float uGrid;      // 1 = caroiaj metric (podea)
+  uniform float uOverlay;   // 1 = doar liniile principale, transparent, peste pardoseala interiorului
   uniform float uMajor;     // pasul liniilor cyan: 5, 10 sau 25 m, după mărimea halei
   uniform vec3  uBase;
 
@@ -55,6 +56,12 @@ const ROOM_FRAG = /* glsl */`
   void main(){
     vec2 m = vUv * uSize;
 
+    if (uOverlay > 0.5){
+      float a = gridLine(m, uMajor, 1.5) * 0.55;
+      if (a < 0.01) discard;
+      gl_FragColor = vec4(0.14, 0.75, 0.80, a);
+      return;
+    }
     if (uGrid > 0.5){
       vec3 c = uBase * 0.30;
       float fine = uMajor > 7.0 ? uMajor / 5.0 : 1.0;   // 1 m, 2 m sau 5 m
@@ -97,6 +104,7 @@ export function createCalc(opts){
       uPlinth: { value: plinth },
       uGrid:   { value: grid ? 1 : 0 },
       uMajor:  { value: 5 },
+      uOverlay:{ value: 0 },
       // ShaderMaterial nu face conversia de iesire liniar -> sRGB, deci pastram
       // valorile hex brute: ce scrie shaderul e exact culoarea de pe ecran.
       uBase:   { value: new THREE.Color().setHex(base, THREE.LinearSRGBColorSpace) }
@@ -111,23 +119,64 @@ export function createCalc(opts){
     return mesh;
   }
 
-  const wN = surface(0xe8ecec, 1), wS = surface(0xe8ecec, 1);
-  const wE = surface(0xdde3e3, 1), wW = surface(0xdde3e3, 1);
+  /* Pereții sunt produsul: placă RAL 9010 cu GelCoat lucios (clearcoat), rost la
+     fiecare 1,22 m și plintă navy. Material fizic, ca să prindă reflexiile mediului. */
+  function panelSurface(plinth){
+    const u = {
+      uSize:   { value: new THREE.Vector2(1, 1) },
+      uPanel:  { value: PANEL_W },
+      uPlinth: { value: plinth }
+    };
+    const mat = new THREE.MeshPhysicalMaterial({
+      color: 0xf1f0ea, roughness: 0.34, metalness: 0,
+      clearcoat: 1, clearcoatRoughness: 0.06, side: THREE.DoubleSide
+    });
+    mat.onBeforeCompile = (sh) => {
+      Object.assign(sh.uniforms, u);
+      sh.vertexShader = sh.vertexShader
+        .replace('#include <common>', '#include <common>\nvarying vec2 vMc;')
+        .replace('#include <uv_vertex>', '#include <uv_vertex>\nvMc = uv;');
+      sh.fragmentShader = sh.fragmentShader
+        .replace('#include <common>', '#include <common>\nvarying vec2 vMc;\nuniform vec2 uSize; uniform float uPanel; uniform float uPlinth;')
+        .replace('#include <color_fragment>', `#include <color_fragment>
+          vec2 mm = vMc * uSize;
+          float sx = abs(fract(mm.x / uPanel + 0.5) - 0.5) * uPanel;
+          float seam = 1.0 - smoothstep(0.0, max(fwidth(mm.x) * 1.2, 0.004), sx);
+          diffuseColor.rgb *= 1.0 - seam * 0.38;
+          float plinthM = step(mm.y, 0.15) * uPlinth;
+          diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.0, 0.0437, 0.2346), plinthM);`);
+    };
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), mat);
+    mesh.userData.u = u;
+    mesh.receiveShadow = true;
+    group.add(mesh);
+    return mesh;
+  }
+
+  const wN = panelSurface(1), wS = panelSurface(1);
+  const wE = panelSurface(1), wW = panelSurface(1);
   const floorM = surface(0x2d5a8f, 0, true);
-  const ceilM  = surface(0xf1f0ea, 0);
+  const ceilM  = panelSurface(0);
+  // caroiajul metric rămâne vizibil și peste pardoseala reală a interiorului
+  const gridM = surface(0x2d5a8f, 0, true);
+  gridM.userData.u.uOverlay.value = 1;
+  gridM.material.transparent = true;
+  gridM.material.depthWrite = false;
+  gridM.renderOrder = 2;
+  gridM.visible = false;
 
   // normala exterioară a fiecărei suprafețe: ascundem ce stă între cameră și interior
   const walls = [
-    { m: wN, n: new THREE.Vector3(0, 0, -1) },
-    { m: wS, n: new THREE.Vector3(0, 0,  1) },
-    { m: wE, n: new THREE.Vector3( 1, 0, 0) },
-    { m: wW, n: new THREE.Vector3(-1, 0, 0) },
-    { m: ceilM, n: new THREE.Vector3(0, 1, 0) }
+    { m: wN, n: new THREE.Vector3(0, 0, -1), side: 'N' },
+    { m: wS, n: new THREE.Vector3(0, 0,  1), side: 'S' },
+    { m: wE, n: new THREE.Vector3( 1, 0, 0), side: 'E' },
+    { m: wW, n: new THREE.Vector3(-1, 0, 0), side: 'W' },
+    { m: ceilM, n: new THREE.Vector3(0, 1, 0), side: 'C' }
   ];
 
   // siluetă de 1,75 m — fără ea nu se simte scara halei
   const human = new THREE.Group();
-  const hMat = new THREE.MeshBasicMaterial({ color: 0x24bfcc });   // silueta in cyan-ul lor: se vede pe podea
+  const hMat = new THREE.MeshBasicMaterial({ color: 0x24bfcc, toneMapped: false });   // silueta in cyan-ul lor: se vede pe podea
   const body = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.21, 1.40, 10), hMat);
   body.position.y = 0.70;
   const head = new THREE.Mesh(new THREE.SphereGeometry(0.155, 12, 10), hMat);
@@ -135,132 +184,88 @@ export function createCalc(opts){
   human.add(body, head);
   group.add(human);
 
-  /* Obiecte de scară (modele CC0 din site/models). Fiecare se aduce la
-     înălțimea lui reală în metri; lipsa unui fișier nu strică nimic. */
-  scene.add(new THREE.HemisphereLight(0xf1f0ea, 0x0b2447, 2.2));
-  const sun = new THREE.DirectionalLight(0xffffff, 1.6);
-  sun.position.set(0.6, 1, 0.45);
-  scene.add(sun);
+  /* Interioarele: câte un modul în js/rooms/ pentru fiecare treaptă a scării.
+     Modulul construiește tot ce e în încăpere (pardoseală, structură, mobilier,
+     utilaje); pereții și tavanul rămân ai calculatorului. */
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.0;
+  renderer.shadowMap.enabled = new URLSearchParams(location.search).get('shadow') !== '0';
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  scene.environmentIntensity = 1.0;
 
-  // h = înălțimea reală în metri, w = lățimea reală (când înălțimea nu e reperul),
-  // rot = rotația care întoarce fața modelului spre +Z (spre interiorul halei).
-  const MODELS = {
-    toilet:   { h: 0.78, rot: Math.PI },
-    desk:     { h: 0.76, rot: 0 },
-    counter:  { h: 0.90, rot: 0, steel: true },
-    pallet:   { w: 1.20, rot: 0 },
-    forklift: { h: 2.30, rot: 0 },
-    truck:    { h: 3.40, rot: 0 }
+  const hemi = new THREE.HemisphereLight(0xf4f6f8, 0x223044, 0.9);
+  scene.add(hemi);
+  const sun = new THREE.DirectionalLight(0xffffff, 1.9);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.bias = -0.0004;
+  sun.shadow.normalBias = 0.02;
+  scene.add(sun, sun.target);
+
+  const ROOMS = {
+    baie:      () => import('./rooms/baie.js'),
+    cabinet:   () => import('./rooms/cabinet.js'),
+    macelarie: () => import('./rooms/macelarie.js'),
+    abator:    () => import('./rooms/abator.js'),
+    fabrica:   () => import('./rooms/fabrica.js'),
+    logistic:  () => import('./rooms/logistic.js')
   };
-  // [obiect, x ca fracție din L, z ca fracție din W, rotație]
-  // Originea e colțul (-L/2, -W/2); peretele din spate e la z = 0.
-  const SETS = [
-    { max: 10,       items: [['toilet', 0.72, 0.0, 0]] },
-    { max: 40,       items: [['desk', 0.62, 0.0, 0]] },
-    { max: 240,      items: [['counter', 0.36, 0.0, 0], ['counter', 0.58, 0.0, 0], ['counter', 0.47, 0.52, 0]] },
-    { max: 400,      items: [['counter', 0.30, 0.0, 0], ['counter', 0.42, 0.0, 0], ['load', 0.70, 0.10, 0], ['load', 0.78, 0.10, 0], ['forklift', 0.60, 0.52, -0.7]] },
-    { max: 1500,     items: [['rack', 0.28, 0.0, 0], ['rack', 0.56, 0.0, 0], ['load', 0.74, 0.50, 0.2], ['forklift', 0.46, 0.52, -0.7], ['forklift', 0.80, 0.30, 2.4]] },
-    { max: Infinity, items: [['rack', 0.14, 0.0, 0], ['rack', 0.24, 0.0, 0], ['rack', 0.34, 0.0, 0], ['rack', 0.44, 0.0, 0], ['rack', 0.54, 0.0, 0],
-                             ['truck', 0.36, 0.55, Math.PI / 2], ['truck', 0.64, 0.55, Math.PI / 2], ['truck', 0.64, 0.75, Math.PI / 2],
-                             ['forklift', 0.48, 0.30, -0.7], ['forklift', 0.78, 0.36, 2.4], ['load', 0.20, 0.34, 0]] }
-  ];
-  const templates = {};
-  const propGroup = new THREE.Group();
-  group.add(propGroup);
-  let propSet = -1;
-  const placed = [];   // { obj, fx, fz, d }  d = adâncimea, ca obiectul să stea lipit de perete
+  // pragurile de arie a podelei (m²) după care se alege interiorul
+  const ROOM_BY_AREA = [[10, 'baie'], [40, 'cabinet'], [240, 'macelarie'], [450, 'abator'], [1500, 'fabrica'], [Infinity, 'logistic']];
+  const forcedRoom = new URLSearchParams(location.search).get('room');
 
-  const steel = new THREE.MeshStandardMaterial({ color: 0xc3ccd4, metalness: 0.7, roughness: 0.32 });
-  const cardboard = new THREE.MeshStandardMaterial({ color: 0xb58a57, roughness: 0.9 });
-  const upright = new THREE.MeshStandardMaterial({ color: 0x1f4f9c, roughness: 0.5 });
-  const beam = new THREE.MeshStandardMaterial({ color: 0xe0662a, roughness: 0.5 });
+  let interior = null;       // grupul curent
+  let interiorKey = '';
+  let buildSeq = 0;
+  let buildTimer = 0;
 
-  function box(w, h, d, mat, x, y, z){
-    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
-    m.position.set(x, y, z);
-    return m;
-  }
-  function withDepth(obj){
-    const b = new THREE.Box3().setFromObject(obj);
-    obj.userData.d = b.max.z - b.min.z;
-    return obj;
-  }
-
-  // palet încărcat: paletul real + marfa ambalată
-  function makeLoad(){
-    const g = new THREE.Group();
-    if (templates.pallet) g.add(templates.pallet.clone());
-    g.add(box(1.14, 0.9, 1.14, cardboard, 0, 0.144 + 0.45, 0));
-    return withDepth(g);
-  }
-  // raft paletizat: stâlpi albaștri, grinzi portocalii, 3 travee × 3 niveluri, 4,2 m
-  function makeRack(){
-    const g = new THREE.Group();
-    const bay = 2.8, depth = 1.1, H = 4.2, bays = 3;
-    for (let i = 0; i <= bays; i++){
-      const x = (i - bays / 2) * bay;
-      g.add(box(0.09, H, 0.09, upright, x, H / 2, -depth / 2));
-      g.add(box(0.09, H, 0.09, upright, x,  H / 2,  depth / 2));
-    }
-    for (const y of [0.15, 1.55, 2.95]){
-      g.add(box(bay * bays, 0.12, 0.06, beam, 0, y, -depth / 2));
-      g.add(box(bay * bays, 0.12, 0.06, beam, 0, y,  depth / 2));
-      for (let i = 0; i < bays; i++){
-        for (const dx of [-0.65, 0.65]){
-          const l = makeLoad();
-          l.position.set((i - bays / 2 + 0.5) * bay + dx, y + 0.06, 0);
-          g.add(l);
-        }
-      }
-    }
-    return withDepth(g);
-  }
-
-  const loader = new GLTFLoader();
-  Object.entries(MODELS).forEach(([name, cfg]) => {
-    loader.load('models/' + name + '.glb', (gltf) => {
-      const obj = gltf.scene;
-      if (cfg.steel) obj.traverse((o) => { if (o.isMesh) o.material = steel; });
-      const box3 = new THREE.Box3().setFromObject(obj);
-      const size = box3.getSize(new THREE.Vector3());
-      const k = cfg.w ? cfg.w / (size.x || 1) : cfg.h / (size.y || 1);
-      obj.position.set(-(box3.min.x + size.x / 2), -box3.min.y, -(box3.min.z + size.z / 2));
-      const holder = new THREE.Group();
-      holder.add(obj);
-      holder.scale.setScalar(k);
-      holder.rotation.y = cfg.rot;
-      const wrap = new THREE.Group();
-      wrap.add(holder);
-      templates[name] = withDepth(wrap);
-      if (name === 'pallet'){ templates.load = makeLoad(); templates.rack = makeRack(); }
-      propSet = -1;   // reconstruiește setul curent cu modelul nou
-    }, undefined, () => {});
-  });
-  templates.load = makeLoad();
-  templates.rack = makeRack();
-
-  function pickSet(){
+  function roomId(){
+    if (forcedRoom && ROOMS[forcedRoom]) return forcedRoom;
+    const p = PRESETS.find((q) => q.L === dims.L && q.W === dims.W && q.H === dims.H);
+    if (p) return p.id;
     const a = dims.L * dims.W;
-    return SETS.findIndex((st) => a <= st.max);
+    return ROOM_BY_AREA.find(([max]) => a <= max)[1];
   }
-  function buildProps(){
-    const i = pickSet();
-    if (i === propSet) return;
-    propSet = i;
-    propGroup.clear();
-    placed.length = 0;
-    for (const [name, fx, fz, r] of SETS[i].items){
-      const t = templates[name];
-      if (!t) continue;
-      const o = t.clone();
-      o.rotation.y = r;
-      propGroup.add(o);
-      placed.push({ obj: o, fx, fz, d: fz === 0 ? t.userData.d / 2 + 0.05 : 0 });
+
+  function fitSun(){
+    const r = Math.hypot(dims.L, dims.W) / 2 + 2;
+    sun.position.set(dims.L * 0.35, Math.max(dims.H * 3, r * 1.2), dims.W * 0.6);
+    const c = sun.shadow.camera;
+    c.left = -r; c.right = r; c.top = r; c.bottom = -r; c.near = 0.5; c.far = r * 4 + dims.H * 4;
+    c.updateProjectionMatrix();
+  }
+
+  function requestInterior(){
+    clearTimeout(buildTimer);
+    buildTimer = setTimeout(buildInterior, 180);
+  }
+  async function buildInterior(){
+    const id = roomId();
+    const key = id + ':' + dims.L + 'x' + dims.W + 'x' + dims.H + ':' + dims.ceil;
+    if (key === interiorKey) return;
+    interiorKey = key;
+    const seq = ++buildSeq;
+    let g = null;
+    try {
+      const mod = await ROOMS[id]();
+      g = await mod.build({ L: dims.L, W: dims.W, H: dims.H, ceil: dims.ceil });
+    } catch (err){
+      console.warn('[medclyn] interiorul „' + id + '” nu s-a construit:', err);
     }
+    if (seq !== buildSeq) return;          // între timp s-a cerut altă încăpere
+    if (interior){ group.remove(interior); dispose(interior); }
+    interior = g;
+    if (g){
+      g.traverse((o) => { if (o.isMesh && o.castShadow === undefined) o.castShadow = true; });
+      g.visible = false;
+      group.add(g);
+    }
+    fitSun();
   }
-  function placeProps(){
-    const { L, W } = shown;
-    for (const p of placed) p.obj.position.set(-L / 2 + p.fx * L, 0, -W / 2 + p.fz * W + p.d);
+  function dispose(g){
+    g.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
   }
 
   const dims  = { L: 24, W: 12, H: 4.2, ceil: true };
@@ -273,6 +278,8 @@ export function createCalc(opts){
     wE.scale.set(W, H, 1); wE.position.set( L / 2, H / 2, 0); wE.rotation.set(0, -Math.PI / 2, 0);
     wW.scale.set(W, H, 1); wW.position.set(-L / 2, H / 2, 0); wW.rotation.set(0,  Math.PI / 2, 0);
     floorM.scale.set(L, W, 1); floorM.position.set(0, 0, 0); floorM.rotation.set(-Math.PI / 2, 0, 0);
+    gridM.scale.set(L, W, 1); gridM.position.set(0, 0.012, 0); gridM.rotation.set(-Math.PI / 2, 0, 0);
+    gridM.userData.u.uSize.value.set(L, W);
     ceilM.scale.set(L, W, 1);  ceilM.position.set(0, H, 0);  ceilM.rotation.set(Math.PI / 2, 0, 0);
     ceilM.visible = dims.ceil;
 
@@ -285,13 +292,12 @@ export function createCalc(opts){
     const major = span > 70 ? 25 : span > 36 ? 10 : 5;
     if (floorM.userData.u.uMajor.value !== major){
       floorM.userData.u.uMajor.value = major;
+      gridM.userData.u.uMajor.value = major;
       put('grid-tag', 'caroiaj ' + (major > 7 ? major / 5 : 1) + ' m · cyan ' + major + ' m');
     }
     ceilM.userData.u.uSize.value.set(L, W);
 
-    buildProps();
-    placeProps();
-    human.position.set(-L / 2 + Math.min(1.5, L * 0.3), 0, W / 2 - Math.min(1.7, W * 0.35));
+    human.position.set(-L / 2 + Math.min(1.5, Math.max(0.35, L * 0.12)), 0, W / 2 - Math.min(1.7, Math.max(0.35, W * 0.12)));
   }
 
   const nf0 = new Intl.NumberFormat('ro-RO', { maximumFractionDigits: 0 });
@@ -348,6 +354,7 @@ export function createCalc(opts){
     dims.H = clampNum(document.getElementById('in-h').value, 2, 14, 4.2);
     dims.ceil = document.getElementById('in-ceil').checked;
     compute();
+    requestInterior();
   }
   ['in-l', 'in-w', 'in-h'].forEach((id) => {
     const n = document.getElementById(id);
@@ -446,7 +453,8 @@ export function createCalc(opts){
   // reper de incadrare: hala implicita de 24 × 12 × 4,2 m
   const REF_DIAG = Math.hypot(24, 12, 4.2);
 
-  let angle = 0.85;
+  const qa = parseFloat(new URLSearchParams(location.search).get('angle'));
+  let angle = isFinite(qa) ? qa : 0.85;
   const dir = new THREE.Vector3();
 
   function resize(){
@@ -477,12 +485,28 @@ export function createCalc(opts){
 
     camera.position.set(Math.sin(angle) * dist, shown.H * 0.50 + dist * 0.42, Math.cos(angle) * dist);
     camera.lookAt(0, shown.H * 0.28, 0);
+    const near = Math.max(0.1, dist * 0.02);
+    if (Math.abs(camera.near - near) > 0.01){ camera.near = near; camera.far = dist * 4 + 50; camera.updateProjectionMatrix(); }
 
+    const hidden = {};
     for (const w of walls){
-      if (w.m === ceilM && !dims.ceil){ w.m.visible = false; continue; }
+      if (w.m === ceilM && !dims.ceil){ w.m.visible = false; hidden.C = true; continue; }
       dir.copy(camera.position).sub(w.m.position);
       w.m.visible = dir.dot(w.n) < 0;
+      if (!w.m.visible) hidden[w.side] = true;
     }
+    // interiorul apare când hala a ajuns la dimensiunea pentru care a fost construit
+    const settled = Math.abs(shown.L - dims.L) < dims.L * 0.02 && Math.abs(shown.W - dims.W) < dims.W * 0.02 && Math.abs(shown.H - dims.H) < dims.H * 0.02;
+    if (interior){
+      interior.visible = settled;
+      for (const c of interior.children){
+        const side = c.userData.wall;
+        if (side) c.visible = !hidden[side];
+      }
+    }
+    gridM.visible = !!(interior && settled);
+    // pardoseala de rezervă stă sub cea a interiorului; la 150 m s-ar bate în adâncime cu ea
+    floorM.visible = !gridM.visible;
     renderer.render(scene, camera);
     updateDims();
   }

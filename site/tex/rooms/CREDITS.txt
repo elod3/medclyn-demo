@@ -1,0 +1,17 @@
+Texturi PBR folosite de js/rooms/baie.js si js/rooms/cabinet.js.
+Toate sunt CC0 (ambientCG, https://ambientcg.com), 1K-JPG, redimensionate local
+(sips) la 512-768px si recomprimate ca sa incapa in bugetul de 4 MB/modul.
+
+BaieFloor/      = ambientCG "Tiles133A" (gresie de baie, alba/gri, moderna)
+                  https://ambientcg.com/view?id=Tiles133A
+CabinetFloor/   = ambientCG "Concrete048" (suprafata neteda, gri-bej), tintuita
+                  gri-albastrui in cod pentru aspect de pardoseala PVC medicala
+                  https://ambientcg.com/view?id=Concrete048
+BrushedSteel/   = ambientCG "Metal009" (inox periat), folosita pentru dulapuri
+                  si cadre metalice
+                  https://ambientcg.com/view?id=Metal009
+Leatherette/    = ambientCG "Leather032", tintuita in cod pentru sezutul
+                  canapelei de consultatii
+                  https://ambientcg.com/view?id=Leather032
+
+Licenta ambientCG: CC0 1.0 (fara atributie obligatorie).
