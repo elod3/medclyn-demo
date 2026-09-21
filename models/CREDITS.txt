@@ -1,46 +1,5 @@
-Props for the room calculator (site/js/calc.js) — all CC0 / public domain.
-Downloaded 2026-09-21 via curl (no login, no node/npm). Kit zips extracted with
-unzip; individual .glb files copied out and renamed. Nothing was re-exported
-or re-textured — files are byte-identical to what shipped in the source zip
-(or, for rack.glb and forklift.glb, byte-identical to what the source served).
-
---------------------------------------------------------------------------
-toilet.glb
-  Source:   Kenney — "Furniture Kit"
-  Page:     https://kenney.nl/assets/furniture-kit
-  Download: https://kenney.nl/media/pages/assets/furniture-kit/440e0608a4-1677580847/kenney_furniture-kit.zip
-  File in zip: Models/GLTF format/toilet.glb
-  License:  CC0 1.0 (Kenney marks the whole kit "CC0 licensed!")
-
-desk.glb
-  Source:   Kenney — "Furniture Kit" (same kit as toilet.glb)
-  Page:     https://kenney.nl/assets/furniture-kit
-  Download: https://kenney.nl/media/pages/assets/furniture-kit/440e0608a4-1677580847/kenney_furniture-kit.zip
-  File in zip: Models/GLTF format/desk.glb
-  License:  CC0 1.0
-
-counter.glb
-  Source:   Kenney — "Furniture Kit" (same kit), original file kitchenBar.glb
-  Page:     https://kenney.nl/assets/furniture-kit
-  Download: https://kenney.nl/media/pages/assets/furniture-kit/440e0608a4-1677580847/kenney_furniture-kit.zip
-  File in zip: Models/GLTF format/kitchenBar.glb (renamed to counter.glb)
-  License:  CC0 1.0
-
-pallet.glb  (downloaded as rack.glb, renamed)
-  Source:   Kenney — "Pallet" model (original Kenney kit of origin not
-            identified; not present in furniture-kit, city-kit-industrial,
-            city-kit-commercial, factory-kit, space-kit or car-kit, all of
-            which were checked and downloaded directly from kenney.nl).
-            Retrieved via the Poly Pizza mirror, which explicitly lists the
-            author as Kenney (kenney.nl) and the license as "Public Domain
-            (CC0)".
-  Page:     https://poly.pizza/m/J6bhnc2wFP
-  Download: https://static.poly.pizza/40dc910f-3ee1-4dde-a692-41ec82a9ae1f.glb
-  License:  CC0 1.0 (as labelled on the Poly Pizza page; original author Kenney)
-  Note:     represents a single wooden pallet, not a multi-level rack — use
-            per rule 4 ("pallet rack or pallet with boxes"). Stack/array
-            several instances in code if a fuller "rack" silhouette is
-            wanted; no CC0 multi-tier pallet-rack GLB was found.
+Props for the room calculator (site/js/rooms/logistic.js) — all CC0 / public domain.
+Downloaded 2026-09-21 via curl. Files are byte-identical to what the source served.
 
 forklift.glb
   Source:   "Forklift, chain, hook, and barrel" by Luana Coppio — warehouse
