@@ -190,20 +190,26 @@
     </div>
 
     <div class="calc">
+      <div class="calc-view">
       <div id="room">
         <span class="data tag" id="room-tag">hală 24,0 × 12,0 × 4,2 m</span>
+        <span class="data tag grid-tag" id="grid-tag">caroiaj 1 m · cyan 5 m</span>
         <canvas id="cv-room"></canvas>
+      </div>
+
+      <div class="ladder" id="ladder" role="group" aria-label="Mărimi tipice de încăpere"></div>
+      <p class="ladder-note">Treptele din mijloc sunt cam cât șantierele publicate de MedClyn: AYT București 300&nbsp;m², Bona Avis Ianca 616&nbsp;m², Ursus Ciucaș 1.000&nbsp;m².</p>
       </div>
 
       <div>
         <div class="fields">
           <div class="field">
             <label for="in-l">Lungime (m)</label>
-            <input id="in-l" type="number" min="2" max="120" step="0.1" value="24">
+            <input id="in-l" type="number" min="1.2" max="120" step="0.1" value="24">
           </div>
           <div class="field">
             <label for="in-w">Lățime (m)</label>
-            <input id="in-w" type="number" min="2" max="120" step="0.1" value="12">
+            <input id="in-w" type="number" min="1.2" max="120" step="0.1" value="12">
           </div>
           <div class="field">
             <label for="in-h">Înălțime (m)</label>

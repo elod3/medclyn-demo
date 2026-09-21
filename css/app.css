@@ -286,6 +286,7 @@ h2{font-size:clamp(24px,3.4vw,46px); max-width:22ch}
   background:var(--ink); overflow:hidden}
 #room canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
 #room .tag{position:absolute; left:14px; top:14px; color:var(--steel-dim); z-index:2}
+#room .grid-tag{top:auto; bottom:12px; color:var(--steel-faint)}
 
 /* cotele desenului: text mic, aliniat pe punctul proiectat din 3D */
 .dims{position:absolute; inset:0; pointer-events:none; z-index:3}
@@ -298,6 +299,33 @@ h2{font-size:clamp(24px,3.4vw,46px); max-width:22ch}
   transition:opacity .2s ease;
 }
 .dim.a{color:var(--ink); background:var(--ral9010)}
+
+/* scara de mărimi: amprenta fiecărei încăperi, desenată la aceeași scară logaritmică */
+.calc-view{min-width:0}
+.ladder{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px;
+  margin-top:1px; background:var(--rule)}
+@media(min-width:700px){ .ladder{grid-template-columns:repeat(6,minmax(0,1fr))} }
+.step{
+  appearance:none; cursor:pointer; text-align:left; min-width:0;
+  display:grid; grid-template-rows:52px auto auto; align-content:start;
+  background:var(--ink); color:var(--steel); border:0;
+  padding:12px 12px 13px;
+  transition:background .18s ease, color .18s ease;
+}
+.step .fp{display:flex; align-items:flex-end; height:44px}
+.step .fp i{display:block; width:var(--fw); height:var(--fh);
+  border:1px solid var(--steel-faint); background:rgba(166,187,214,.08);
+  transition:border-color .18s ease, background .18s ease}
+.step b{font-family:var(--f-text); font-weight:700; font-size:13px; line-height:1.2; color:var(--ral9010)}
+.step span{margin-top:4px; font-family:var(--f-data); font-variation-settings:"wdth" 87.5;
+  font-size:10px; color:var(--steel-faint); font-variant-numeric:tabular-nums; white-space:nowrap}
+.step:hover{background:var(--conc)}
+.step:hover .fp i{border-color:var(--steel)}
+.step:focus-visible{outline:2px solid var(--cyan); outline-offset:-2px}
+.step[aria-pressed="true"]{background:var(--conc-2)}
+.step[aria-pressed="true"] .fp i{border-color:var(--cyan); background:rgba(36,191,204,.22)}
+.step[aria-pressed="true"] span{color:var(--cyan)}
+.ladder-note{color:var(--steel-faint); font-size:13px; line-height:1.55; margin-top:12px; max-width:70ch}
 
 .fields{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-bottom:16px}
 .field label{display:block; color:var(--steel-faint); margin-bottom:7px;
@@ -320,7 +348,7 @@ h2{font-size:clamp(24px,3.4vw,46px); max-width:22ch}
 .bom th,.bom td{padding:10px 0; border-bottom:1px solid var(--rule-soft); text-align:right;
   font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:12px; font-weight:400}
 .bom th{text-align:left; color:var(--steel); font-family:var(--f-text); font-size:14px}
-.bom td.qty{color:var(--steel-dim); width:26%}
+.bom td.qty{color:var(--steel-dim); width:26%; padding-right:14px}
 .bom td.val{color:var(--ral9010); width:32%; white-space:nowrap}
 .bom tfoot th,.bom tfoot td{border-bottom:0; border-top:1px solid var(--rule); padding-top:15px}
 .bom tfoot td.val{font-size:17px; color:var(--ral9010); white-space:nowrap}

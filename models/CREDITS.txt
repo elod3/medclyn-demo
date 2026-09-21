@@ -1,0 +1,71 @@
+Props for the room calculator (site/js/calc.js) — all CC0 / public domain.
+Downloaded 2026-09-21 via curl (no login, no node/npm). Kit zips extracted with
+unzip; individual .glb files copied out and renamed. Nothing was re-exported
+or re-textured — files are byte-identical to what shipped in the source zip
+(or, for rack.glb and forklift.glb, byte-identical to what the source served).
+
+--------------------------------------------------------------------------
+toilet.glb
+  Source:   Kenney — "Furniture Kit"
+  Page:     https://kenney.nl/assets/furniture-kit
+  Download: https://kenney.nl/media/pages/assets/furniture-kit/440e0608a4-1677580847/kenney_furniture-kit.zip
+  File in zip: Models/GLTF format/toilet.glb
+  License:  CC0 1.0 (Kenney marks the whole kit "CC0 licensed!")
+
+desk.glb
+  Source:   Kenney — "Furniture Kit" (same kit as toilet.glb)
+  Page:     https://kenney.nl/assets/furniture-kit
+  Download: https://kenney.nl/media/pages/assets/furniture-kit/440e0608a4-1677580847/kenney_furniture-kit.zip
+  File in zip: Models/GLTF format/desk.glb
+  License:  CC0 1.0
+
+counter.glb
+  Source:   Kenney — "Furniture Kit" (same kit), original file kitchenBar.glb
+  Page:     https://kenney.nl/assets/furniture-kit
+  Download: https://kenney.nl/media/pages/assets/furniture-kit/440e0608a4-1677580847/kenney_furniture-kit.zip
+  File in zip: Models/GLTF format/kitchenBar.glb (renamed to counter.glb)
+  License:  CC0 1.0
+
+pallet.glb  (downloaded as rack.glb, renamed)
+  Source:   Kenney — "Pallet" model (original Kenney kit of origin not
+            identified; not present in furniture-kit, city-kit-industrial,
+            city-kit-commercial, factory-kit, space-kit or car-kit, all of
+            which were checked and downloaded directly from kenney.nl).
+            Retrieved via the Poly Pizza mirror, which explicitly lists the
+            author as Kenney (kenney.nl) and the license as "Public Domain
+            (CC0)".
+  Page:     https://poly.pizza/m/J6bhnc2wFP
+  Download: https://static.poly.pizza/40dc910f-3ee1-4dde-a692-41ec82a9ae1f.glb
+  License:  CC0 1.0 (as labelled on the Poly Pizza page; original author Kenney)
+  Note:     represents a single wooden pallet, not a multi-level rack — use
+            per rule 4 ("pallet rack or pallet with boxes"). Stack/array
+            several instances in code if a fuller "rack" silhouette is
+            wanted; no CC0 multi-tier pallet-rack GLB was found.
+
+forklift.glb
+  Source:   "Forklift, chain, hook, and barrel" by Luana Coppio — warehouse
+            asset pack explicitly marked "CC0" in the page subtitle and in
+            the license text ("This project is licensed under CC0, you may
+            download it for free and use however you want").
+  Page:     https://magicalgothgirrl.itch.io/forklift-chain-hook-and-barrel
+            (also mirrored at https://scoppio.itch.io/forklift-chain-hook-and-barrel)
+  File in zip: forklift/forklift.glb (texture forkliftt_cc0.png embedded in
+            the glb; the pack's own texture_source.txt credits the photo
+            texture to https://pxhere.com/en/photo/612898, also CC0)
+  License:  CC0 1.0
+
+truck.glb
+  Source:   Kenney — "Car Kit", original file delivery.glb (box/cargo truck —
+            chosen over the kit's own truck.glb, which is a pickup shape and
+            reads poorly once scaled to a 4 m / 16 m logistics rig)
+  Page:     https://kenney.nl/assets/car-kit
+  Download: https://kenney.nl/media/pages/assets/car-kit/1a312ec241-1775131960/kenney_car-kit.zip
+  File in zip: Models/GLB format/delivery.glb (renamed to truck.glb)
+  License:  CC0 1.0 (Kenney marks the whole kit "CC0 licensed!")
+
+--------------------------------------------------------------------------
+Kenney's standard license statement (applies to all Kenney-sourced files
+above): "All game assets on this page are licensed under Creative Commons
+Zero (CC0), and are 100% free to use in personal and commercial projects.
+Support the creator by giving credit and/or donating."
+No attribution is legally required, but it's given here anyway for the record.
