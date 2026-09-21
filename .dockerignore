@@ -1,0 +1,6 @@
+.git
+.github
+*.md
+serve.sh
+docker-compose.yml
+.DS_Store

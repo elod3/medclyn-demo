@@ -1,0 +1,465 @@
+/* MedClyn — demo de concept.
+ *
+ * Identitatea e a lor: navy #003a84 și cyan #24bfcc sunt exact
+ * --color-primary și --color-secondary din stylesheet-ul medclyn.com,
+ * iar Nunito Sans e fontul lor. Marca e refăcută vectorial din logo.
+ * Ce am adăugat noi: Archivo Expanded pentru titlurile mari (greutate de
+ * semnalistică industrială) și Martian Mono strict pentru date tehnice.
+ * RAL 9010 rămâne culoarea plăcii pe care o vând.
+ */
+
+:root{
+  /* Din stylesheet.css-ul MedClyn — variabilele lor, nu aproximări: */
+  --navy:#003a84;             /* --color-primary: titluri, linkuri, butoane, meniu */
+  --navy-2:#0b4c9e;
+  --cyan:#24bfcc;             /* --color-secondary: hover, activ, accent */
+  --ice:#e2eff5;              /* --color-light-grey: fundalurile lor deschise */
+
+  /* Fațetele mărcii, eșantionate din logo: */
+  --mark-top:#24BFCD; --mark-right:#1479B1; --mark-bottom:#203874; --mark-left:#1878A8;
+
+  /* Fond: navy-ul lor împins spre negru, nu un gri neutru. */
+  --ink:#00132b;
+  --conc:#001a3a;
+  --conc-2:#002450;
+  --rule:#153f72;
+  --rule-soft:#0c2d56;
+
+  --ral9010:#F1F0EA;          /* culoarea reală a plăcii */
+  --steel:#a6bbd6;
+  --steel-dim:#7189ac;
+  --steel-faint:#4d6689;
+
+  --nonconform:#C8102E;       /* roșu de semnalizare, doar denotativ */
+
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-text:"Nunito Sans","Helvetica Neue",Arial,sans-serif;     /* fontul lor */
+  --f-data:"Martian Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --gut:clamp(18px, 4vw, 40px);
+  --max:1320px;
+
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html,body{margin:0;padding:0}
+
+body{
+  background:var(--ink);
+  color:var(--ral9010);
+  font-family:var(--f-text);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+h1,h2,h3{
+  margin:0;
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 125;
+  font-weight:800;
+  line-height:0.95;
+  letter-spacing:-0.025em;
+  text-transform:uppercase;
+  text-wrap:balance;
+}
+p{margin:0}
+a{color:inherit}
+
+/* Martian Mono e rezervat datelor: dimensiuni, norme, rezultate de test. */
+.data{
+  font-family:var(--f-data);
+  font-variation-settings:"wdth" 87.5;
+  font-size:11px;
+  line-height:1.5;
+  letter-spacing:0;
+  font-weight:400;
+  font-variant-numeric:tabular-nums;
+}
+.idx{ color:var(--steel-faint); }
+
+.wrap{max-width:var(--max); margin:0 auto; padding-inline:var(--gut)}
+
+/* ─────────────── loader ─────────────── */
+#loader{
+  position:fixed; inset:0; z-index:200;
+  display:flex; align-items:flex-end;
+  padding:var(--gut);
+  padding-bottom:calc(var(--gut) + env(safe-area-inset-bottom,0px));
+  background:var(--ink);
+  transition:opacity .55s ease;
+}
+#loader.done{opacity:0; pointer-events:none}
+#loader .lrow{display:flex; align-items:baseline; gap:16px; width:100%}
+#loader .track{flex:1; height:1px; background:var(--rule); position:relative; top:-3px}
+#loader-bar{display:block; height:100%; width:100%; background:var(--cyan);
+  transform:scaleX(0.02); transform-origin:left center; transition:transform .3s ease}
+
+/* ─────────────── bara de sus ─────────────── */
+.hud{
+  position:fixed; left:0; right:0; top:0; z-index:60;
+  padding:14px var(--gut);
+  padding-top:calc(14px + env(safe-area-inset-top,0px));
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  background:linear-gradient(to bottom, rgba(0,19,43,.95) 15%, rgba(0,19,43,.72) 58%, rgba(0,19,43,0));
+  padding-bottom:26px;
+  pointer-events:none;
+}
+.brand{
+  display:inline-flex; align-items:center; gap:10px;
+  text-decoration:none; pointer-events:auto; color:var(--ice);
+}
+.brand-mark{width:28px; height:28px; display:block; flex:none}
+.brand-mark .gap{stroke:var(--ink); stroke-width:5}
+.brand-word{
+  font-family:var(--f-text); font-weight:800; font-size:21px;
+  letter-spacing:-.01em; line-height:1;
+}
+.brand-word b{font-weight:900; color:var(--cyan)}
+/* Indexul numerotat: site-ul se citeste ca un catalog tehnic, nu ca un meniu SaaS. */
+.index{display:none; gap:26px}
+@media(min-width:980px){ .index{display:flex} }
+.index a{
+  text-decoration:none; color:var(--steel);
+  pointer-events:auto;
+  transition:color .18s ease;
+}
+.index a:hover,.index a:focus-visible{color:var(--cyan)}
+.index b{color:var(--steel-faint); font-weight:400; margin-right:7px}
+
+.marker{color:var(--steel-dim); text-align:right}
+.marker s{color:#E24C63; text-decoration:none; letter-spacing:.04em}
+
+/* ─────────────── peretele, fundal pe toata pagina ─────────────── */
+/* Nu e decor de hero: e suportul intregului site, si se curata pe masura
+   ce cobori. Continutul pluteste peste el pe panouri aproape opace. */
+#stage{position:fixed; inset:0; z-index:0; pointer-events:none}
+#cv-wall{position:absolute; inset:0; width:100%; height:100%; display:block}
+#nogl{position:absolute; inset:0; display:grid; place-items:center; padding:24px;
+  text-align:center; color:var(--steel); background:var(--conc)}
+
+body > header, body > section, body > footer{position:relative; z-index:1}
+
+/* ─────────────── hero ─────────────── */
+#hero{
+  height:100svh; min-height:600px;
+  cursor:crosshair;
+}
+
+/* Umbra hero-ului nu se mai termina intr-o linie dreapta la marginea
+   sectiunii: are o coada de 240px care curge peste cusatura si se topeste in
+   perete. La scroll, coada se lungeste si se subtiaza (--hs = 0..1, din main.js). */
+.hero-grad{
+  position:absolute; left:0; right:0; bottom:-240px; height:calc(82% + 240px);
+  background:linear-gradient(to top,
+    rgba(0,19,43,0) 0,
+    rgba(0,19,43,.55) 90px,
+    rgba(0,19,43,.97) 240px,
+    rgba(0,19,43,.97) calc(240px + 20%),
+    rgba(0,19,43,.80) 58%,
+    rgba(0,19,43,0) 100%);
+  transform-origin:50% 0;
+  transform:scaleY(calc(1 + var(--hs,0) * .35));
+  opacity:calc(1 - var(--hs,0) * .45);
+  pointer-events:none; will-change:transform, opacity;
+}
+.hero-copy{position:absolute; inset:auto 0 0 0; padding-bottom:calc(30px + env(safe-area-inset-bottom,0px)); pointer-events:none}
+.hero-copy .wrap{display:flex; flex-direction:column; gap:22px; position:relative;
+  /* parallax: textul urca mai incet decat pagina si se stinge spre sectiunea 01 */
+  transform:translate3d(0, calc(var(--hs,0) * -110px), 0);
+  opacity:calc(1 - var(--hs,0) * 1.15);
+  will-change:transform, opacity}
+
+h1{font-size:clamp(34px,6.6vw,86px); max-width:15ch}
+h1 em{font-style:normal; color:var(--steel)}
+
+.lede{color:var(--steel); max-width:56ch; font-size:clamp(15px,1.35vw,18px); line-height:1.5}
+
+/* Fisa tehnica: valorile reale, nu un rand de contoare animate. */
+.sheet{display:grid; grid-template-columns:repeat(2,1fr); border-top:1px solid var(--rule)}
+@media(min-width:720px){ .sheet{grid-template-columns:repeat(4,1fr)} }
+.sheet div{padding:12px 16px 12px 0; border-right:1px solid var(--rule-soft)}
+.sheet div:last-child{border-right:0}
+.sheet dt{color:var(--steel-faint); font-family:var(--f-data); font-variation-settings:"wdth" 87.5;
+  font-size:10px; text-transform:uppercase; letter-spacing:.02em}
+.sheet dd{margin:5px 0 0; font-family:var(--f-data); font-variation-settings:"wdth" 87.5;
+  font-size:13px; color:var(--ral9010); font-variant-numeric:tabular-nums}
+
+.hero-tools{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding-bottom:6px; border-bottom:1px solid var(--rule);
+  pointer-events:auto;
+}
+.wall-hint{
+  color:var(--ral9010); opacity:.8;
+  transition:opacity .45s ease; pointer-events:none;
+}
+.wall-hint.gone{opacity:0}
+
+#reset{
+  appearance:none; cursor:pointer;
+  border:1px solid rgba(241,240,234,.28); background:rgba(0,19,43,.55);
+  color:var(--ral9010);
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5;
+  font-size:10px; text-transform:uppercase; padding:9px 13px;
+  transition:background .18s ease, border-color .18s ease;
+}
+#reset:hover{background:var(--navy); border-color:var(--cyan)}
+#reset:focus-visible{outline:2px solid var(--ral9010); outline-offset:2px}
+
+/* ─────────────── sectiuni ─────────────── */
+/* Panourile de continut stau peste perete, aproape opace: peretele se vede
+   la hero si prin cusaturile dintre sectiuni. */
+.band{padding-block:clamp(28px,5vw,72px)}
+.band > .wrap{
+  max-width:calc(var(--max) - 2 * var(--gut));
+  background:rgba(0,19,43,.94);
+  border:1px solid var(--rule);
+  box-shadow:0 40px 90px -30px rgba(0,8,20,.85);
+  -webkit-backdrop-filter:saturate(1.1); backdrop-filter:saturate(1.1);
+}
+@media(max-width:760px){ .band{padding-inline:10px} }
+
+/* Capul panoului: o bara in culorile marcii, ca profilul de imbinare al placii. */
+.band > .wrap::before{
+  content:''; display:block; height:3px; margin:0 calc(-1 * var(--gut)) clamp(40px,6vw,88px);
+  background:linear-gradient(to right,
+    var(--mark-top) 0 25%, var(--mark-right) 25% 50%, var(--mark-left) 50% 75%, var(--mark-bottom) 75% 100%);
+}
+footer{background:rgba(0,19,43,.94); border-top:1px solid var(--rule)}
+.band > .wrap{padding-top:0; padding-bottom:clamp(48px,7vw,104px)}
+
+.shead{display:flex; flex-direction:column; gap:14px; margin-bottom:clamp(30px,4vw,54px)}
+.shead .kicker{display:flex; gap:12px; color:var(--cyan)}
+h2{font-size:clamp(24px,3.4vw,46px); max-width:22ch}
+.sub{color:var(--steel); max-width:62ch; font-size:15.5px}
+
+/* Norma vs. produs: doua coloane, citat verbatim in stanga, fisa in dreapta. */
+.conform{border-top:1px solid var(--rule)}
+.crow{
+  position:relative;
+  display:grid; grid-template-columns:1fr; gap:6px;
+  padding:20px 0; border-bottom:1px solid var(--rule-soft);
+}
+@media(min-width:860px){
+  .crow{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) 108px; gap:32px; align-items:start}
+}
+.crow .req{color:var(--steel); font-size:15px; line-height:1.5}
+.crow .req i{font-style:italic; color:var(--ral9010)}
+.crow .ans{color:var(--ral9010); font-size:15px; line-height:1.5}
+.crow .verdict{
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5;
+  font-size:10px; text-transform:uppercase; color:var(--ink);
+  background:var(--cyan); padding:4px 8px; justify-self:start; white-space:nowrap;
+}
+.src{margin-top:18px; color:var(--steel-faint)}
+
+/* Santiere: tabel de documentatie, nu carduri. */
+.jobs{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums}
+.jobs caption{text-align:left; color:var(--steel-faint); padding-bottom:12px;
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; text-transform:uppercase}
+.jobs th,.jobs td{border-bottom:1px solid var(--rule-soft); padding:16px 12px 16px 0; text-align:left; vertical-align:top}
+.jobs thead th{
+  border-bottom:1px solid var(--rule); color:var(--steel-faint);
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5;
+  font-size:10px; text-transform:uppercase; font-weight:400; padding-bottom:10px;
+}
+.jobs tbody th{
+  font-family:var(--f-display); font-variation-settings:"wdth" 112; font-weight:700;
+  font-size:17px; text-transform:uppercase; letter-spacing:-.01em; width:30%;
+}
+.jobs tbody th small{display:block; margin-top:4px; color:var(--steel-dim);
+  font-family:var(--f-text); font-variation-settings:normal; font-weight:400; font-size:13px;
+  text-transform:none; letter-spacing:0}
+.jobs td{color:var(--steel); font-size:14.5px}
+.jobs td.num{font-family:var(--f-data); font-variation-settings:"wdth" 87.5;
+  font-size:13px; color:var(--ral9010); white-space:nowrap}
+.jobs-scroll{overflow-x:auto}
+
+/* ─────────────── calculator ─────────────── */
+.calc{display:grid; grid-template-columns:1fr; gap:clamp(28px,4vw,52px)}
+@media(min-width:960px){ .calc{grid-template-columns:minmax(0,1fr) 420px; align-items:start} }
+#room{position:relative; width:100%; aspect-ratio:4/3; border:1px solid var(--rule);
+  background:var(--ink); overflow:hidden}
+#room canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
+#room .tag{position:absolute; left:14px; top:14px; color:var(--steel-dim); z-index:2}
+
+/* cotele desenului: text mic, aliniat pe punctul proiectat din 3D */
+.dims{position:absolute; inset:0; pointer-events:none; z-index:3}
+.dim{
+  position:absolute; transform:translate(-50%,-50%);
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5;
+  font-size:10px; letter-spacing:.02em; white-space:nowrap;
+  color:var(--ral9010);
+  background:rgba(0,19,43,.78); padding:3px 6px;
+  transition:opacity .2s ease;
+}
+.dim.a{color:var(--ink); background:var(--ral9010)}
+
+.fields{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-bottom:16px}
+.field label{display:block; color:var(--steel-faint); margin-bottom:7px;
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; text-transform:uppercase}
+.field input{
+  width:100%; appearance:textfield;
+  background:var(--ink); color:var(--ral9010);
+  border:1px solid var(--rule);
+  padding:11px 12px;
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:15px;
+}
+.field input:focus-visible{outline:none; border-color:var(--cyan)}
+.check{display:flex; align-items:center; gap:10px; color:var(--steel); cursor:pointer;
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; text-transform:uppercase}
+.check input{accent-color:var(--navy); width:15px; height:15px}
+
+.bom{width:100%; border-collapse:collapse; margin-top:24px; font-variant-numeric:tabular-nums}
+.bom caption{text-align:left; color:var(--steel-faint); padding-bottom:10px;
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; text-transform:uppercase}
+.bom th,.bom td{padding:10px 0; border-bottom:1px solid var(--rule-soft); text-align:right;
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:12px; font-weight:400}
+.bom th{text-align:left; color:var(--steel); font-family:var(--f-text); font-size:14px}
+.bom td.qty{color:var(--steel-dim); width:26%}
+.bom td.val{color:var(--ral9010); width:32%; white-space:nowrap}
+.bom tfoot th,.bom tfoot td{border-bottom:0; border-top:1px solid var(--rule); padding-top:15px}
+.bom tfoot td.val{font-size:17px; color:var(--ral9010); white-space:nowrap}
+
+.cta{
+  margin-top:22px; appearance:none; cursor:pointer;
+  border:1px solid var(--navy); background:var(--navy); color:#fff;
+  font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800;
+  text-transform:uppercase; letter-spacing:.01em; font-size:14px;
+  padding:14px 20px;
+  transition:background .18s ease, color .18s ease;
+}
+.cta:hover{background:var(--navy-2); border-color:var(--cyan); color:#fff}
+.cta:focus-visible{outline:2px solid var(--cyan); outline-offset:3px}
+
+.foot-note{color:var(--steel-faint); font-size:13px; line-height:1.55; max-width:70ch; margin-top:16px}
+.foot-note strong{color:var(--steel); font-weight:600}
+
+/* ─────────────── subsol ─────────────── */
+footer{border-top:1px solid var(--rule)}
+footer .wrap{padding-block:30px; display:flex; flex-wrap:wrap; gap:18px; justify-content:space-between;
+  color:var(--steel-faint)}
+
+/* Sigiliul de garanție — aceeași formă zimțată ca pe materialele lor.
+   E singurul element din pagină care „sare”: cade pe perete ca o ștampilă,
+   apoi tresare periodic ca să fie apăsat. Duce la rândul „stare bună” din 01. */
+.hero-seal{
+  position:absolute; right:var(--gut); bottom:118px; z-index:2;
+  display:block; width:136px; height:136px;
+  pointer-events:auto; cursor:pointer; text-decoration:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.seal-hop{position:absolute; inset:0; display:block; transform-origin:50% 100%}
+.seal{width:100%; height:100%; display:block; color:var(--mark-right); overflow:visible;
+  filter:drop-shadow(0 10px 18px rgba(0,8,20,.55));
+  transition:color .2s ease}
+.seal-rim{transform-origin:60px 54px; transform-box:view-box}
+.seal text{fill:#fff; font-family:var(--f-display); font-variation-settings:"wdth" 112; font-weight:800}
+.seal .seal-t1{font-size:14px; letter-spacing:.06em}
+.seal .seal-t2{font-size:22px; letter-spacing:.01em}
+.seal-shadow{
+  position:absolute; left:18%; right:18%; bottom:-10px; height:12px; border-radius:50%;
+  background:radial-gradient(closest-side, rgba(0,8,20,.7), rgba(0,8,20,0));
+}
+.hero-seal:hover .seal, .hero-seal:focus-visible .seal{color:var(--cyan)}
+.hero-seal:focus-visible{outline:2px solid var(--ral9010); outline-offset:6px; border-radius:50%}
+.hero-seal:active .seal{transform:scale(.9)}
+
+@media (prefers-reduced-motion:no-preference){
+  /* intrarea: cade de sus, se turteste la impact, revine */
+  .hero-seal{animation:seal-in .95s cubic-bezier(.3,0,.4,1) .7s both}
+  .seal-hop{animation:seal-hop 3.4s cubic-bezier(.45,0,.35,1) 2.2s infinite}
+  .seal-shadow{animation:seal-shadow 3.4s cubic-bezier(.45,0,.35,1) 2.2s infinite}
+  .seal-rim{animation:seal-spin 26s linear infinite}
+  .hero-seal:hover .seal-hop, .hero-seal:focus-visible .seal-hop{animation-duration:1.1s; animation-delay:0s}
+  .hero-seal:hover .seal-shadow, .hero-seal:focus-visible .seal-shadow{animation-duration:1.1s; animation-delay:0s}
+}
+@keyframes seal-in{
+  0%  {transform:translateY(-70vh) rotate(-28deg) scale(.7); opacity:0}
+  12% {opacity:1}
+  62% {transform:translateY(0) rotate(4deg) scale(1.12, .8)}
+  76% {transform:translateY(-22px) rotate(-3deg) scale(.95, 1.06)}
+  90% {transform:translateY(0) rotate(1deg) scale(1.04, .94)}
+  100%{transform:none; opacity:1}
+}
+/* un salt dublu de bucurie, apoi liniste */
+@keyframes seal-hop{
+  0%, 52%, 100% {transform:none}
+  57% {transform:scale(1.12, .84)}
+  66% {transform:translateY(-46px) rotate(-9deg) scale(.94, 1.08)}
+  72% {transform:translateY(-52px) rotate(7deg) scale(.97, 1.03)}
+  79% {transform:translateY(0) scale(1.1, .86)}
+  85% {transform:translateY(-18px) rotate(-3deg) scale(.98, 1.03)}
+  91% {transform:translateY(0) scale(1.05, .94)}
+  96% {transform:none}
+}
+@keyframes seal-shadow{
+  0%, 52%, 100% {transform:none; opacity:1}
+  57% {transform:scaleX(1.15)}
+  69% {transform:scaleX(.55); opacity:.35}
+  79% {transform:scaleX(1.12); opacity:1}
+  85% {transform:scaleX(.8); opacity:.7}
+  91%, 96% {transform:none; opacity:1}
+}
+@keyframes seal-spin{to{transform:rotate(360deg)}}
+
+/* pe telefon sigiliul nu mai dispare: sta in dreapta, deasupra titlului */
+@media(max-width:900px){
+  .hero-seal{width:88px; height:88px; bottom:auto; top:-112px}
+  .seal .seal-t1{font-size:15px}
+  .seal .seal-t2{font-size:24px}
+}
+
+/* ─────────────── animații de text ─────────────── */
+/* O singură mișcare: descoperire de la stânga, ca frontul de gel de pe perete. */
+html.reveal-on [data-reveal]{
+  opacity:0;
+  transform:translateY(9px);
+}
+html.reveal-on [data-reveal].in{
+  opacity:1;
+  transform:none;
+  transition:opacity .62s cubic-bezier(.22,.7,.3,1), transform .62s cubic-bezier(.22,.7,.3,1);
+  transition-delay:calc(var(--i, 0) * 65ms);
+}
+
+html.reveal-on .wipe{
+  clip-path:inset(0 100% 0 0);
+  opacity:1;
+  transform:none;
+}
+html.reveal-on .wipe.in{
+  clip-path:inset(0 0 0 0);
+  transition:clip-path 1.05s cubic-bezier(.16,.84,.32,1);
+  transition-delay:calc(var(--i, 0) * 65ms);
+}
+
+/* Linia de sub fiecare rând se trage ca într-un document care se culege. */
+html.reveal-on .crow{border-bottom-color:transparent}
+html.reveal-on .crow::after{
+  content:''; position:absolute; left:0; right:0; bottom:-1px; height:1px;
+  background:var(--rule-soft);
+  transform:scaleX(0); transform-origin:left center;
+}
+html.reveal-on .crow.in::after{
+  transform:scaleX(1);
+  transition:transform .85s cubic-bezier(.16,.84,.32,1);
+  transition-delay:calc(var(--i, 0) * 65ms);
+}
+
+/* Verdictul se aplică după ce rândul s-a citit, ca o ștampilă de control. */
+html.reveal-on .crow .verdict{opacity:0; transform:scale(1.16)}
+html.reveal-on .crow.in .verdict{
+  opacity:1; transform:none;
+  transition:opacity .3s ease, transform .38s cubic-bezier(.2,1.25,.4,1);
+  transition-delay:calc(var(--i, 0) * 65ms + 420ms);
+}
+
+.flat #hero{height:640px; min-height:0}
+.flat #loader{display:none}
+
+@media (prefers-reduced-motion:reduce){ *{transition-duration:.01ms !important} }
