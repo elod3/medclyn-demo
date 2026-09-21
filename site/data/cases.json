@@ -1,0 +1,322 @@
+[
+ {
+  "client": "Ursus Breweries",
+  "note": "Fabrica Ciucaș, Brașov. Pereți și tavane renovate fără demontarea utilajelor — plăcile au fost tăiate în bucăți ca să intre în spatele conductelor.",
+  "area": "1.000 m²",
+  "days": "40 zile",
+  "team": "12 oameni",
+  "stop": "zero",
+  "url": "https://www.medclyn.com/ursus-romania-alege-placarea-antibacteriana-de-la-medclyn-b37",
+  "main": {
+   "src": "img/santiere/ursus-0.jpg",
+   "w": 1400,
+   "h": 1050,
+   "label": "după"
+  },
+  "strip": [
+   {
+    "src": "img/santiere/ursus-1.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/ursus-2.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/ursus-3.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "după"
+   }
+  ]
+ },
+ {
+  "client": "Abatorul de pui Bona Avis",
+  "note": "Ianca, Brăila. Panouri sandwich vechi de 13–15 ani, revopsite la fiecare 2–3 ani, pe care vopseaua nu mai ținea. Placarea s-a montat direct peste ele.",
+  "area": "616 m²",
+  "days": "10 zile",
+  "team": "6–8 oameni",
+  "stop": "2 h din 10",
+  "url": "https://www.medclyn.com/abatorul-de-pui-bona-avis-reconditioneaza-panourile-sandwich-cu-placile-medclyn-b36",
+  "main": {
+   "src": "img/santiere/bona-0.jpg",
+   "w": 1400,
+   "h": 933,
+   "label": "după"
+  },
+  "strip": [
+   {
+    "src": "img/santiere/bona-1.jpg",
+    "w": 700,
+    "h": 467,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/bona-2.jpg",
+    "w": 700,
+    "h": 467,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/bona-3.jpg",
+    "w": 700,
+    "h": 467,
+    "label": "după"
+   }
+  ],
+  "video": {
+   "provider": "vimeo",
+   "id": "775951241",
+   "title": "Panouri sandwich renovate la abatorul Bona Avis",
+   "dur": 311,
+   "poster": "img/film/775951241.jpg",
+   "page": "https://www.medclyn.com/video/renovare-panouri-sandwich-la-abatorul-de-pui-bona-avis-vd10",
+   "external": true
+  }
+ },
+ {
+  "client": "Lactate Brădet",
+  "note": "Argeș. După o zonă de probă, patronul a placat aproape toată fabrica. Accesul la pereți și tavane era foarte greu printre instalațiile de lactate.",
+  "area": "1.000 m²",
+  "days": "4 săptămâni",
+  "team": "5 oameni",
+  "stop": "parțial, pe zone",
+  "url": "https://www.medclyn.com/lactate-bradet-renoveaza-peste-1000-mp-cu-medclyn-b17",
+  "main": {
+   "src": "img/santiere/bradet-0.jpg",
+   "w": 1280,
+   "h": 720,
+   "label": "înainte"
+  },
+  "mainNote": "stânga: hala înainte · dreapta: după placare",
+  "strip": [
+   {
+    "src": "img/santiere/bradet-1.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/bradet-2.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/bradet-3.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "în lucru"
+   }
+  ],
+  "video": {
+   "provider": "vimeo",
+   "id": "645809093",
+   "title": "Patronul Lactate Brădet despre sistemul MedClyn",
+   "dur": 372,
+   "poster": "img/film/645809093.jpg",
+   "page": "https://www.medclyn.com/video/marius-badea-patronul-lactate-bradet-despre-sistemul-medclyn-vd7",
+   "external": true
+  }
+ },
+ {
+  "client": "AYT Măcelărie & Market",
+  "note": "București. Pereții de zidărie crăpaseră de la umiditate și vopseaua se exfolia — un risc alimentar direct, în propriile lor cuvinte.",
+  "area": "300 m² + 50 ml",
+  "days": "2 zile",
+  "team": "3 oameni",
+  "stop": "—",
+  "url": "https://www.medclyn.com/ayt-macelarie-and-market-placheaza-peretii-cu-medclyn-b35",
+  "pair": [
+   {
+    "src": "img/santiere/ayt-b.jpg",
+    "w": 768,
+    "h": 1024,
+    "label": "înainte"
+   },
+   {
+    "src": "img/santiere/ayt-a.jpg",
+    "w": 768,
+    "h": 1024,
+    "label": "după"
+   }
+  ],
+  "strip": [
+   {
+    "src": "img/santiere/ayt-1.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/ayt-2.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/ayt-3.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "după"
+   }
+  ]
+ },
+ {
+  "client": "Spitalul Orășenesc Cugir",
+  "note": "Sala de chirurgie și încăperile anexe, într-un spital public. Lampa scialitică a rămas pe loc, învelită în folie.",
+  "area": "200 m²",
+  "days": "3 zile",
+  "team": "4 oameni",
+  "stop": "—",
+  "url": "https://www.medclyn.com/spitalul-cugir-renoveaza-sala-de-chirurgie-cu-medclyn-b31",
+  "main": {
+   "src": "img/santiere/cugir-0.jpg",
+   "w": 1024,
+   "h": 768,
+   "label": "după"
+  },
+  "strip": [
+   {
+    "src": "img/santiere/cugir-1.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "în lucru"
+   },
+   {
+    "src": "img/santiere/cugir-2.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "în lucru"
+   },
+   {
+    "src": "img/santiere/cugir-3.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "după"
+   }
+  ],
+  "video": {
+   "provider": "vimeo",
+   "id": "786307091",
+   "title": "Sala de chirurgie a Spitalului Cugir",
+   "dur": 103,
+   "poster": "img/film/786307091.jpg",
+   "page": "https://www.medclyn.com/video/spitalul-orasenesc-cugir-renoveaza-peretii-in-sala-de-chirurgie-cu-medclyn-vd11",
+   "external": true
+  }
+ },
+ {
+  "client": "Swiss Caps România",
+  "note": "Prahova, capsule gelatinoase pentru medicamente. Prima etapă; restul fabricii se renovează pe etape, în concediile în care producția e redusă.",
+  "area": "350 m² + 120 ml",
+  "days": "3 zile",
+  "team": "5 oameni",
+  "stop": "în concediu",
+  "url": "https://www.medclyn.com/fabrica-de-medicamente-swiss-caps-romania-foloseste-placi-antibacteriene-medclyn-b20",
+  "quote": {
+   "text": "Suntem foarte mulțumiți de rezultate și urmează să continuăm renovările atunci când va fi posibil.",
+   "who": "Swiss Caps România"
+  },
+  "main": {
+   "src": "img/santiere/swiss-0.jpg",
+   "w": 768,
+   "h": 1024,
+   "label": "după"
+  },
+  "strip": [
+   {
+    "src": "img/santiere/swiss-1.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "în lucru"
+   },
+   {
+    "src": "img/santiere/swiss-2.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "în lucru"
+   },
+   {
+    "src": "img/santiere/swiss-3.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "după"
+   }
+  ]
+ },
+ {
+  "client": "Nestlé",
+  "note": "Atelier de producție de ciocolată, Franța. Echipamentele, sprinklerele și ventilația au fost demontate și remontate.",
+  "area": "250 m²",
+  "days": "7 zile",
+  "team": "5 oameni",
+  "stop": "—",
+  "url": "https://www.medclyn.com/nestle-renoveaza-cu-medclyn-un-atelier-de-productie-de-ciocolata-b11",
+  "main": {
+   "src": "img/santiere/nestle-0.jpg",
+   "w": 1400,
+   "h": 1050,
+   "label": "după"
+  },
+  "strip": [
+   {
+    "src": "img/santiere/nestle-1.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/nestle-2.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/nestle-3.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "după"
+   }
+  ]
+ },
+ {
+  "client": "Ladurée Paris",
+  "note": "Champs-Élysées. 200 m² de pereți și tavane placați într-o singură noapte, în 12–14 ore, ca restaurantul să nu fie închis la control. Restul, în zilele următoare.",
+  "area": "400 m²",
+  "days": "5–6 zile",
+  "team": "10, apoi 5",
+  "stop": "zero",
+  "url": "https://www.medclyn.com/ladureeparis-restaurant-de-lux-de-pe-champs-elysees-renoveaza-bucataria-cu-medclyn-b13",
+  "main": {
+   "src": "img/santiere/laduree-0.jpg",
+   "w": 1400,
+   "h": 1050,
+   "label": "după"
+  },
+  "strip": [
+   {
+    "src": "img/santiere/laduree-1.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "în lucru"
+   },
+   {
+    "src": "img/santiere/laduree-2.jpg",
+    "w": 525,
+    "h": 700,
+    "label": "după"
+   },
+   {
+    "src": "img/santiere/laduree-3.jpg",
+    "w": 700,
+    "h": 525,
+    "label": "după"
+   }
+  ]
+ }
+]

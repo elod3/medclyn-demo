@@ -1,6 +1,7 @@
 import { createWall } from './wall.js';
 import { createCalc } from './calc.js';
 import { initReveal } from './reveal.js';
+import { initCases } from './cases.js';
 
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -29,6 +30,7 @@ window.addEventListener('error', (e) => fail(e.error || e.message));
 window.addEventListener('unhandledrejection', (e) => fail(e.reason));
 
 initReveal({ reduced });
+initCases().catch((err) => console.warn('[medclyn] șantiere:', err));
 
 /* ---------- peretele ---------- */
 let wall = null;

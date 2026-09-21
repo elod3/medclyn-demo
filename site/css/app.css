@@ -491,3 +491,87 @@ html.reveal-on .crow.in .verdict{
 .flat #loader{display:none}
 
 @media (prefers-reduced-motion:reduce){ *{transition-duration:.01ms !important} }
+
+/* ─────────────── șantiere: lucrarea deschisă ─────────────── */
+.job-open{
+  display:inline-block; margin-top:10px; appearance:none; cursor:pointer;
+  background:none; border:0; border-bottom:1px solid var(--cyan); padding:2px 0;
+  color:var(--cyan); font-size:10px; text-transform:uppercase; letter-spacing:.02em;
+  font-variation-settings:"wdth" 87.5; font-family:var(--f-data);
+}
+.job-open:hover{color:var(--ral9010); border-color:var(--ral9010)}
+.job-open:focus-visible{outline:2px solid var(--cyan); outline-offset:3px}
+.job.is-open th,.job.is-open td{border-bottom-color:transparent}
+.job-detail > td{padding:4px 0 34px; border-bottom:1px solid var(--rule)}
+
+.case{display:grid; grid-template-columns:1fr; gap:18px}
+@media(min-width:960px){ .case{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr); gap:28px; align-items:start} }
+
+.case-pair{margin:0; display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.case-pair div{position:relative}
+.case-pair img{width:100%; height:100%; aspect-ratio:3/4; object-fit:cover; display:block}
+.case-pair .data{position:absolute; top:10px; left:10px; padding:4px 8px; font-size:10px; text-transform:uppercase}
+.tag-b{background:var(--nonconform); color:#fff}
+.tag-a{background:var(--ral9010); color:var(--ink)}
+.case-one{margin:0}
+.case-one img{width:100%; height:auto; display:block}
+.case-one figcaption{font-size:10px; text-transform:uppercase; color:var(--steel-faint); margin-top:6px}
+
+.case-side{display:grid; gap:16px; align-content:start}
+.case-quote{margin:0; padding-left:14px; border-left:3px solid var(--cyan)}
+.case-quote p{color:var(--ral9010); font-size:16px; line-height:1.5; margin:0}
+.case-quote cite{display:block; margin-top:6px; color:var(--steel-dim); font-style:normal; font-size:13px}
+
+.film{position:relative; display:block; color:inherit; text-decoration:none; width:100%; padding:0; border:1px solid var(--rule);
+  background:var(--ink); cursor:pointer; overflow:hidden; text-align:left; appearance:none}
+.film img{width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; display:block; transition:transform .5s ease}
+.film:hover img{transform:scale(1.03)}
+.film:focus-visible{outline:2px solid var(--cyan); outline-offset:2px}
+.film-meta{position:relative; display:grid; gap:4px; padding:10px 14px 12px; background:var(--ink)}
+.film-meta .data{font-size:10px; text-transform:uppercase; color:var(--cyan)}
+.film-meta b{color:var(--ral9010); font-family:var(--f-text); font-weight:700; font-size:14px; line-height:1.3}
+.film-play{position:absolute; left:14px; top:14px; width:44px; height:44px; background:var(--navy);
+  border:1px solid var(--cyan)}
+.film-play::after{content:""; position:absolute; left:17px; top:13px; border-left:13px solid #fff;
+  border-top:9px solid transparent; border-bottom:9px solid transparent}
+.film:hover .film-play{background:var(--navy-2)}
+.film.on{cursor:auto; aspect-ratio:16/9}
+.film iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+.case-strip{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px}
+.case-strip figure{margin:0}
+.case-strip img{width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; display:block}
+.case-strip figcaption{font-size:9.5px; text-transform:uppercase; color:var(--steel-faint); margin-top:4px}
+.case-src{font-size:10px; color:var(--steel-faint)}
+.case-src a{color:var(--steel)}
+@media(prefers-reduced-motion:reduce){ .film img{transition:none} }
+
+/* pe telefon tabelul devine fișe: numele sus, cifrele pe două coloane cu eticheta lor */
+@media(max-width:700px){
+  .jobs thead{display:none}
+  .jobs, .jobs tbody{display:block}
+  .jobs tr.job{display:grid; grid-template-columns:1fr 1fr; column-gap:12px; padding:18px 0 14px; border-bottom:1px solid var(--rule-soft)}
+  .jobs tr.job > *{border-bottom:0; padding:4px 0}
+  .jobs tr.job th{grid-column:1 / -1; width:auto; padding-bottom:10px}
+  .jobs tr.job td.num{white-space:normal}
+  .jobs tr.job td::before{content:attr(data-label); display:block; color:var(--steel-faint);
+    font-size:9.5px; text-transform:uppercase; margin-bottom:2px}
+  .jobs tr.job-detail{display:block}
+  .jobs tr.job-detail > td{display:block; padding:6px 0 26px}
+  .jobs-scroll{overflow:visible}
+}
+
+/* indexul filmelor: listă numerotată, poster mic + titlu, nu carduri */
+.films{margin-top:44px}
+.films-h{font-size:10px; text-transform:uppercase; color:var(--steel-faint); font-weight:400; margin:0 0 14px}
+.films-list{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr; gap:0 32px; counter-reset:f}
+@media(min-width:900px){ .films-list{grid-template-columns:1fr 1fr} }
+.films-list li{border-top:1px solid var(--rule-soft); padding:10px 0; counter-increment:f}
+.films-list .film{display:grid; grid-template-columns:28px 148px 1fr; gap:14px; align-items:center; border:0; background:none}
+.films-list .film::before{content:counter(f, decimal-leading-zero); font-family:var(--f-data); font-size:11px; color:var(--steel-faint)}
+.films-list .film img{width:148px; aspect-ratio:16/9}
+.films-list .film-meta{padding:0; background:none}
+.films-list .film-play{left:auto; right:0; top:50%; margin-top:-16px; width:32px; height:32px; display:none}
+.films-list .film:hover .film-meta b{color:var(--cyan)}
+.films-list .film.on{display:block; aspect-ratio:16/9}
+@media(max-width:520px){ .films-list .film{grid-template-columns:22px 112px 1fr; gap:10px} .films-list .film img{width:112px} }
