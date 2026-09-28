@@ -1,5 +1,4 @@
 import { createWall } from './wall.js';
-import { createCalc } from './calc.js';
 import { initReveal } from './reveal.js';
 import { initCases } from './cases.js';
 
@@ -49,20 +48,9 @@ try {
   fail(err);
 }
 
-/* ---------- calculatorul ---------- */
-let calc = null;
-try {
-  const container = document.getElementById('room');
-  const canvas = document.getElementById('cv-room');
-  if (container && canvas) calc = createCalc({ container, canvas, reduced });
-} catch (err){
-  console.error('[medclyn] calculatorul 3D nu a pornit:', err);
-}
-
 /* ---------- vizibilitate + buclă ---------- */
 const scenes = [];
 if (wall) scenes.push({ el: document.getElementById('stage'), obj: wall, visible: true });
-if (calc) scenes.push({ el: document.getElementById('room'), obj: calc, visible: true });
 
 scenes.forEach((s) => s.obj.resize());
 
@@ -91,14 +79,39 @@ function updateScrollClean(){
 window.addEventListener('scroll', updateScrollClean, { passive: true });
 updateScrollClean();
 
+let io = null;
 if ('IntersectionObserver' in window){
-  const io = new IntersectionObserver((entries) => {
+  io = new IntersectionObserver((entries) => {
     for (const en of entries){
       const s = scenes.find((x) => x.el === en.target);
       if (s) s.visible = en.isIntersecting;
     }
   }, { rootMargin: '150px' });
   scenes.forEach((s) => io.observe(s.el));
+}
+
+/* ---------- calculatorul ----------
+   Al doilea context WebGL pornește abia când te apropii de secțiune, ca să nu
+   concureze cu peretele din hero la prima încărcare. */
+function startCalc(){
+  const container = document.getElementById('room');
+  const canvas = document.getElementById('cv-room');
+  if (!container || !canvas) return;
+  import('./calc.js').then(({ createCalc }) => {
+    const calc = createCalc({ container, canvas, reduced });
+    scenes.push({ el: container, obj: calc, visible: true });
+    calc.resize();
+    if (io) io.observe(container);
+  }).catch((err) => console.error('[medclyn] calculatorul 3D nu a pornit:', err));
+}
+const roomEl = document.getElementById('room');
+if (roomEl && 'IntersectionObserver' in window){
+  const near = new IntersectionObserver((entries) => {
+    if (entries.some((en) => en.isIntersecting)){ near.disconnect(); startCalc(); }
+  }, { rootMargin: '1200px 0px' });
+  near.observe(roomEl);
+} else {
+  startCalc();
 }
 
 let resizeTimer = null;

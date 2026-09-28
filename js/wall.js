@@ -186,11 +186,11 @@ export function createWall(opts){
     return t;
   }
 
-  const mapColor = loadMap('tex/tile_color.jpg', true);
-  const mapNormal = loadMap('tex/tile_normal.jpg', false);
-  const mapRough = loadMap('tex/tile_rough.jpg', false);
-  const mapAO = loadMap('tex/tile_ao.jpg', false);
-  const mapDisp = loadMap('tex/tile_disp.jpg', false);
+  const mapColor = loadMap('tex/tile_color.webp', true);
+  const mapNormal = loadMap('tex/tile_normal.webp', false);
+  const mapRough = loadMap('tex/tile_rough.webp', false);
+  const mapAO = loadMap('tex/tile_ao.webp', false);
+  const mapDisp = loadMap('tex/tile_disp.webp', false);
 
   /* ---- materialul ---- */
   const material = new THREE.MeshPhysicalMaterial({
