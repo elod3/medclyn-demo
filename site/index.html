@@ -25,6 +25,8 @@
 <link rel="modulepreload" href="vendor/jsm/environments/RoomEnvironment.js">
 <link rel="modulepreload" href="js/reveal.js">
 <link rel="modulepreload" href="js/cases.js">
+<link rel="modulepreload" href="js/price.js">
+<link rel="modulepreload" href="js/offer.js">
 <link rel="preload" href="hdr/env.hdr" as="fetch" crossorigin="anonymous">
 <link rel="preload" href="tex/tile_color.webp" as="image" crossorigin="anonymous">
 <link rel="preload" href="tex/tile_normal.webp" as="image" crossorigin="anonymous">
@@ -65,9 +67,11 @@
     <span class="brand-word"><b>M</b>ed<b>C</b>lyn</span>
   </a>
   <nav class="index data" aria-label="Cuprins">
-    <a href="#conformitate"><b>01</b>Conformitate</a>
-    <a href="#santiere"><b>02</b>Șantiere</a>
-    <a href="#calcul"><b>03</b>Calcul</a>
+    <a href="#control"><b>01</b>Control</a>
+    <a href="#conformitate"><b>02</b>Conformitate</a>
+    <a href="#santiere"><b>03</b>Șantiere</a>
+    <a href="#calcul"><b>04</b>Calcul</a>
+    <a href="#intrebari"><b>05</b>Întrebări</a>
   </nav>
   <p class="marker data"><s>demo de concept</s> · nu este site-ul oficial</p>
 </header>
@@ -87,6 +91,10 @@
       </div>
       <h1 class="wipe" data-reveal>Rostul e <em>casa bacteriilor.</em><br>Noi scoatem rostul.</h1>
       <p class="lede" data-reveal data-reveal-group="hero">Placă din rășină poliesterică și fibră de sticlă, cu strat GelCoat de înaltă densitate. Porozitate zero, fără rosturi, montată peste peretele existent fără oprirea producției.</p>
+      <div class="hero-act" data-reveal data-reveal-group="hero">
+        <a class="cta" href="#calcul">Calculează prețul pentru hala ta</a>
+        <a class="quiet" href="#control">sau vezi ce notează inspectorul la faianță</a>
+      </div>
       <a class="hero-seal" href="#garantie" aria-label="Garanție 20 de ani la manoperă — vezi detaliile">
         <span class="seal-shadow" aria-hidden="true"></span>
         <span class="seal-hop"><svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
@@ -107,11 +115,71 @@
   </div>
 </section>
 
+<aside class="refs" aria-label="Referințe">
+  <div class="wrap">
+    <p class="data refs-h">Au placat cu MedClyn</p>
+    <ul class="refs-list">
+      <li><a href="#santiere">Nestlé</a></li>
+      <li><a href="#santiere">Ursus Breweries</a></li>
+      <li><a href="#santiere">Ladurée Paris</a></li>
+      <li><a href="#santiere">Swiss Caps</a></li>
+      <li><a href="#santiere">Lactate Brădet</a></li>
+      <li><a href="#santiere">Bona Avis</a></li>
+      <li><a href="#santiere">Spitalul Cugir</a></li>
+      <li><a href="#santiere">AYT Market</a></li>
+    </ul>
+  </div>
+</aside>
+
 <!-- ══════════════ 01 ══════════════ -->
+<section class="band" id="control">
+  <div class="wrap">
+    <div class="shead">
+      <p class="kicker data" data-reveal><b class="idx">01</b>Control</p>
+      <h2 class="wipe" data-reveal>Ce notează inspectorul la un perete de faianță.</h2>
+      <p class="sub" data-reveal>Inspectorul nu caută faianța. Caută rostul înnegrit, vopseaua care se cojește, colțul cu mucegai. Rândurile de mai jos sunt constatări tipice la o hală de zece ani, fiecare cu punctul din regulament pe care îl încalcă.</p>
+    </div>
+
+    <div class="ledger">
+      <div class="ledger-head data">
+        <span>Fișă de constatare · exemplu</span>
+        <span>hală de procesare · pereți faianță, tavan vopsit</span>
+        <span class="ledger-off">nu este un document oficial</span>
+      </div>
+      <div class="crow bad" data-reveal data-reveal-group="control">
+        <p class="ans">Rosturi înnegrite între plăci. Depunerile nu ies la spălare.</p>
+        <p class="req">Anexa II, cap. II, 1(b): pereți din materiale <i>impermeabile</i>, <i>neabsorbante</i>, ușor de curățat.</p>
+        <span class="verdict">neconform</span>
+      </div>
+      <div class="crow bad" data-reveal data-reveal-group="control">
+        <p class="ans">Plăci fisurate și ciobite la colțuri, lângă traseul transpaletului.</p>
+        <p class="req">Anexa II, cap. II, 1(b): pereți menținuți în <i>stare bună</i>.</p>
+        <span class="verdict">neconform</span>
+      </div>
+      <div class="crow bad" data-reveal data-reveal-group="control">
+        <p class="ans">Vopsea care se cojește pe tavan, deasupra liniei de producție.</p>
+        <p class="req">Anexa II, cap. II, 1(c): tavane care împiedică <i>desprinderea de particule</i>.</p>
+        <span class="verdict">neconform</span>
+      </div>
+      <div class="crow bad" data-reveal data-reveal-group="control">
+        <p class="ans">Mucegai în colțul dintre perete și tavan, unde se strânge condensul.</p>
+        <p class="req">Anexa II, cap. II, 1(c): tavane care reduc condensul și <i>dezvoltarea mucegaiului</i>.</p>
+        <span class="verdict">neconform</span>
+      </div>
+    </div>
+
+    <div class="ledger-out">
+      <p>Remedierea obișnuită e să refaci rosturile și să revopsești. Peste doi-trei ani ești în același punct. La abatorul Bona Avis, panourile se revopseau la fiecare 2–3 ani, până când vopseaua n-a mai ținut deloc.</p>
+      <p>Placa MedClyn scoate rostul și vopseaua din ecuație. Mai jos, aceleași puncte din regulament, rând cu rând, lângă fișa ei tehnică.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ 02 ══════════════ -->
 <section class="band" id="conformitate">
   <div class="wrap">
     <div class="shead">
-      <p class="kicker data" data-reveal><b class="idx">01</b>Conformitate</p>
+      <p class="kicker data" data-reveal><b class="idx">02</b>Conformitate</p>
       <h2 class="wipe" data-reveal>Legea descrie placa înainte ca placa să existe.</h2>
       <p class="sub" data-reveal>Regulamentul european de igienă alimentară nu spune „faianță”. Spune ce însușiri trebuie să aibă suprafața. Coloana din stânga e cerința. Coloana din dreapta e fișa tehnică.</p>
     </div>
@@ -153,11 +221,11 @@
   </div>
 </section>
 
-<!-- ══════════════ 02 ══════════════ -->
+<!-- ══════════════ 03 ══════════════ -->
 <section class="band" id="santiere">
   <div class="wrap">
     <div class="shead">
-      <p class="kicker data" data-reveal><b class="idx">02</b>Șantiere</p>
+      <p class="kicker data" data-reveal><b class="idx">03</b>Șantiere</p>
       <h2 class="wipe" data-reveal>Opt lucrări, cu cifrele lor.</h2>
       <p class="sub" data-reveal>Întrebarea reală a unui director de fabrică nu e „cât de bună e placa”. E „cât îmi stă linia”. Astea sunt răspunsurile, din lucrări încheiate.</p>
     </div>
@@ -205,15 +273,29 @@
       <ol class="films-list"></ol>
     </div>
 
-    <p class="src data">La Bona Avis, liniile automate de tranșare au fost reduse cu 2 ore dintr-un total de 10, iar echipa a lucrat în ture de după-amiază și noapte. După un an de probă, urmează încă 3.000 m² în aceeași unitate.</p>
+    <div class="after">
+      <h3 class="films-h data">Ce au făcut după</h3>
+      <div class="after-grid">
+        <figure class="after-item" data-reveal data-reveal-group="after">
+          <p class="after-num">+3.000 m²</p>
+          <figcaption>Bona Avis a placat 616 m² ca probă. După un an, a comandat încă 3.000 m² în aceeași unitate.</figcaption>
+        </figure>
+        <blockquote class="case-quote after-item" data-reveal data-reveal-group="after">
+          <p>„Suntem foarte mulțumiți de rezultate și urmează să continuăm renovările atunci când va fi posibil.”</p>
+          <cite>Swiss Caps România, fabrică de medicamente · 350 m² în 3 zile</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <p class="src data">La Bona Avis, liniile automate de tranșare au fost reduse cu 2 ore dintr-un total de 10, iar echipa a lucrat în ture de după-amiază și noapte. Citatul și cifrele sunt din studiile de caz publicate de MedClyn.</p>
   </div>
 </section>
 
-<!-- ══════════════ 03 ══════════════ -->
+<!-- ══════════════ 04 ══════════════ -->
 <section class="band" id="calcul">
   <div class="wrap">
     <div class="shead">
-      <p class="kicker data" data-reveal><b class="idx">03</b>Calcul</p>
+      <p class="kicker data" data-reveal><b class="idx">04</b>Calcul</p>
       <h2 class="wipe" data-reveal>Prețul, înainte de telefon.</h2>
       <p class="sub" data-reveal>Toți concurenții din categorie ascund prețul în spatele unui formular. MedClyn îl are deja public în magazin. Atunci hai să-l și folosim: trei numere, și hala se construiește.</p>
     </div>
@@ -261,12 +343,158 @@
           </tfoot>
         </table>
 
-        <button class="cta" id="cta" type="button">Cere oferta completă</button>
-        <p class="foot-note" id="cta-note"><strong>Estimare orientativă, doar materiale</strong>, la prețurile publice: placă 252,88 lei/m², profil de îmbinare 57,36 lei/ml, colțar 27,37 lei/ml, plintă 111,27 lei/ml, adeziv 53 lei. Manopera se cotează după măsurătoare la fața locului.</p>
+        <div class="calc-act">
+          <a class="cta" href="#oferta">Cere oferta completă</a>
+          <button class="quiet" id="share" type="button">trimite hala celui care semnează</button>
+        </div>
+        <p class="foot-note"><strong>Estimare orientativă, doar materiale</strong>, la prețurile publice: placă 252,88 lei/m², profil de îmbinare 57,36 lei/ml, colțar 27,37 lei/ml, plintă 111,27 lei/ml, adeziv 53 lei. Manopera se cotează după măsurătoare la fața locului.</p>
+      </div>
+    </div>
+
+    <div class="cost" id="cost">
+      <div class="cost-head">
+        <h3 class="wipe" data-reveal>Cât te costă să nu faci nimic.</h3>
+        <p class="sub" data-reveal>Aceeași hală, pe 20 de ani: revopsită la câțiva ani, sau placată o dată. Pune prețul pe care îl plătești tu la revopsire și graficul se reface.</p>
+      </div>
+      <div class="cost-body">
+        <figure class="cost-fig">
+          <p class="data cost-cross" id="cost-cross">—</p>
+          <svg id="cost-chart" viewBox="0 0 640 260" role="img" aria-label="Cost cumulat pe 20 de ani: revopsire periodică față de placare MedClyn"></svg>
+          <figcaption class="data"><span class="k-paint">revopsire, cumulat</span><span class="k-medclyn">placare MedClyn, materiale</span></figcaption>
+        </figure>
+        <div class="cost-side">
+          <div class="fields two">
+            <div class="field">
+              <label for="in-paint">Revopsire (lei/m²)</label>
+              <input id="in-paint" type="number" min="5" max="500" step="1" value="60">
+            </div>
+            <div class="field">
+              <label for="in-cycle">La fiecare (ani)</label>
+              <input id="in-cycle" type="number" min="1" max="10" step="0.5" value="2.5">
+            </div>
+          </div>
+          <p class="cost-verdict" id="cost-verdict">—</p>
+          <p class="cost-year"><span class="data">un an de amânare</span><b id="cost-year">—</b></p>
+          <p class="foot-note"><strong>Valoarea de pornire, 60 lei/m², e estimarea noastră</strong> pentru vopsea lavabilă cu manoperă, nu un preț MedClyn. Intervalul de 2,5 ani vine de la Bona Avis, care revopsea la 2–3 ani. Placarea e socotită doar cu materiale, deci comparația e în defavoarea ei. Orele de producție pierdute la fiecare revopsire nu sunt incluse.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ══════════════ 05 ══════════════ -->
+<section class="band" id="intrebari">
+  <div class="wrap">
+    <div class="shead">
+      <p class="kicker data" data-reveal><b class="idx">05</b>Întrebări</p>
+      <h2 class="wipe" data-reveal>Ce întreabă un director de fabrică înainte să semneze.</h2>
+    </div>
+
+    <div class="faq">
+      <details open data-reveal data-reveal-group="faq">
+        <summary>Trebuie să spargem ce e acum pe pereți?</summary>
+        <p>Nu. Placa se montează peste peretele existent. La Bona Avis s-a lipit direct peste panouri sandwich vechi de 13–15 ani. La AYT, peste zidărie crăpată de umiditate.</p>
+      </details>
+      <details data-reveal data-reveal-group="faq">
+        <summary>Cât stă linia?</summary>
+        <p>La Ursus, zero: 1.000 m² în 40 de zile, cu utilajele pe loc, plăcile tăiate ca să intre în spatele conductelor. La Bona Avis, liniile au mers cu 2 ore mai puțin din 10, iar echipa a lucrat după-amiaza și noaptea. Swiss Caps a ales concediul colectiv.</p>
+      </details>
+      <details data-reveal data-reveal-group="faq">
+        <summary>Cât durează montajul?</summary>
+        <p>AYT, 300 m² în 2 zile. Nestlé, 250 m² în 7 zile. Bona Avis, 616 m² în 10 zile. Ursus, 1.000 m² în 40 de zile. Durata depinde mai mult de câte utilaje sunt în cale decât de metri.</p>
+      </details>
+      <details data-reveal data-reveal-group="faq">
+        <summary>Se crapă dacă o lovește un transpalet?</summary>
+        <p>Placa e din fibră de sticlă de 900 g/m² în rășină, cu duritate Barcol 40/45 și rezistență la tracțiune de 86 MPa. Ceramica e casantă, placa e flexibilă (modul 7.100 MPa). La bază se montează plinta de protecție, cea din calculul de mai sus.</p>
+      </details>
+      <details data-reveal data-reveal-group="faq">
+        <summary>Ce dezinfectanți suportă?</summary>
+        <p>Stratul GelCoat are porozitate zero și se spală cu jet și dezinfectant fără să se degradeze. Pentru substanțele și concentrațiile pe care le folosești tu, cere confirmarea odată cu oferta.</p>
+      </details>
+      <details data-reveal data-reveal-group="faq">
+        <summary>Trece de DSV?</summary>
+        <p>Placa e avizată de Direcția Sanitar-Veterinară pentru spații de procesare alimentară. Rândurile din secțiunea 02 arată punct cu punct cum răspunde la Regulamentul 852/2004.</p>
+      </details>
+      <details data-reveal data-reveal-group="faq">
+        <summary>Ce acoperă garanția?</summary>
+        <p>Manopera, timp de 20 de ani. Condițiile exacte vin în contract, odată cu oferta.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ oferta ══════════════ -->
+<section class="band" id="oferta">
+  <div class="wrap">
+    <div class="shead">
+      <p class="kicker data" data-reveal><b class="idx">→</b>Ofertă</p>
+      <h2 class="wipe" data-reveal>Trimite hala. Primești prețul cu manoperă.</h2>
+    </div>
+
+    <div class="offer">
+      <form id="offer-form" class="offer-form" novalidate>
+        <table class="bom of-sum">
+          <caption>Ce trimiți, completat din calculator</caption>
+          <tbody>
+            <tr><th>Încăpere</th><td class="val" id="of-hall">—</td></tr>
+            <tr><th>Suprafață de placat</th><td class="val" id="of-area">—</td></tr>
+            <tr><th>Materiale, estimat</th><td class="val" id="of-total">—</td></tr>
+          </tbody>
+        </table>
+
+        <div class="fields two">
+          <div class="field">
+            <label for="of-wall">Ce e acum pe pereți</label>
+            <select id="of-wall" name="wall">
+              <option>faianță</option>
+              <option>panou sandwich vopsit</option>
+              <option>zidărie vopsită</option>
+              <option>altceva</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="of-stop">Cât poate sta linia</label>
+            <select id="of-stop" name="stop">
+              <option>deloc</option>
+              <option>câteva ore pe zi</option>
+              <option>în concediul colectiv</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="of-name">Nume</label>
+            <input id="of-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="of-co">Firmă</label>
+            <input id="of-co" name="company" type="text" autocomplete="organization" required>
+          </div>
+          <div class="field">
+            <label for="of-tel">Telefon</label>
+            <input id="of-tel" name="tel" type="tel" autocomplete="tel" required>
+          </div>
+          <div class="field">
+            <label for="of-mail">Email</label>
+            <input id="of-mail" name="email" type="email" autocomplete="email">
+          </div>
+        </div>
+
+        <button class="cta" id="of-send" type="submit">Cere oferta</button>
+        <p class="of-note" id="of-note" tabindex="-1" hidden><strong>Demo: cererea nu a plecat nicăieri și nu am păstrat nimic.</strong> În site-ul final ajunge la MedClyn cu hala deja completată. Până atunci, contactul real e pe <a href="https://www.medclyn.com/contact" target="_blank" rel="noopener">medclyn.com/contact</a>.</p>
+      </form>
+
+      <ol class="steps">
+        <li><b>Dimensiunile și ce e pe pereți</b><span>Ce ai completat aici. Nu mai repeți nimic la telefon.</span></li>
+        <li><b>Măsurătoare la fața locului</b><span>De acolo vine prețul manoperei și planul de montaj în jurul utilajelor.</span></li>
+        <li><b>Oferta completă</b><span>Materiale, manoperă și programul pe ture, ca linia să stea cât ai bifat mai sus.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="dock" id="dock">
+  <span class="data dock-sum"><span class="dock-k">hala ta</span> <b id="dock-sum">—</b></span>
+  <a class="cta" href="#oferta">Cere oferta</a>
+</div>
 
 <footer>
   <div class="wrap">
