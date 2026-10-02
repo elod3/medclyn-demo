@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coșul MedClyn</title>
+<meta name="description" content="Coșul și comanda MedClyn: produsele, datele de livrare și plata. Demo de concept, nu este site-ul oficial.">
+<meta name="theme-color" content="#061a3a">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%20%20%3Cpolygon%20points%3D%224%2C4%2096%2C4%2072%2C28%2028%2C28%22%20fill%3D%22%2324BFCD%22/%3E%20%20%3Cpolygon%20points%3D%2296%2C4%2096%2C96%2072%2C72%2072%2C28%22%20fill%3D%22%231479B1%22/%3E%20%20%3Cpolygon%20points%3D%2296%2C96%204%2C96%2028%2C72%2072%2C72%22%20fill%3D%22%23203874%22/%3E%20%20%3Cpolygon%20points%3D%224%2C96%204%2C4%2028%2C28%2028%2C72%22%20fill%3D%22%231878A8%22/%3E%20%20%3Cline%20x1%3D%22100%22%20y1%3D%220%22%20x2%3D%2270%22%20y2%3D%2230%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22/%3E%20%20%3Cline%20x1%3D%220%22%20y1%3D%22100%22%20x2%3D%2230%22%20y2%3D%2270%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body class="page">
+<!-- hud:start -->
+<header class="hud hud-page">
+  <a class="brand" href="index.html" aria-label="MedClyn, prima pagină">
+    <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="4,4 96,4 72,28 28,28" fill="#24BFCD"/>
+      <polygon points="96,4 96,96 72,72 72,28" fill="#1479B1"/>
+      <polygon points="96,96 4,96 28,72 72,72" fill="#2A4C98"/>
+      <polygon points="4,96 4,4 28,28 28,72" fill="#1878A8"/>
+      <line x1="100" y1="0" x2="70" y2="30" class="gap"/>
+      <line x1="0" y1="100" x2="30" y2="70" class="gap"/>
+    </svg>
+    <span class="brand-word"><b>M</b>ed<b>C</b>lyn</span>
+  </a>
+  <nav class="index data" aria-label="Cuprins">
+    <a href="index.html#conformitate"><b>02</b>Conformitate</a>
+    <a href="index.html#santiere"><b>03</b>Șantiere</a>
+    <a href="index.html#calcul"><b>04</b>Calcul</a>
+    <a href="magazin.html"><b>06</b>Magazin</a>
+    <a href="index.html#contact"><b>07</b>Contact</a>
+  </nav>
+  <div class="hud-end">
+    <p class="marker data"><s>demo de concept</s> · nu este site-ul oficial</p>
+    <a class="cart-link data mob-only" href="magazin.html">magazin</a>
+    <a class="cart-link data" href="cos.html">coș <b data-cart-count>0</b></a>
+  </div>
+</header>
+<!-- hud:end -->
+
+<main>
+<section class="band" id="cos">
+  <div class="wrap">
+    <p class="crumbs data"><a href="index.html">MedClyn</a> / <a href="magazin.html">magazin</a> / coș</p>
+    <div class="shead">
+      <h1 class="h1-page">Comanda ta.</h1>
+    </div>
+
+    <div class="checkout">
+      <div class="slip" id="slip">
+        <div class="slip-top"><h2>Bon de comandă</h2><span class="data" id="slip-meta">—</span></div>
+        <p class="slip-from" id="slip-from" hidden></p>
+        <ol class="slip-rows" id="slip-rows"></ol>
+        <p class="slip-empty" id="slip-empty" hidden>Coșul e gol. Alege piesele din <a href="magazin.html">magazin</a> sau pune necesarul unei încăperi din <a href="index.html#calcul">calculator</a>.</p>
+        <dl class="slip-sum" id="slip-sum">
+          <div><dt>Produse</dt><dd id="s-sub">—</dd></div>
+          <div><dt>din care TVA 21%</dt><dd id="s-vat">—</dd></div>
+          <div class="ship"><dt>Transport</dt><dd>se stabilește la telefon, înainte de expediere</dd></div>
+          <div class="grand"><dt>De plată acum</dt><dd id="s-total">—</dd></div>
+        </dl>
+      </div>
+
+      <form class="co-form" id="co-form" novalidate>
+        <fieldset>
+          <legend><b>01</b>Cine cumpără</legend>
+          <div class="seg" role="radiogroup" aria-label="Tip client">
+            <label><input type="radio" name="type" value="pj" checked> Firmă<small>factură pe CUI</small></label>
+            <label><input type="radio" name="type" value="pf"> Persoană fizică<small>factură pe nume</small></label>
+          </div>
+          <div class="pj-only">
+            <div class="field">
+              <label for="co-company">Firma</label>
+              <input id="co-company" name="company" type="text" autocomplete="organization">
+            </div>
+            <div class="fields two">
+              <div class="field">
+                <label for="co-cui">CUI</label>
+                <input id="co-cui" name="cui" type="text" inputmode="text" placeholder="RO12345678">
+              </div>
+              <div class="field">
+                <label for="co-reg">Nr. Reg. Com. <span class="opt">(opțional)</span></label>
+                <input id="co-reg" name="regcom" type="text" placeholder="J29/1234/2010">
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label for="co-name" id="co-name-l">Persoana de contact</label>
+            <input id="co-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="fields two">
+            <div class="field">
+              <label for="co-phone">Telefon</label>
+              <input id="co-phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+            <div class="field">
+              <label for="co-email">Email</label>
+              <input id="co-email" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><b>02</b>Unde livrăm</legend>
+          <div class="fields two">
+            <div class="field">
+              <label for="co-county">Județ</label>
+              <input id="co-county" name="county" type="text" list="judete" autocomplete="address-level1" required>
+              <datalist id="judete">
+        <option value="Alba"></option>
+        <option value="Arad"></option>
+        <option value="Argeș"></option>
+        <option value="Bacău"></option>
+        <option value="Bihor"></option>
+        <option value="Bistrița-Năsăud"></option>
+        <option value="Botoșani"></option>
+        <option value="Brașov"></option>
+        <option value="Brăila"></option>
+        <option value="București"></option>
+        <option value="Buzău"></option>
+        <option value="Caraș-Severin"></option>
+        <option value="Călărași"></option>
+        <option value="Cluj"></option>
+        <option value="Constanța"></option>
+        <option value="Covasna"></option>
+        <option value="Dâmbovița"></option>
+        <option value="Dolj"></option>
+        <option value="Galați"></option>
+        <option value="Giurgiu"></option>
+        <option value="Gorj"></option>
+        <option value="Harghita"></option>
+        <option value="Hunedoara"></option>
+        <option value="Ialomița"></option>
+        <option value="Iași"></option>
+        <option value="Ilfov"></option>
+        <option value="Maramureș"></option>
+        <option value="Mehedinți"></option>
+        <option value="Mureș"></option>
+        <option value="Neamț"></option>
+        <option value="Olt"></option>
+        <option value="Prahova"></option>
+        <option value="Satu Mare"></option>
+        <option value="Sălaj"></option>
+        <option value="Sibiu"></option>
+        <option value="Suceava"></option>
+        <option value="Teleorman"></option>
+        <option value="Timiș"></option>
+        <option value="Tulcea"></option>
+        <option value="Vaslui"></option>
+        <option value="Vâlcea"></option>
+        <option value="Vrancea"></option>
+              </datalist>
+            </div>
+            <div class="field">
+              <label for="co-city">Localitate</label>
+              <input id="co-city" name="city" type="text" autocomplete="address-level2" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="co-address">Adresa</label>
+            <input id="co-address" name="address" type="text" autocomplete="street-address" required>
+          </div>
+          <div class="field">
+            <label for="co-notes">Observații pentru livrare <span class="opt">(opțional)</span></label>
+            <textarea id="co-notes" name="notes" rows="3" placeholder="Ex.: rampă de descărcare, program de primire marfă, cine semnează"></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><b>03</b>Cum plătești</legend>
+          <div class="seg" role="radiogroup" aria-label="Metoda de plată">
+            <label><input type="radio" name="pay" value="card" checked> Card<small>Visa, Mastercard, Apple Pay, Google Pay</small></label>
+            <label><input type="radio" name="pay" value="op"> Ordin de plată<small>primești proforma pe email</small></label>
+          </div>
+          <p class="co-small" id="pay-hint"></p>
+        </fieldset>
+
+        <label class="hp" aria-hidden="true">Site <input name="website" tabindex="-1" autocomplete="off"></label>
+        <label class="check consent" for="co-terms"><input id="co-terms" name="terms" type="checkbox" required> <span>Am citit <a href="termeni.html" target="_blank">termenii și condițiile de vânzare</a> și <a href="confidentialitate.html" target="_blank">politica de confidențialitate</a>.</span></label>
+        <span class="field-err" id="err-terms" hidden></span>
+
+        <button class="cta" id="co-send" type="submit">Plătește cu cardul</button>
+        <p class="of-note" id="co-note" tabindex="-1" role="status" hidden></p>
+        <p class="co-small">Plata cu cardul se face pe pagina securizată Stripe. MedClyn nu vede și nu păstrează datele cardului.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- footer:start -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-id">
+      <p class="foot-brand"><b>M</b>ed<b>C</b>lyn</p>
+      <p class="data">S.C. Multi Contrast Design S.R.L. · CUI RO19063140 · J29/2121/2006<br>Strada Oltului 141, Băicoi, Prahova, 105200</p>
+      <p class="data"><a href="tel:+40733200500">0733 200 500</a> · <a href="mailto:contact@medclyn.com">contact@medclyn.com</a> · luni – vineri, 08:00 – 20:00</p>
+    </div>
+    <nav class="foot-nav data" aria-label="Pagini">
+      <a href="index.html#calcul">Calculator</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="cos.html">Coș</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="termeni.html">Termeni și condiții</a>
+      <a href="confidentialitate.html">Confidențialitate</a>
+      <a href="cookie.html">Cookie-uri</a>
+      <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">ANPC · SAL</a>
+    </nav>
+    <p class="data idx foot-demo">Demo de concept · realizat pe baza informațiilor publice de pe medclyn.com · nu este site-ul oficial · three.js, texturi ambientCG CC0, panoramă HDR Poly Haven CC0</p>
+  </div>
+</footer>
+<!-- footer:end -->
+
+<script type="module" src="js/checkout.js"></script>
+</body>
+</html>

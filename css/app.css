@@ -739,3 +739,266 @@ html.reveal-on .crow.bad.in .verdict{opacity:1; transform:rotate(-4deg)}
 @media(max-width:600px){ #cost-chart .c-lbl{font-size:16px} .cost-fig{padding:10px 8px 8px} }
 .cost-cross{color:var(--ral9010); font-size:11px; margin-bottom:8px}
 .cost-cross::before{content:''; display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--ral9010); margin-right:8px; vertical-align:1px}
+
+/* ═══════════════ magazin, coș, contact, subsol ═══════════════ */
+
+/* bara de sus: coșul stă lângă marcajul de demo, vizibil și pe telefon */
+.hud-end{display:flex; align-items:center; gap:18px; pointer-events:auto}
+.cart-link{
+  display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+  color:var(--steel); text-transform:uppercase; font-size:10px;
+  border:1px solid var(--rule); background:rgba(0,19,43,.7); padding:7px 10px;
+  transition:color .18s ease, border-color .18s ease;
+}
+.cart-link b{font-weight:400; color:var(--steel-faint); font-size:11px; min-width:1ch; text-align:center}
+.cart-link.has-items{border-color:var(--cyan); color:var(--ral9010)}
+.cart-link.has-items b{color:var(--cyan)}
+.cart-link:hover,.cart-link:focus-visible{color:var(--cyan); border-color:var(--cyan); outline:none}
+@media(max-width:700px){ .hud-end .marker{display:none} }
+
+/* Conformitate: domeniul se alege ca o filă de dosar, nu ca un pill */
+.domain{display:flex; flex-wrap:wrap; gap:0; margin:0 0 22px; border-bottom:1px solid var(--rule)}
+.domain [role="tab"]{
+  appearance:none; cursor:pointer; background:none; border:0; border-bottom:3px solid transparent;
+  margin-bottom:-1px; padding:10px 22px 12px 0; margin-right:22px; text-align:left;
+  font-family:var(--f-text); font-weight:700; font-size:16px; color:var(--steel);
+  display:grid; gap:2px; transition:color .18s ease, border-color .18s ease;
+}
+.domain [role="tab"] .data{font-size:10px; font-weight:400; color:var(--steel-faint); text-transform:uppercase}
+.domain [role="tab"][aria-selected="true"]{color:var(--ral9010); border-bottom-color:var(--cyan)}
+.domain [role="tab"][aria-selected="true"] .data{color:var(--cyan)}
+.domain [role="tab"]:hover{color:var(--ral9010)}
+.domain [role="tab"]:focus-visible{outline:2px solid var(--cyan); outline-offset:2px}
+.dom-panel > .sub{margin-bottom:22px}
+
+/* calculator: al doilea drum, spre coș */
+.cta.ghost{background:transparent; border-color:var(--steel-faint); color:var(--ral9010)}
+.cta.ghost:hover{border-color:var(--cyan); background:rgba(36,191,204,.08)}
+.calc-alt{margin-top:14px}
+
+/* capcana pentru boți și acordul */
+.hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+.check.consent{align-items:flex-start; margin-top:18px; text-transform:none; font-family:var(--f-text);
+  font-size:13.5px; line-height:1.5; color:var(--steel); font-variation-settings:normal}
+.check.consent input{margin-top:3px; flex:none}
+.check.consent a{color:var(--ral9010)}
+.of-note.bad{border-left-color:var(--nonconform)}
+.field textarea{
+  width:100%; resize:vertical; min-height:120px;
+  background:var(--ink); color:var(--ral9010); border:1px solid var(--rule);
+  padding:11px 12px; font-family:var(--f-text); font-size:15px; line-height:1.5;
+}
+.field textarea:focus-visible{outline:none; border-color:var(--cyan)}
+.field input:not([type]),.field input[type="text"],.field input[type="email"],.field input[type="tel"]{font-family:var(--f-text)}
+.contact-form .field{margin-bottom:16px}
+.contact-form .fields{margin-bottom:0}
+
+/* Contact: plăcuța de identificare a firmei, ca pe un utilaj */
+.contact{display:grid; grid-template-columns:1fr; gap:clamp(32px,5vw,64px)}
+@media(min-width:960px){ .contact{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); align-items:start} }
+.plate{border:1px solid var(--rule); padding:clamp(18px,2.4vw,28px); position:relative; background:var(--conc)}
+.plate::before,.plate::after{content:''; position:absolute; top:10px; width:7px; height:7px; border-radius:50%;
+  background:var(--rule)}
+.plate::before{left:10px} .plate::after{right:10px}
+.plate-tel{display:block; text-decoration:none; color:var(--ral9010);
+  font-family:var(--f-display); font-variation-settings:"wdth" 125; font-weight:800;
+  font-size:clamp(34px,4.6vw,58px); letter-spacing:-.02em; line-height:1; font-variant-numeric:tabular-nums;
+  padding-bottom:18px; border-bottom:1px solid var(--rule); transition:color .18s ease}
+.plate-tel:hover,.plate-tel:focus-visible{color:var(--cyan); outline:none}
+.plate-dl{margin:0}
+.plate-dl div{display:grid; grid-template-columns:130px 1fr; gap:12px; padding:12px 0; border-bottom:1px solid var(--rule-soft)}
+.plate-dl dt{font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; text-transform:uppercase; color:var(--steel-faint); padding-top:3px}
+.plate-dl dd{margin:0; color:var(--ral9010); font-size:15px; line-height:1.45}
+.plate-dl a{color:inherit}
+.plate-note{margin-top:16px; color:var(--steel-dim); font-size:13.5px; line-height:1.5}
+@media(max-width:520px){ .plate-dl div{grid-template-columns:1fr; gap:2px} }
+
+/* subsol comun */
+.foot{position:relative; z-index:1; background:rgba(0,19,43,.97); border-top:1px solid var(--rule)}
+.foot .wrap{padding-block:34px 30px; display:grid; grid-template-columns:1fr; gap:22px; color:var(--steel-dim)}
+@media(min-width:900px){ .foot .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} }
+.foot-brand{font-weight:800; font-size:21px; color:var(--ice); line-height:1; margin-bottom:12px}
+.foot-brand b{font-weight:900; color:var(--cyan)}
+.foot-id .data{color:var(--steel-dim); margin-top:6px}
+.foot a{color:var(--steel); text-decoration:none}
+.foot a:hover,.foot a:focus-visible{color:var(--cyan); outline:none}
+.foot-nav{display:grid; grid-template-columns:repeat(2,minmax(0,max-content)); gap:8px 32px; align-content:start; text-transform:uppercase; font-size:10px}
+.foot-demo{grid-column:1 / -1; border-top:1px solid var(--rule-soft); padding-top:16px}
+
+/* ─────────────── pagini fără perete ─────────────── */
+.page{min-height:100svh; display:flex; flex-direction:column}
+.page main{flex:1; padding-top:96px}
+.hud-page{background:rgba(0,19,43,.97); padding-bottom:14px; border-bottom:1px solid var(--rule)}
+.page .band:first-child{padding-top:clamp(16px,3vw,40px)}
+.crumbs{color:var(--steel-faint); margin-bottom:12px}
+.crumbs a{color:var(--steel); text-decoration:none}
+.crumbs a:hover{color:var(--cyan)}
+
+/* Magazinul: catalog de piese numerotate, nu grilă de carduri */
+.shop-head{display:grid; grid-template-columns:1fr; gap:18px; margin-bottom:clamp(26px,3.6vw,44px)}
+@media(min-width:960px){ .shop-head{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); align-items:end} }
+.shop-terms{margin:0; border-top:1px solid var(--rule)}
+.shop-terms div{display:grid; grid-template-columns:120px 1fr; gap:12px; padding:9px 0; border-bottom:1px solid var(--rule-soft)}
+.shop-terms dt{font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; text-transform:uppercase; color:var(--steel-faint); padding-top:2px}
+.shop-terms dd{margin:0; color:var(--steel); font-size:14px; line-height:1.45}
+.shop-terms dd b{color:var(--ral9010); font-weight:700}
+
+.cat-group{margin-top:clamp(28px,3.4vw,44px)}
+.cat-group:first-child{margin-top:0}
+.cat-h{display:flex; align-items:baseline; gap:14px; padding-bottom:10px; border-bottom:1px solid var(--rule)}
+.cat-h h2{font-size:clamp(18px,1.8vw,24px)}
+.cat-h .data{color:var(--steel-faint); text-transform:uppercase; font-size:10px}
+
+.part{display:grid; grid-template-columns:30px 88px minmax(0,1fr); gap:6px 18px; padding:16px 0; border-bottom:1px solid var(--rule-soft); align-items:start}
+@media(min-width:900px){ .part{grid-template-columns:34px 104px minmax(0,1fr) 170px 250px; align-items:center} }
+.part-n{font-family:var(--f-data); font-size:11px; color:var(--steel-faint); padding-top:2px}
+.part-img{width:88px; aspect-ratio:1; object-fit:cover; display:block; background:#cfd2d6}
+@media(min-width:900px){ .part-img{width:104px} }
+.part-name{font-family:var(--f-text); font-weight:700; font-size:16.5px; line-height:1.3; color:var(--ral9010); margin:0}
+.part-note{color:var(--steel); font-size:14px; line-height:1.5; margin-top:4px; max-width:58ch}
+.part-src{display:inline-block; margin-top:6px; font-size:10px; color:var(--steel-faint); text-transform:uppercase; text-decoration:none; border-bottom:1px solid var(--rule)}
+.part-src:hover{color:var(--cyan); border-color:var(--cyan)}
+.part-price{grid-column:3; font-variant-numeric:tabular-nums}
+@media(min-width:900px){ .part-price{grid-column:auto; text-align:right} }
+.part-price b{display:block; font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-weight:400; font-size:17px; color:var(--ral9010)}
+.part-price span{font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; color:var(--steel-faint); text-transform:uppercase}
+.part-buy{grid-column:1 / -1; display:flex; gap:8px; align-items:stretch}
+@media(min-width:600px){ .part-buy{grid-column:3} }
+@media(min-width:900px){ .part-buy{grid-column:auto; justify-content:flex-end} }
+
+/* cantitatea: pas fix, cu unitatea scrisă lângă cifră */
+.stepper{display:inline-flex; align-items:stretch; border:1px solid var(--rule); background:var(--ink)}
+.stepper button{appearance:none; cursor:pointer; width:36px; border:0; background:none; color:var(--steel);
+  font-family:var(--f-data); font-size:16px; transition:color .15s ease, background .15s ease}
+.stepper button:hover{color:var(--cyan); background:var(--conc)}
+.stepper button:focus-visible{outline:2px solid var(--cyan); outline-offset:-2px}
+.stepper button:disabled{color:var(--rule); cursor:default; background:none}
+.stepper input{width:62px; border:0; border-inline:1px solid var(--rule-soft); background:none; color:var(--ral9010); text-align:center;
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:14px; padding:9px 2px; appearance:textfield; -moz-appearance:textfield}
+.stepper input::-webkit-inner-spin-button,.stepper input::-webkit-outer-spin-button{-webkit-appearance:none; margin:0}
+.stepper input:focus-visible{outline:none; background:var(--conc)}
+.stepper .u{align-self:center; padding:0 10px 0 2px; font-family:var(--f-data); font-size:10px; color:var(--steel-faint)}
+.part-buy .cta{margin:0; padding:10px 14px; font-size:12px}
+.part-buy .cta.added{background:var(--cyan); border-color:var(--cyan); color:var(--ink)}
+
+.shop-calc{margin-top:clamp(34px,4vw,52px); padding:18px 20px; border:1px solid var(--rule); background:var(--conc);
+  display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; justify-content:space-between}
+.shop-calc p{color:var(--steel); max-width:60ch; font-size:15px}
+.shop-calc p b{color:var(--ral9010)}
+.shop-calc .cta{margin:0}
+
+/* toast-ul de după „adaugă”: o etichetă scurtă jos, unde e și degetul */
+.toast{position:fixed; z-index:70; left:50%; bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  transform:translate(-50%, 140%); background:var(--ral9010); color:var(--ink);
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:12px; padding:11px 14px;
+  display:flex; gap:16px; align-items:center; box-shadow:0 18px 40px -12px rgba(0,8,20,.8);
+  transition:transform .4s cubic-bezier(.2,.8,.3,1); max-width:calc(100vw - 20px)}
+.toast.on{transform:translate(-50%, 0)}
+.toast a{color:var(--navy); font-weight:700}
+
+/* Coșul: în stânga bonul de comandă, în dreapta datele de livrare */
+.checkout{display:grid; grid-template-columns:1fr; gap:clamp(32px,4.4vw,60px)}
+@media(min-width:1040px){ .checkout{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); align-items:start} }
+
+/* bonul: hârtie albă RAL 9010, ca un aviz de însoțire */
+.slip{background:var(--ral9010); color:var(--ink); padding:clamp(18px,2.4vw,28px) clamp(16px,2.2vw,26px) 22px; position:relative}
+@media(min-width:1040px){ .slip{position:sticky; top:84px} }
+.slip::after{content:''; position:absolute; left:0; right:0; bottom:-9px; height:10px;
+  background:radial-gradient(circle at 6px 0, transparent 5.5px, var(--ral9010) 6px) 0 0 / 12px 10px repeat-x}
+.slip-top{display:flex; justify-content:space-between; gap:16px; align-items:baseline; padding-bottom:12px; border-bottom:2px solid var(--ink)}
+.slip-top h2{font-size:clamp(20px,2.2vw,28px); color:var(--ink)}
+.slip-top .data{color:#55657d; text-transform:uppercase; font-size:10px; text-align:right}
+.slip-empty{padding:26px 0 8px; color:#3d4b60; font-size:15px}
+.slip-empty a{color:var(--navy); font-weight:700}
+.slip-rows{list-style:none; margin:0; padding:0}
+.slip-row{display:grid; grid-template-columns:52px minmax(0,1fr) auto; gap:4px 14px; padding:14px 0; border-bottom:1px dashed #b9bdc4; align-items:start}
+.slip-row img{width:52px; height:52px; object-fit:cover; display:block; background:#cfd2d6}
+.slip-row .nm{font-weight:700; font-size:14.5px; line-height:1.3}
+.slip-row .rule{font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; color:#5f6e83; margin-top:3px}
+.slip-row .tot{font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:13.5px; white-space:nowrap; text-align:right}
+.slip-row .ctl{grid-column:2 / -1; display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:6px}
+.slip .stepper{border-color:#b9bdc4; background:#fff}
+.slip .stepper input{color:var(--ink); border-color:#d9dce0}
+.slip .stepper button{color:#3d4b60}
+.slip .stepper button:hover{background:#eceef0; color:var(--navy)}
+.slip .stepper button:disabled{color:#c9cdd3}
+.slip .stepper .u{color:#5f6e83}
+.rm{appearance:none; background:none; border:0; cursor:pointer; padding:2px 0; color:#5f6e83;
+  font-family:var(--f-data); font-size:10px; text-transform:uppercase; border-bottom:1px solid #b9bdc4}
+.rm:hover,.rm:focus-visible{color:var(--nonconform); border-color:var(--nonconform); outline:none}
+.slip-sum{margin:14px 0 0; font-variant-numeric:tabular-nums}
+.slip-sum div{display:flex; justify-content:space-between; gap:12px; padding:5px 0;
+  font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:12px; color:#3d4b60}
+.slip-sum dd{margin:0; text-align:right}
+.slip-sum .grand{margin-top:6px; padding-top:12px; border-top:2px solid var(--ink); color:var(--ink); font-size:13px}
+.slip-sum .grand dd{font-size:clamp(20px,2vw,26px)}
+.slip-sum .ship dd{max-width:24ch}
+.slip-from{margin-top:12px; padding:9px 12px; background:#e1e8f1; color:#1d3150; font-size:13px; line-height:1.45}
+
+/* formularul de comandă */
+.co-form fieldset{border:0; margin:0 0 26px; padding:0}
+.co-form legend{padding:0 0 12px; font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; text-transform:uppercase; color:var(--cyan); display:flex; gap:10px}
+.co-form legend b{color:var(--steel-faint); font-weight:400}
+.co-form .field{margin-bottom:14px}
+.co-form .fields{margin-bottom:0; row-gap:0}
+.seg{display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--rule); margin-bottom:16px}
+.seg label{position:relative; cursor:pointer; padding:12px 14px; color:var(--steel); font-weight:700; font-size:14.5px; line-height:1.3;
+  transition:background .18s ease, color .18s ease}
+.seg label + label{border-left:1px solid var(--rule)}
+.seg input{position:absolute; opacity:0; pointer-events:none}
+.seg label:has(input:checked){background:var(--conc-2); color:var(--ral9010); box-shadow:inset 0 -3px 0 var(--cyan)}
+.seg label:has(input:focus-visible){outline:2px solid var(--cyan); outline-offset:-2px}
+.seg small{display:block; font-weight:400; font-size:12.5px; color:var(--steel-dim); margin-top:3px}
+.seg label:has(input:disabled){opacity:.45; cursor:not-allowed}
+.field-err{display:block; margin-top:5px; color:#ff7a8c; font-size:12.5px}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:var(--nonconform)}
+.co-form .cta{width:100%; margin-top:6px}
+.co-small{margin-top:12px; color:var(--steel-faint); font-size:12.5px; line-height:1.5}
+.co-small a{color:var(--steel)}
+
+/* Comanda trimisă: ștampila de pe bon */
+.stamp{position:absolute; right:clamp(14px,3vw,30px); top:58px; transform:rotate(-8deg);
+  border:3px solid var(--navy); color:var(--navy); padding:6px 12px 5px; text-align:center;
+  font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800; font-size:22px; text-transform:uppercase; line-height:1;
+  mix-blend-mode:multiply; opacity:.86}
+.stamp small{display:block; font-family:var(--f-data); font-weight:400; font-size:9.5px; letter-spacing:.04em; margin-top:4px}
+.stamp.wait{border-color:#8a5a00; color:#8a5a00}
+@media (prefers-reduced-motion:no-preference){
+  .stamp{animation:stamp .5s cubic-bezier(.2,1.4,.4,1) .25s both}
+}
+@keyframes stamp{0%{transform:rotate(-8deg) scale(2.2); opacity:0} 100%{transform:rotate(-8deg) scale(1); opacity:.86}}
+.next{list-style:none; margin:26px 0 0; padding:0; border-top:1px solid var(--rule); counter-reset:s}
+.next li{counter-increment:s; display:grid; grid-template-columns:40px 1fr; padding:14px 0; border-bottom:1px solid var(--rule-soft); color:var(--steel); font-size:15px; line-height:1.5}
+.next li::before{content:counter(s, decimal-leading-zero); font-family:var(--f-data); font-size:12px; color:var(--cyan); padding-top:3px}
+.next b{color:var(--ral9010)}
+
+/* pagini legale: text lung, citibil */
+.legal{max-width:76ch}
+.legal h2{font-size:clamp(17px,1.6vw,21px); margin:34px 0 10px; letter-spacing:-.01em}
+.legal p,.legal li{color:var(--steel); font-size:15.5px; line-height:1.65}
+.legal p + p{margin-top:10px}
+.legal ul{padding-left:20px; margin:8px 0}
+.legal a{color:var(--ral9010)}
+.legal .draft{border-left:3px solid #E24C63; background:var(--conc); padding:12px 16px; color:var(--ral9010); font-size:14px; margin-bottom:24px}
+.legal table{width:100%; border-collapse:collapse; margin:10px 0}
+.legal th,.legal td{text-align:left; padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); color:var(--steel); font-size:14.5px; vertical-align:top}
+.legal th{font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:10px; text-transform:uppercase; color:var(--steel-faint); font-weight:400}
+.shop-head .shead{margin-bottom:0}
+.h1-page{font-size:clamp(28px,4.4vw,58px); max-width:18ch}
+.done-help{margin-top:20px}
+.done-back{margin-top:10px}
+.field .opt{text-transform:none; color:var(--steel-faint)}
+.part-name{text-transform:none; letter-spacing:0; font-variation-settings:normal}
+.part-buy .cta{min-width:96px; white-space:nowrap}
+.page .band > .wrap::before{margin-bottom:clamp(26px,3.6vw,52px)}
+.field input::placeholder,.field textarea::placeholder{color:var(--steel-faint); opacity:.7}
+/* ștampila stă pe golul dintre etichete și sume, nu peste cifre */
+.stamp{top:auto; right:auto; left:50%; bottom:84px; transform:translateX(-62%) rotate(-8deg)}
+@keyframes stamp{0%{transform:translateX(-62%) rotate(-8deg) scale(2.2); opacity:0} 100%{transform:translateX(-62%) rotate(-8deg) scale(1); opacity:.86}}
+.plate-tel{font-size:clamp(26px,7.4vw,48px); white-space:nowrap}
+.mob-only{display:none}
+@media(max-width:979px){ .mob-only{display:inline-flex} }
+@media(max-width:600px){
+  .domain{flex-wrap:nowrap}
+  .domain [role="tab"]{flex:1; min-width:0; padding-right:10px; margin-right:12px; font-size:14.5px}
+}

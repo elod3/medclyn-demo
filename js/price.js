@@ -2,15 +2,21 @@
  *
  * Stă separat de calc.js ca fișa de ofertă și comparația de cost să meargă
  * și când calculatorul 3D nu a pornit încă (sau nu pornește deloc, fără WebGL).
- * Prețurile sunt cele publice din magazinul MedClyn.
+ * Prețurile vin din catalog.js, același cu al magazinului.
  */
 
+import { byId } from './catalog.js';
+
+/* Ce produs din magazin acoperă fiecare rând al necesarului. Colțarul e cel
+   de unghi interior (p7): colțurile halei și îmbinarea perete–tavan. */
+export const BOM = { placa: 'p1', imbin: 'p3', colt: 'p7', plinta: 'p11', adeziv: 'p2' };
+
 export const PRICE = {
-  placa:    252.88,   // lei / m²
-  imbinare:  57.36,   // lei / ml
-  coltar:    27.37,   // lei / ml
-  plinta:   111.27,   // lei / ml
-  adeziv:    53.00    // lei / buc, ~1 la 3 m²
+  placa:    byId(BOM.placa).price,    // lei / m²
+  imbinare: byId(BOM.imbin).price,    // lei / ml
+  coltar:   byId(BOM.colt).price,     // lei / ml
+  plinta:   byId(BOM.plinta).price,   // lei / ml
+  adeziv:   byId(BOM.adeziv).price    // lei / buc, ~1 la 3 m²
 };
 export const PANEL_W = 1.22;   // lățimea utilă a plăcii, m
 
@@ -30,6 +36,17 @@ export function estimate({ L, W, H, ceil }){
   };
   const total = v.placa + v.imbin + v.colt + v.plinta + v.adeziv;
   return { arie, imbinari, colturi, plinta, adeziv, v, total };
+}
+
+/* Necesarul ca listă de coș; regulile de minim și multiplu le pune coșul. */
+export function bomItems(e){
+  return [
+    { id: BOM.placa,  qty: e.arie },
+    { id: BOM.imbin,  qty: e.imbinari },
+    { id: BOM.colt,   qty: e.colturi },
+    { id: BOM.plinta, qty: e.plinta },
+    { id: BOM.adeziv, qty: e.adeziv }
+  ];
 }
 
 /* Valorile din câmpuri, cu aceleași limite ca în calculator. */
