@@ -1,6 +1,7 @@
 import { createWall } from './wall.js';
 import { initReveal } from './reveal.js';
 import { initCases } from './cases.js';
+import { initOffer } from './offer.js';
 
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -30,6 +31,7 @@ window.addEventListener('unhandledrejection', (e) => fail(e.reason));
 
 initReveal({ reduced });
 initCases().catch((err) => console.warn('[medclyn] șantiere:', err));
+initOffer();
 
 /* ---------- peretele ---------- */
 let wall = null;

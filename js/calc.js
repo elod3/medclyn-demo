@@ -7,15 +7,8 @@
 
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { PANEL_W, estimate, clampNum } from './price.js';
 
-const PRICE = {
-  placa:    252.88,   // lei / m²
-  imbinare:  57.36,   // lei / ml
-  coltar:    27.37,   // lei / ml
-  plinta:   111.27,   // lei / ml
-  adeziv:    53.00    // lei / buc, ~1 la 3 m²
-};
-const PANEL_W = 1.22;   // lățimea utilă a plăcii, m
 const HUMAN_H = 1.75;   // reper de scară
 
 // Scara de mărimi. Treptele din mijloc au suprafața șantierelor publicate de
@@ -307,22 +300,10 @@ export function createCalc(opts){
 
   function compute(){
     const { L, W, H } = dims;
-    const perim = 2 * (L + W);
-    const ariaPereti = perim * H;
-    const ariaTavan = dims.ceil ? L * W : 0;
-    const arie = ariaPereti + ariaTavan;
-
-    const imbinari = (perim / PANEL_W) * H + (dims.ceil ? (W / PANEL_W) * L : 0);
-    const colturi  = 4 * H + (dims.ceil ? perim : 0);
-    const plinta   = perim;
-    const adeziv   = Math.ceil(arie / 3);
-
-    const vPlaca  = arie * PRICE.placa;
-    const vImbin  = imbinari * PRICE.imbinare;
-    const vColt   = colturi * PRICE.coltar;
-    const vPlinta = plinta * PRICE.plinta;
-    const vAdeziv = adeziv * PRICE.adeziv;
-    const total   = vPlaca + vImbin + vColt + vPlinta + vAdeziv;
+    const e = estimate(dims);
+    const arie = e.arie, imbinari = e.imbinari, colturi = e.colturi, plinta = e.plinta, adeziv = e.adeziv;
+    const vPlaca = e.v.placa, vImbin = e.v.imbin, vColt = e.v.colt, vPlinta = e.v.plinta, vAdeziv = e.v.adeziv;
+    const total = e.total;
 
     put('q-placa',  nf0.format(Math.round(arie)) + ' m²');      put('v-placa',  lei(vPlaca));
     put('q-imbin',  nf0.format(Math.round(imbinari)) + ' ml');  put('v-imbin',  lei(vImbin));
@@ -334,11 +315,8 @@ export function createCalc(opts){
     const noun = p ? p.noun : (L * W < 40 ? 'încăpere' : 'hală');
     markLadder(p);
     put('room-tag', noun + ' ' + nf1.format(L) + ' × ' + nf1.format(W) + ' × ' + nf1.format(H) + ' m');
-  }
-
-  function clampNum(v, lo, hi, dflt){
-    const n = parseFloat(v);
-    return Math.min(hi, Math.max(lo, isFinite(n) ? n : dflt));
+    // fișa de ofertă și comparația de cost ascultă aceleași dimensiuni (offer.js)
+    window.dispatchEvent(new CustomEvent('medclyn:dims', { detail: { ...dims, noun } }));
   }
 
   const qs = new URLSearchParams(location.search);
@@ -362,14 +340,6 @@ export function createCalc(opts){
   });
   const ceilBox = document.getElementById('in-ceil');
   if (ceilBox) ceilBox.addEventListener('change', readInputs);
-
-  const note = document.getElementById('cta-note');
-  const cta = document.getElementById('cta');
-  if (cta && note){
-    cta.addEventListener('click', () => {
-      note.innerHTML = '<strong>Demo — butonul nu trimite nimic.</strong> În site-ul final generează oferta în PDF cu necesarul deja completat, o trimite pe mail și creează lead-ul în CRM cu dimensiunile halei.';
-    });
-  }
 
   /* Scara de mărimi: un clic și hala se reconstruiește. Amprenta fiecărei
      trepte e desenată pe aceeași scară logaritmică, ca saltul să se vadă. */

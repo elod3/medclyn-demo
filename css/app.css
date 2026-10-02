@@ -575,3 +575,167 @@ html.reveal-on .crow.in .verdict{
 .films-list .film:hover .film-meta b{color:var(--cyan)}
 .films-list .film.on{display:block; aspect-ratio:16/9}
 @media(max-width:520px){ .films-list .film{grid-template-columns:22px 112px 1fr; gap:10px} .films-list .film img{width:112px} }
+
+/* ─────────────── drumul spre ofertă ─────────────── */
+/* .cta e și link acum (hero, calculator, bara de jos) */
+a.cta{display:inline-block; text-decoration:none; text-align:center}
+.cta{transition:background .18s ease, color .18s ease, border-color .18s ease, transform .18s cubic-bezier(.2,.8,.3,1)}
+.cta:active{transform:translateY(1px)}
+
+/* legătura secundară: text subliniat, nu al doilea buton */
+.quiet{
+  appearance:none; background:none; border:0; padding:2px 0; cursor:pointer;
+  color:var(--steel); font-family:var(--f-text); font-size:14px; text-decoration:none;
+  border-bottom:1px solid var(--steel-faint);
+  transition:color .18s ease, border-color .18s ease;
+}
+.quiet:hover,.quiet:focus-visible{color:var(--cyan); border-color:var(--cyan); outline:none}
+
+.hero-act{display:flex; flex-wrap:wrap; align-items:center; gap:14px 22px; pointer-events:auto}
+.hero-act .cta{margin-top:0}
+
+/* Referințele: o listă de nume, culese ca într-un catalog, nu logo-uri gri pe un rând. */
+.refs{position:relative; z-index:1; padding-top:clamp(18px,3vw,36px)}
+.refs .wrap{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 28px;
+  max-width:calc(var(--max) - 2 * var(--gut));
+  padding-block:16px; background:rgba(0,19,43,.94); border:1px solid var(--rule)}
+.refs-h{color:var(--cyan); text-transform:uppercase; font-size:10px}
+.refs-list{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:6px 0}
+.refs-list li:not(:last-child)::after{content:'/'; color:var(--steel-faint); margin:0 11px}
+.refs-list a{text-decoration:none; color:var(--ral9010);
+  font-family:var(--f-display); font-variation-settings:"wdth" 112; font-weight:700;
+  font-size:14px; text-transform:uppercase; letter-spacing:-.01em;
+  transition:color .18s ease}
+.refs-list a:hover,.refs-list a:focus-visible{color:var(--cyan)}
+@media(max-width:760px){ .refs{padding-inline:10px} .refs-list a{font-size:13px} .refs-list li:not(:last-child)::after{margin:0 8px} }
+
+/* Fișa de constatare: aceleași rânduri ca la conformitate, cu ștampila în roșu. */
+.ledger{border:1px solid var(--rule); padding:0 clamp(14px,2vw,24px)}
+.ledger-head{display:flex; flex-wrap:wrap; gap:6px 24px; justify-content:space-between;
+  padding:12px 0; border-bottom:1px solid var(--rule); color:var(--steel-dim); text-transform:uppercase; font-size:10px}
+.ledger-off{color:var(--steel-faint)}
+.ledger .crow:last-child{border-bottom:0}
+.ledger .crow:last-child::after{display:none}
+.crow.bad .ans{color:var(--ral9010)}
+.crow.bad .req{color:var(--steel-dim); font-size:14px}
+.crow.bad .verdict{background:none; color:var(--nonconform); border:2px solid var(--nonconform);
+  padding:3px 8px; transform:rotate(-4deg); font-weight:700; letter-spacing:.04em}
+html.reveal-on .crow.bad .verdict{opacity:0; transform:rotate(-4deg) scale(1.5)}
+html.reveal-on .crow.bad.in .verdict{opacity:1; transform:rotate(-4deg)}
+.ledger-out{display:grid; grid-template-columns:1fr; gap:14px; margin-top:28px; max-width:none}
+@media(min-width:860px){ .ledger-out{grid-template-columns:1fr 1fr; gap:40px} }
+.ledger-out p{color:var(--steel); font-size:15.5px; line-height:1.55}
+.ledger-out p + p{color:var(--ral9010)}
+
+/* Ce au făcut după: o cifră și un citat, ambele din studiile de caz. */
+.after{margin-top:44px}
+.after-grid{display:grid; grid-template-columns:1fr; gap:22px; border-top:1px solid var(--rule-soft); padding-top:20px}
+@media(min-width:860px){ .after-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:48px; align-items:start} }
+.after-item{margin:0}
+.after-num{font-family:var(--f-display); font-variation-settings:"wdth" 125; font-weight:800;
+  font-size:clamp(38px,5vw,64px); line-height:.95; letter-spacing:-.03em; color:var(--cyan);
+  font-variant-numeric:tabular-nums}
+.after-item figcaption{margin-top:10px; color:var(--steel); font-size:15px; max-width:44ch}
+.after .case-quote p{font-size:clamp(17px,1.6vw,21px)}
+
+.calc-act{display:flex; flex-wrap:wrap; align-items:center; gap:14px 22px; margin-top:22px}
+.calc-act .cta{margin-top:0}
+
+/* ─────────────── costul în timp ─────────────── */
+.cost{margin-top:clamp(56px,7vw,96px); padding-top:clamp(28px,4vw,44px); border-top:1px solid var(--rule)}
+.cost-head{display:flex; flex-direction:column; gap:12px; margin-bottom:28px}
+.cost-head h3{font-size:clamp(22px,2.8vw,36px); max-width:24ch}
+.cost-body{display:grid; grid-template-columns:1fr; gap:28px}
+@media(min-width:960px){ .cost-body{grid-template-columns:minmax(0,1fr) 420px; align-items:start} }
+.cost-fig{margin:0; border:1px solid var(--rule); background:var(--ink); padding:14px 14px 10px}
+#cost-chart{display:block; width:100%; height:auto; overflow:visible}
+#cost-chart .c-axis{stroke:var(--rule); stroke-width:1}
+#cost-chart .c-tick{stroke:var(--steel-faint)}
+#cost-chart .c-cycle{stroke:var(--nonconform); stroke-opacity:.22; stroke-dasharray:2 4}
+#cost-chart .c-paint{fill:none; stroke:var(--nonconform); stroke-width:2.5; stroke-linejoin:round}
+#cost-chart .c-medclyn{fill:none; stroke:var(--cyan); stroke-width:2.5}
+#cost-chart .c-dot{fill:var(--ral9010)}
+#cost-chart .c-lbl{fill:var(--steel-dim); font-family:var(--f-data); font-size:10.5px; font-variation-settings:"wdth" 87.5}
+#cost-chart .c-l-medclyn{fill:var(--cyan)}
+#cost-chart .c-l-paint{fill:#E24C63}
+#cost-chart .c-cross{fill:var(--ral9010)}
+.cost-fig figcaption{display:flex; gap:20px; margin-top:8px; color:var(--steel-dim); font-size:10px; text-transform:uppercase}
+.cost-fig figcaption span::before{content:''; display:inline-block; width:14px; height:2px; margin-right:7px; vertical-align:middle}
+.k-paint::before{background:var(--nonconform)}
+.k-medclyn::before{background:var(--cyan)}
+.fields.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cost-verdict{color:var(--ral9010); font-size:16px; line-height:1.5}
+.cost-year{display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+  margin-top:18px; padding:12px 0; border-block:1px solid var(--rule)}
+.cost-year .data{color:var(--steel-faint); text-transform:uppercase; font-size:10px}
+.cost-year b{font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-weight:400;
+  font-size:20px; color:#E24C63; font-variant-numeric:tabular-nums}
+
+/* ─────────────── întrebări ─────────────── */
+.faq{border-top:1px solid var(--rule); max-width:900px}
+.faq details{border-bottom:1px solid var(--rule-soft)}
+.faq summary{
+  list-style:none; cursor:pointer; position:relative;
+  padding:18px 40px 18px 0;
+  font-family:var(--f-text); font-weight:700; font-size:clamp(16px,1.5vw,19px); color:var(--ral9010);
+  transition:color .18s ease;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+'; position:absolute; right:4px; top:14px;
+  font-family:var(--f-data); font-size:20px; color:var(--cyan); transition:transform .25s cubic-bezier(.2,.8,.3,1)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq summary:hover,.faq summary:focus-visible{color:var(--cyan); outline:none}
+.faq details p{color:var(--steel); font-size:15.5px; line-height:1.6; max-width:68ch; padding:0 0 22px}
+
+/* ─────────────── oferta ─────────────── */
+.offer{display:grid; grid-template-columns:1fr; gap:clamp(32px,5vw,64px)}
+@media(min-width:960px){ .offer{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); align-items:start} }
+.of-sum{margin-top:0; margin-bottom:26px}
+.of-sum td.val{width:auto}
+.offer-form .fields{row-gap:16px}
+.field select{
+  width:100%; appearance:none; cursor:pointer;
+  background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2324bfcc'/%3E%3C/svg%3E") no-repeat right 12px center;
+  color:var(--ral9010); border:1px solid var(--rule); border-radius:0;
+  padding:11px 30px 11px 12px; font-family:var(--f-text); font-size:15px;
+}
+.field select:focus-visible{outline:none; border-color:var(--cyan)}
+.field input:user-invalid{border-color:var(--nonconform)}
+.offer-form .cta{margin-top:24px; width:100%}
+@media(min-width:600px){ .offer-form .cta{width:auto} }
+.of-note{margin-top:16px; padding:14px 16px; border-left:3px solid var(--cyan); background:var(--conc);
+  color:var(--steel); font-size:14px; line-height:1.55}
+.of-note strong{color:var(--ral9010)}
+.of-note:focus{outline:none}
+
+/* Ce urmează: trei pași numerotați, ca o procedură de lucru */
+.steps{list-style:none; margin:0; padding:0; counter-reset:s; border-top:1px solid var(--rule)}
+.steps li{counter-increment:s; display:grid; grid-template-columns:40px 1fr; column-gap:8px;
+  padding:16px 0; border-bottom:1px solid var(--rule-soft)}
+.steps li::before{content:counter(s, decimal-leading-zero); grid-row:span 2;
+  font-family:var(--f-data); font-size:12px; color:var(--cyan); padding-top:2px}
+.steps b{color:var(--ral9010); font-size:16px}
+.steps span{color:var(--steel); font-size:14.5px; line-height:1.5; margin-top:2px}
+
+/* Bara de jos: apare după hero, pleacă la formular. Intră de jos pentru că
+   acolo stă degetul pe telefon. */
+.dock{
+  position:fixed; z-index:55; right:var(--gut); bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  display:flex; align-items:center; gap:16px;
+  padding:8px 8px 8px 16px; background:var(--ink); border:1px solid var(--rule);
+  box-shadow:0 18px 40px -12px rgba(0,8,20,.8);
+  transform:translateY(calc(100% + 40px)); visibility:hidden;
+  transition:transform .45s cubic-bezier(.2,.8,.3,1), visibility 0s linear .45s;
+}
+.dock.on{transform:none; visibility:visible; transition:transform .45s cubic-bezier(.2,.8,.3,1), visibility 0s}
+.dock .cta{margin:0; padding:11px 16px; font-size:13px}
+.dock-sum{color:var(--ral9010); font-size:12px; white-space:nowrap}
+.dock-k{color:var(--steel-faint); text-transform:uppercase; font-size:10px; margin-right:4px}
+@media(max-width:600px){
+  .dock{left:10px; right:10px; bottom:calc(10px + env(safe-area-inset-bottom,0px)); justify-content:space-between}
+}
+.flat .dock{display:none}
+@media (prefers-reduced-motion:reduce){ .dock{transition:none} }
+@media(max-width:600px){ #cost-chart .c-lbl{font-size:16px} .cost-fig{padding:10px 8px 8px} }
+.cost-cross{color:var(--ral9010); font-size:11px; margin-bottom:8px}
+.cost-cross::before{content:''; display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--ral9010); margin-right:8px; vertical-align:1px}
