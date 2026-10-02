@@ -8,7 +8,9 @@
  * Dimensiunile vin din câmpurile calculatorului, deci totul merge și fără WebGL.
  */
 
-import { estimate, readDims, clampNum } from './price.js';
+import { estimate, readDims, clampNum, bomItems } from './price.js';
+import { replaceCart } from './cart.js';
+import { bindLeadForm } from './forms.js';
 
 const YEARS = 20;   // cât garanția pe manoperă
 const nf0 = new Intl.NumberFormat('ro-RO', { maximumFractionDigits: 0 });
@@ -143,18 +145,27 @@ export function initOffer(){
   }
 
   /* ---------- fișa de cerere ---------- */
-  const form = $('offer-form');
-  if (form){
-    form.addEventListener('submit', (ev) => {
-      ev.preventDefault();
-      if (!form.reportValidity()) return;
-      const note = $('of-note');
-      // Demo: nimic nu pleacă din pagină și nimic nu se păstrează.
-      form.reset();
-      if (note){
-        note.hidden = false;
-        note.focus();
-      }
+  // hala merge odată cu cererea, ca nimeni să nu mai întrebe dimensiunile la telefon
+  bindLeadForm($('offer-form'), {
+    kind: 'oferta',
+    note: $('of-note'),
+    extra: () => {
+      const e = estimate(dims);
+      return {
+        hall: `${noun} ${dims.L} × ${dims.W} × ${dims.H} m${dims.ceil ? ', cu tavan' : ', fără tavan'}`,
+        area: nf0.format(Math.round(e.arie)) + ' m²',
+        materials: lei(e.total)
+      };
+    },
+    onSent: update
+  });
+
+  /* ---------- doar materialele, în coș ---------- */
+  const toCart = $('to-cart');
+  if (toCart){
+    toCart.addEventListener('click', () => {
+      replaceCart(bomItems(estimate(dims)));
+      location.href = 'cos.html?din=calculator';
     });
   }
 

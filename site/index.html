@@ -72,8 +72,14 @@
     <a href="#santiere"><b>03</b>Șantiere</a>
     <a href="#calcul"><b>04</b>Calcul</a>
     <a href="#intrebari"><b>05</b>Întrebări</a>
+    <a href="magazin.html"><b>06</b>Magazin</a>
+    <a href="#contact"><b>07</b>Contact</a>
   </nav>
-  <p class="marker data"><s>demo de concept</s> · nu este site-ul oficial</p>
+  <div class="hud-end">
+    <p class="marker data"><s>demo de concept</s> · nu este site-ul oficial</p>
+    <a class="cart-link data mob-only" href="magazin.html">magazin</a>
+    <a class="cart-link data" href="cos.html">coș <b data-cart-count>0</b></a>
+  </div>
 </header>
 
 <div id="stage" aria-hidden="true">
@@ -181,43 +187,87 @@
     <div class="shead">
       <p class="kicker data" data-reveal><b class="idx">02</b>Conformitate</p>
       <h2 class="wipe" data-reveal>Legea descrie placa înainte ca placa să existe.</h2>
-      <p class="sub" data-reveal>Regulamentul european de igienă alimentară nu spune „faianță”. Spune ce însușiri trebuie să aibă suprafața. Coloana din stânga e cerința. Coloana din dreapta e fișa tehnică.</p>
     </div>
 
-    <div class="conform">
-      <div class="crow" data-reveal data-reveal-group="conform">
-        <p class="req">Materiale <i>impermeabile</i> și <i>neabsorbante</i>.</p>
-        <p class="ans">Porozitate zero. Rășină poliesterică armată cu fibră de sticlă 900 g/m², conținut de sticlă 30%, densitate 1,5 g/cm³.</p>
-        <span class="verdict">conform</span>
-      </div>
-      <div class="crow" data-reveal data-reveal-group="conform">
-        <p class="req">Materiale <i>lavabile</i>, ușor de curățat și, unde e nevoie, de dezinfectat.</p>
-        <p class="ans">Strat GelCoat continuu, luciu înalt, RAL 9010. Se spală cu jet și se dezinfectează fără să se degradeze.</p>
-        <span class="verdict">conform</span>
-      </div>
-      <div class="crow" data-reveal data-reveal-group="conform">
-        <p class="req">Materiale <i>netoxice</i>.</p>
-        <p class="ans">Avizat de Direcția Sanitar-Veterinară pentru spații de procesare alimentară.</p>
-        <span class="verdict">conform</span>
-      </div>
-      <div class="crow" data-reveal data-reveal-group="conform">
-        <p class="req">O <i>suprafață netedă</i> până la o înălțime potrivită operațiunilor.</p>
-        <p class="ans">Plăci de până la 3 m lățime și 10 m lungime. Cu cât placa e mai mare, cu atât sunt mai puține îmbinări.</p>
-        <span class="verdict">conform</span>
-      </div>
-      <div class="crow" data-reveal data-reveal-group="conform">
-        <p class="req">Tavane finisate astfel încât să <i>împiedice acumularea de murdărie</i> și să reducă condensul, <i>dezvoltarea mucegaiului</i> și desprinderea de particule.</p>
-        <p class="ans">Aceeași placă se montează și pe tavan. Fără rost, fără por, fără strat de vopsea care să se exfolieze.</p>
-        <span class="verdict">conform</span>
-      </div>
-      <div class="crow" id="garantie" data-reveal data-reveal-group="conform">
-        <p class="req">Suprafețe menținute în <i>stare bună</i>.</p>
-        <p class="ans">Garanție 20 de ani pe manoperă. Duritate Barcol 40/45, modul de flexibilitate 7100 MPa, aderență la montaj ~60 kg/cm².</p>
-        <span class="verdict">conform</span>
-      </div>
+    <div class="domain" role="tablist" aria-label="Domeniul">
+      <button type="button" role="tab" id="tab-food" aria-controls="dom-food" aria-selected="true">Industrie alimentară<span class="data">CE 852/2004</span></button>
+      <button type="button" role="tab" id="tab-med" aria-controls="dom-med" aria-selected="false" tabindex="-1">Spitale și clinici<span class="data">Ordin MS 1096/2016</span></button>
     </div>
 
-    <p class="src data">Cerințele din coloana stângă sunt preluate din Regulamentul (CE) nr. 852/2004, Anexa II, Capitolul II — traducere de lucru din versiunea engleză a textului. Datele din dreapta sunt cele publicate de MedClyn.</p>
+    <div class="dom-panel" id="dom-food" role="tabpanel" aria-labelledby="tab-food">
+      <p class="sub">Regulamentul european de igienă alimentară nu spune „faianță”. Spune ce însușiri trebuie să aibă suprafața. Coloana din stânga e cerința. Coloana din dreapta e fișa tehnică.</p>
+      <div class="conform">
+        <div class="crow" data-reveal data-reveal-group="conform">
+          <p class="req">Materiale <i>impermeabile</i> și <i>neabsorbante</i>.</p>
+          <p class="ans">Porozitate zero. Rășină poliesterică armată cu fibră de sticlă 900 g/m², conținut de sticlă 30%, densitate 1,5 g/cm³.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow" data-reveal data-reveal-group="conform">
+          <p class="req">Materiale <i>lavabile</i>, ușor de curățat și, unde e nevoie, de dezinfectat.</p>
+          <p class="ans">Strat GelCoat continuu, luciu înalt, RAL 9010. Se spală cu jet și se dezinfectează fără să se degradeze.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow" data-reveal data-reveal-group="conform">
+          <p class="req">Materiale <i>netoxice</i>.</p>
+          <p class="ans">Avizat de Direcția Sanitar-Veterinară pentru spații de procesare alimentară.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow" data-reveal data-reveal-group="conform">
+          <p class="req">O <i>suprafață netedă</i> până la o înălțime potrivită operațiunilor.</p>
+          <p class="ans">Plăci de până la 3 m lățime și 10 m lungime. Cu cât placa e mai mare, cu atât sunt mai puține îmbinări.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow" data-reveal data-reveal-group="conform">
+          <p class="req">Tavane finisate astfel încât să <i>împiedice acumularea de murdărie</i> și să reducă condensul, <i>dezvoltarea mucegaiului</i> și desprinderea de particule.</p>
+          <p class="ans">Aceeași placă se montează și pe tavan. Fără rost, fără por, fără strat de vopsea care să se exfolieze.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow" id="garantie" data-reveal data-reveal-group="conform">
+          <p class="req">Suprafețe menținute în <i>stare bună</i>.</p>
+          <p class="ans">Garanție 20 de ani pe manoperă. Duritate Barcol 40/45, modul de flexibilitate 7100 MPa, aderență la montaj ~60 kg/cm².</p>
+          <span class="verdict">conform</span>
+        </div>
+      </div>
+      <p class="src data">Cerințele sunt preluate din Regulamentul (CE) nr. 852/2004, Anexa II, Capitolul II — traducere de lucru din versiunea engleză a textului. Datele din dreapta sunt cele publicate de MedClyn.</p>
+    </div>
+
+    <div class="dom-panel" id="dom-med" role="tabpanel" aria-labelledby="tab-med" hidden>
+      <p class="sub">În spitale, finisajul e reglementat de Ministerul Sănătății. Gresia și vopseaua „lavabilă” din clădirile vechi încalcă mai multe puncte deodată. Același tabel: norma în stânga, placa în dreapta.</p>
+      <div class="conform">
+        <div class="crow in">
+          <p class="req">Finisaje <i>lavabile</i>.</p>
+          <p class="ans">Strat GelCoat continuu, porozitate zero. Se spală cu apă sub presiune, abur sau dezinfectant.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow in">
+          <p class="req"><i>Rezistente la dezinfectante</i> și alte substanțe biocide avizate pentru uz spitalicesc.</p>
+          <p class="ans">GelCoat-ul își păstrează culoarea și luciul la curățare regulată cu dezinfectanți puternici, inclusiv peroxid de hidrogen.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow in">
+          <p class="req"><i>Fără asperități</i> care să rețină praful și să favorizeze dezvoltarea germenilor.</p>
+          <p class="ans">Suprafață netedă, fără por. Placa e antistatică, deci nu reține nici praful adus de ventilația sălilor de operație.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow in">
+          <p class="req"><i>Rezistente la acțiunea acizilor</i>, în laboratoare și săli de tratamente.</p>
+          <p class="ans">Rezistentă la acizi, după fișa MedClyn pentru domeniul medical.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow in">
+          <p class="req">Interzise materialele care, prin alcătuire sau montaj, <i>favorizează mucegaiul</i> și acarienii.</p>
+          <p class="ans">Accesoriile etanșează placa față de perete. Între placă și zid nu intră umezeală, deci nu are unde să crească mucegaiul.</p>
+          <span class="verdict">conform</span>
+        </div>
+        <div class="crow in">
+          <p class="req">Unghiurile dintre pardoseală și pereți <i>concave</i>.</p>
+          <p class="ans">Îmbinările perete–pardoseală și perete–tavan se fac cu colțare concave, cu garnitură de etanșare.</p>
+          <span class="verdict">conform</span>
+        </div>
+      </div>
+      <p class="src data">Cerințele sunt din Anexa 1 la Ordinul MS 1096/2016, art. 3, așa cum le citează MedClyn pe pagina pentru domeniul medical. Răspunsurile sunt datele publicate de MedClyn. Lucrare în domeniu: Spitalul Orășenesc Cugir, sala de chirurgie, 200 m² în 3 zile.</p>
+    </div>
+
   </div>
 </section>
 
@@ -344,10 +394,11 @@
         </table>
 
         <div class="calc-act">
-          <a class="cta" href="#oferta">Cere oferta completă</a>
-          <button class="quiet" id="share" type="button">trimite hala celui care semnează</button>
+          <a class="cta" href="#oferta">Cere oferta cu montaj</a>
+          <button class="cta ghost" id="to-cart" type="button">Cumpără doar materialele</button>
         </div>
-        <p class="foot-note"><strong>Estimare orientativă, doar materiale</strong>, la prețurile publice: placă 252,88 lei/m², profil de îmbinare 57,36 lei/ml, colțar 27,37 lei/ml, plintă 111,27 lei/ml, adeziv 53 lei. Manopera se cotează după măsurătoare la fața locului.</p>
+        <p class="calc-alt"><button class="quiet" id="share" type="button">trimite hala celui care semnează</button></p>
+        <p class="foot-note"><strong>Estimare orientativă, doar materiale</strong>, la prețurile publice: placă 252,88 lei/m², baghetă de îmbinare 57,36 lei/ml, colțar interior 74,73 lei/ml, plintă 111,27 lei/ml, adeziv 53 lei. În coș, cantitățile se rotunjesc la regulile magazinului: placa de la 10 m², profilele în multipli de 3 ml. Manopera se cotează după măsurătoare la fața locului.</p>
       </div>
     </div>
 
@@ -478,8 +529,11 @@
           </div>
         </div>
 
+        <label class="hp" aria-hidden="true">Site <input name="website" tabindex="-1" autocomplete="off"></label>
+        <label class="check consent" for="of-ok"><input id="of-ok" name="consent" type="checkbox" required> <span>Sunt de acord să fiu contactat pentru ofertă. Detalii în <a href="confidentialitate.html">politica de confidențialitate</a>.</span></label>
+
         <button class="cta" id="of-send" type="submit">Cere oferta</button>
-        <p class="of-note" id="of-note" tabindex="-1" hidden><strong>Demo: cererea nu a plecat nicăieri și nu am păstrat nimic.</strong> În site-ul final ajunge la MedClyn cu hala deja completată. Până atunci, contactul real e pe <a href="https://www.medclyn.com/contact" target="_blank" rel="noopener">medclyn.com/contact</a>.</p>
+        <p class="of-note" id="of-note" tabindex="-1" role="status" hidden></p>
       </form>
 
       <ol class="steps">
@@ -491,17 +545,86 @@
   </div>
 </section>
 
+<!-- ══════════════ 07 ══════════════ -->
+<section class="band" id="contact">
+  <div class="wrap">
+    <div class="shead">
+      <p class="kicker data" data-reveal><b class="idx">07</b>Contact</p>
+      <h2 class="wipe" data-reveal>Sună. Răspunde cineva care a montat.</h2>
+    </div>
+
+    <div class="contact">
+      <div class="plate">
+        <a class="plate-tel" href="tel:+40733200500">0733 200 500</a>
+        <dl class="plate-dl">
+          <div><dt>Program</dt><dd>Luni – vineri, 08:00 – 20:00</dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:contact@medclyn.com">contact@medclyn.com</a></dd></div>
+          <div><dt>Depozit și sediu</dt><dd>Strada Oltului 141, Băicoi, Prahova, 105200</dd></div>
+          <div><dt>Firma</dt><dd>S.C. Multi Contrast Design S.R.L.<br>CUI RO19063140 · J29/2121/2006</dd></div>
+        </dl>
+        <p class="plate-note">Plăcile se debitează la depozitul din Băicoi, după măsurătoarea făcută de echipa care montează.</p>
+      </div>
+
+      <form id="contact-form" class="contact-form" novalidate>
+        <div class="fields two">
+          <div class="field">
+            <label for="ct-name">Nume</label>
+            <input id="ct-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="ct-mail">Email</label>
+            <input id="ct-mail" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="ct-subj">Despre ce</label>
+          <select id="ct-subj" name="subject">
+            <option>o lucrare nouă</option>
+            <option>o comandă din magazin</option>
+            <option>garanție și intervenții</option>
+            <option>altceva</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="ct-msg">Mesaj</label>
+          <textarea id="ct-msg" name="message" rows="5" required></textarea>
+        </div>
+        <label class="hp" aria-hidden="true">Site <input name="website" tabindex="-1" autocomplete="off"></label>
+        <label class="check consent" for="ct-ok"><input id="ct-ok" name="consent" type="checkbox" required> <span>Sunt de acord ca datele mele să fie folosite ca să primesc răspuns. Detalii în <a href="confidentialitate.html">politica de confidențialitate</a>.</span></label>
+        <button class="cta" type="submit">Trimite mesajul</button>
+        <p class="of-note" id="ct-note" tabindex="-1" role="status" hidden></p>
+      </form>
+    </div>
+  </div>
+</section>
+
 <div class="dock" id="dock">
   <span class="data dock-sum"><span class="dock-k">hala ta</span> <b id="dock-sum">—</b></span>
   <a class="cta" href="#oferta">Cere oferta</a>
 </div>
 
-<footer>
+<!-- footer:start -->
+<footer class="foot">
   <div class="wrap">
-    <p class="data idx">Demo de concept · realizat pe baza informațiilor publice de pe medclyn.com · nu colectează date și nu preia comenzi</p>
-    <p class="data idx">three.js · texturi ambientCG CC0 · panoramă HDR Poly Haven CC0</p>
+    <div class="foot-id">
+      <p class="foot-brand"><b>M</b>ed<b>C</b>lyn</p>
+      <p class="data">S.C. Multi Contrast Design S.R.L. · CUI RO19063140 · J29/2121/2006<br>Strada Oltului 141, Băicoi, Prahova, 105200</p>
+      <p class="data"><a href="tel:+40733200500">0733 200 500</a> · <a href="mailto:contact@medclyn.com">contact@medclyn.com</a> · luni – vineri, 08:00 – 20:00</p>
+    </div>
+    <nav class="foot-nav data" aria-label="Pagini">
+      <a href="index.html#calcul">Calculator</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="cos.html">Coș</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="termeni.html">Termeni și condiții</a>
+      <a href="confidentialitate.html">Confidențialitate</a>
+      <a href="cookie.html">Cookie-uri</a>
+      <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">ANPC · SAL</a>
+    </nav>
+    <p class="data idx foot-demo">Demo de concept · realizat pe baza informațiilor publice de pe medclyn.com · nu este site-ul oficial · three.js, texturi ambientCG CC0, panoramă HDR Poly Haven CC0</p>
   </div>
 </footer>
+<!-- footer:end -->
 
 <script type="module" src="js/main.js"></script>
 </body>

@@ -1,0 +1,13 @@
+# Serverul magazinului. Pașii de punere în funcțiune sunt în README, la „Plăți”.
+name = "medclyn-shop"
+main = "src/worker.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+SITE_URL = "https://www.medclyn.com"
+ALLOWED_ORIGIN = "https://www.medclyn.com,https://medclyn.com"
+# Secretele NU stau aici:
+#   npx wrangler secret put STRIPE_SECRET_KEY
+#   npx wrangler secret put STRIPE_WEBHOOK_SECRET
+#   npx wrangler secret put RESEND_API_KEY     (opțional, pentru emailuri)
+#   MAIL_FROM / MAIL_TO pot sta aici, la [vars], după ce domeniul e verificat în Resend

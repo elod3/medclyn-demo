@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+"""Copiază subsolul (și bara de sus a paginilor secundare) în toate paginile.
+
+Site-ul n-are build: fiecare pagină are HTML-ul complet, ca să se citească și
+fără JS. Blocurile comune stau aici o singură dată și se rescriu între
+markerele <!-- footer:start --> … <!-- footer:end --> (și hud:start/hud:end).
+
+    python3 tools/chrome.py
+"""
+import pathlib, re
+
+SITE = pathlib.Path(__file__).resolve().parent.parent / 'site'
+
+FOOTER = '''<!-- footer:start -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-id">
+      <p class="foot-brand"><b>M</b>ed<b>C</b>lyn</p>
+      <p class="data">S.C. Multi Contrast Design S.R.L. · CUI RO19063140 · J29/2121/2006<br>Strada Oltului 141, Băicoi, Prahova, 105200</p>
+      <p class="data"><a href="tel:+40733200500">0733 200 500</a> · <a href="mailto:contact@medclyn.com">contact@medclyn.com</a> · luni – vineri, 08:00 – 20:00</p>
+    </div>
+    <nav class="foot-nav data" aria-label="Pagini">
+      <a href="index.html#calcul">Calculator</a>
+      <a href="magazin.html">Magazin</a>
+      <a href="cos.html">Coș</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="termeni.html">Termeni și condiții</a>
+      <a href="confidentialitate.html">Confidențialitate</a>
+      <a href="cookie.html">Cookie-uri</a>
+      <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">ANPC · SAL</a>
+    </nav>
+    <p class="data idx foot-demo">Demo de concept · realizat pe baza informațiilor publice de pe medclyn.com · nu este site-ul oficial · three.js, texturi ambientCG CC0, panoramă HDR Poly Haven CC0</p>
+  </div>
+</footer>
+<!-- footer:end -->'''
+
+# bara de sus pentru paginile fără perete (magazin, coș, comandă, pagini legale)
+HUD = '''<!-- hud:start -->
+<header class="hud hud-page">
+  <a class="brand" href="index.html" aria-label="MedClyn, prima pagină">
+    <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
+      <polygon points="4,4 96,4 72,28 28,28" fill="#24BFCD"/>
+      <polygon points="96,4 96,96 72,72 72,28" fill="#1479B1"/>
+      <polygon points="96,96 4,96 28,72 72,72" fill="#2A4C98"/>
+      <polygon points="4,96 4,4 28,28 28,72" fill="#1878A8"/>
+      <line x1="100" y1="0" x2="70" y2="30" class="gap"/>
+      <line x1="0" y1="100" x2="30" y2="70" class="gap"/>
+    </svg>
+    <span class="brand-word"><b>M</b>ed<b>C</b>lyn</span>
+  </a>
+  <nav class="index data" aria-label="Cuprins">
+    <a href="index.html#conformitate"><b>02</b>Conformitate</a>
+    <a href="index.html#santiere"><b>03</b>Șantiere</a>
+    <a href="index.html#calcul"><b>04</b>Calcul</a>
+    <a href="magazin.html"><b>06</b>Magazin</a>
+    <a href="index.html#contact"><b>07</b>Contact</a>
+  </nav>
+  <div class="hud-end">
+    <p class="marker data"><s>demo de concept</s> · nu este site-ul oficial</p>
+    <a class="cart-link data mob-only" href="magazin.html">magazin</a>
+    <a class="cart-link data" href="cos.html">coș <b data-cart-count>0</b></a>
+  </div>
+</header>
+<!-- hud:end -->'''
+
+def put(html, name, block):
+    pat = re.compile(rf'<!-- {name}:start -->.*?<!-- {name}:end -->', re.S)
+    if pat.search(html):
+        return pat.sub(lambda _: block, html)
+    marker = f'<!--{name.upper()}-->'
+    return html.replace(marker, block)
+
+for page in sorted(SITE.glob('*.html')):
+    html = page.read_text()
+    new = put(html, 'footer', FOOTER)
+    if page.name != 'index.html':
+        new = put(new, 'hud', HUD)
+    if new != html:
+        page.write_text(new)
+        print('actualizat', page.name)

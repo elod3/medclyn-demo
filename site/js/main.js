@@ -2,6 +2,9 @@ import { createWall } from './wall.js';
 import { initReveal } from './reveal.js';
 import { initCases } from './cases.js';
 import { initOffer } from './offer.js';
+import { bindCartBadge } from './cart.js';
+import { bindLeadForm } from './forms.js';
+import { initDomains } from './domains.js';
 
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -32,6 +35,9 @@ window.addEventListener('unhandledrejection', (e) => fail(e.reason));
 initReveal({ reduced });
 initCases().catch((err) => console.warn('[medclyn] șantiere:', err));
 initOffer();
+bindCartBadge();
+initDomains();
+bindLeadForm(document.getElementById('contact-form'), { kind: 'contact', note: document.getElementById('ct-note') });
 
 /* ---------- peretele ---------- */
 let wall = null;
