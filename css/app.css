@@ -1002,3 +1002,253 @@ html.reveal-on .crow.bad.in .verdict{opacity:1; transform:rotate(-4deg)}
   .domain{flex-wrap:nowrap}
   .domain [role="tab"]{flex:1; min-width:0; padding-right:10px; margin-right:12px; font-size:14.5px}
 }
+
+/* ═══════════════ paginile generate (tools/build.py) ═══════════════
+   Același vocabular ca prima pagină: fișă, ștampilă, registru, cote în mono.
+   Nimic nou nu e card cu umbră; fotografiile de șantier fac greul. */
+
+/* subsolul pe coloane */
+.foot .wrap{gap:28px 40px}
+@media(min-width:900px){ .foot .wrap{grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr))} }
+.foot-tel{font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800; font-size:22px; letter-spacing:-.01em; margin-bottom:4px}
+.foot-tel a{color:var(--ral9010)}
+.foot-col{display:flex; flex-direction:column; gap:9px; text-transform:uppercase; font-size:10px}
+.foot-col p{color:var(--steel-faint); letter-spacing:.06em; margin-bottom:4px}
+.foot .anpc{margin-top:10px; display:inline-block; background:#fff; padding:4px; width:max-content; line-height:0; border-radius:2px}
+.foot .anpc img{width:168px; height:auto}
+
+/* bara de jos pe telefon */
+.callbar{display:none}
+@media(max-width:899px){
+  .callbar{position:fixed; z-index:60; left:0; right:0; bottom:0; display:grid; grid-template-columns:1fr 1fr;
+    background:rgba(0,19,43,.98); border-top:1px solid var(--rule); padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px)); gap:8px}
+  .callbar a{display:flex; flex-direction:column; justify-content:center; text-decoration:none; padding:8px 12px; min-height:48px}
+  .cb-tel{color:var(--ral9010); font-family:var(--f-display); font-variation-settings:"wdth" 112; font-weight:800; font-size:16px; border:1px solid var(--rule)}
+  .cb-tel .data{color:var(--cyan); text-transform:uppercase; font-size:9.5px}
+  .cb-offer{background:var(--navy); color:#fff; border:1px solid var(--cyan); align-items:center;
+    font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800; text-transform:uppercase; font-size:14px}
+  .page:has(.callbar) .foot{padding-bottom:76px}
+  .page:has(.callbar) .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+
+/* domenii */
+.dom-stat{font-family:var(--f-data); font-variation-settings:"wdth" 87.5; font-size:12px; color:var(--steel-dim); text-transform:uppercase; letter-spacing:.03em}
+.dom-stat b{color:var(--cyan); font-weight:500}
+.hero-act{display:flex; flex-wrap:wrap; align-items:center; gap:10px 22px}
+.hero-act .cta{margin-top:6px}
+.more{margin-top:26px; color:var(--steel-dim); font-size:14px}
+.more a{color:var(--steel); text-decoration:none; border-bottom:1px solid var(--steel-faint)}
+.more a:hover{color:var(--cyan); border-color:var(--cyan)}
+.two-col{display:grid; gap:10px 56px}
+@media(min-width:960px){ .two-col{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); align-items:start} .two-col .shead{margin-bottom:0} }
+.band > .wrap.two-col::before{grid-column:1 / -1}
+.where{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule); columns:2 220px; column-gap:32px}
+.where li{break-inside:avoid; padding:12px 0; border-bottom:1px solid var(--rule-soft); color:var(--ral9010); font-size:15px}
+.where li::before{content:'—'; color:var(--cyan); margin-right:10px}
+.dom-others .wrap{padding-bottom:28px}
+.dom-others .wrap::before{margin-bottom:24px}
+.dom-others .data{color:var(--steel-faint); text-transform:uppercase; margin-bottom:12px}
+.dom-links{display:flex; flex-wrap:wrap; gap:8px}
+.dom-links a,.chip{border:1px solid var(--rule); color:var(--steel); padding:9px 14px; text-decoration:none; font-size:14px; background:none; cursor:pointer; font-family:var(--f-text)}
+.dom-links a:hover,.chip:hover{border-color:var(--cyan); color:var(--ral9010)}
+.chip[aria-pressed="true"]{background:var(--navy); border-color:var(--cyan); color:#fff}
+.chip .data{color:inherit; opacity:.7; margin-left:4px}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px}
+.dom-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); border-top:1px solid var(--rule); border-left:1px solid var(--rule-soft)}
+.dom-grid a{display:flex; flex-direction:column; gap:8px; padding:20px 18px 22px; border-right:1px solid var(--rule-soft); border-bottom:1px solid var(--rule-soft);
+  text-decoration:none; color:var(--ral9010); transition:background .18s ease}
+.dom-grid a b{font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800; text-transform:uppercase; font-size:16px; line-height:1.1}
+.dom-grid a .data{color:var(--steel-dim)}
+.dom-grid a:hover{background:rgba(36,191,204,.07)}
+.dom-grid a:hover b{color:var(--cyan)}
+
+/* lucrări: rânduri cu fotografie */
+.case-cards{list-style:none; margin:0 0 34px; padding:0; display:grid; gap:14px}
+@media(min-width:760px){ .case-cards{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.case-cards a{display:flex; flex-direction:column; gap:6px; text-decoration:none; color:var(--ral9010)}
+.case-cards img{width:100%; aspect-ratio:4/3; object-fit:cover; display:block; filter:saturate(.85); transition:filter .3s ease}
+.case-cards a:hover img{filter:none}
+.case-cards .cc-meta{color:var(--cyan); margin-top:6px}
+.case-cards b{font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800; text-transform:uppercase; font-size:17px; line-height:1.05}
+.case-cards a:hover b{color:var(--cyan)}
+.case-cards .cc-sub{color:var(--steel-dim); font-size:13.5px}
+.jobs-all tbody th a{color:var(--ral9010); text-decoration:none}
+.jobs-all tbody th a:hover{color:var(--cyan)}
+
+/* harta */
+.map-wrap{display:grid; gap:24px 40px; align-items:center}
+@media(min-width:960px){ .map-wrap{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)} }
+.ro-map{width:100%; height:auto; overflow:visible}
+.ro-shape{fill:var(--conc); stroke:var(--steel-faint); stroke-width:1.4; stroke-linejoin:round}
+.pin{cursor:pointer}
+.pin-area{fill:rgba(36,191,204,.16); stroke:var(--cyan); stroke-width:1.2; transition:fill .2s ease}
+.pin-dot{fill:var(--ral9010)}
+.pin-t{fill:var(--steel); font-family:var(--f-data); font-size:15px; letter-spacing:0}
+.pin:hover .pin-area,.pin:focus-visible .pin-area{fill:rgba(36,191,204,.45)}
+.pin:hover .pin-t,.pin:focus-visible .pin-t{fill:var(--ral9010)}
+.pin:focus-visible{outline:none}
+.map-side{display:flex; flex-direction:column; gap:10px; color:var(--steel); font-size:15px; border-top:1px solid var(--rule); padding-top:16px}
+.map-side .data{color:var(--cyan); text-transform:uppercase}
+.map-side .data + p{margin-bottom:12px}
+@media(max-width:600px){ .pin-t{font-size:22px} }
+
+/* lucrare: fișa de șantier */
+.case-top{position:relative; display:grid; gap:20px}
+@media(min-width:900px){ .case-top{grid-template-columns:minmax(0,1fr) auto; align-items:start} }
+.case-top .shead{margin-bottom:28px}
+.case-top .kicker a{color:var(--cyan); text-decoration:none}
+.case-stamp{position:static; transform:rotate(-6deg); border-color:var(--cyan); color:var(--cyan); mix-blend-mode:normal; opacity:.92;
+  font-size:17px; justify-self:start; margin-top:4px}
+@media(min-width:900px){ .case-stamp{margin:30px 10px 0 0} }
+.case-sheet{margin-bottom:24px}
+@media(min-width:720px){ .case-sheet{grid-template-columns:repeat(5,auto)} }
+.case-cover{margin:0}
+.case-cover img{width:100%; height:auto; max-height:78vh; object-fit:cover; display:block}
+.case-cover figcaption,.spec-img figcaption{color:var(--steel-faint); margin-top:8px}
+.case-grid{display:grid; gap:34px 56px}
+@media(min-width:960px){ .case-grid{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr); align-items:start} }
+.case-text p{color:var(--ral9010); font-size:clamp(16px,1.3vw,18px); line-height:1.65; max-width:62ch}
+.case-text p + p{margin-top:16px}
+.case-text .case-quote{margin:30px 0 0}
+.case-facts{border-top:1px solid var(--rule); display:flex; flex-direction:column}
+.case-facts > div{padding:16px 0; border-bottom:1px solid var(--rule-soft)}
+.case-facts h2{font-size:11px; color:var(--cyan); text-transform:uppercase; margin-bottom:8px; max-width:none; letter-spacing:.03em}
+.case-facts p,.case-facts li{color:var(--steel); font-size:14.5px; line-height:1.55}
+.case-facts ul{margin:0; padding:0; list-style:none}
+.case-facts li{padding:3px 0 3px 18px; position:relative}
+.case-facts li::before{content:''; position:absolute; left:0; top:12px; width:9px; height:1px; background:var(--cyan)}
+.case-src{color:var(--steel-faint); margin-top:14px}
+.case-src a{color:var(--steel)}
+.case-gallery{display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:8px; margin-top:36px}
+.case-gallery figure{margin:0}
+.case-gallery img{width:100%; aspect-ratio:3/4; object-fit:cover; display:block}
+.case-film{display:grid; grid-template-columns:minmax(0,260px) 1fr; gap:18px; align-items:center; margin-top:36px; text-decoration:none;
+  border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); padding:16px 0}
+.cf-img{position:relative; display:block}
+.cf-img img{width:100%; height:auto; display:block}
+.cf-meta{display:flex; flex-direction:column; gap:6px}
+.cf-meta .data{color:var(--cyan)}
+.cf-meta b{color:var(--ral9010); font-size:17px; font-weight:700}
+.case-film:hover .cf-meta b{color:var(--cyan)}
+@media(max-width:600px){ .case-film{grid-template-columns:1fr} }
+
+/* cererea scurtă de ofertă */
+.lead-grid{display:grid; gap:20px 56px}
+@media(min-width:960px){ .lead-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); align-items:start} }
+.lead .shead{margin-bottom:0}
+.lead .sub a{color:var(--ral9010)}
+.lead-tel{display:inline-flex; flex-direction:column; gap:2px; margin-top:12px; text-decoration:none; color:var(--ral9010);
+  font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800; font-size:clamp(26px,3vw,36px); letter-spacing:-.01em}
+.lead-tel .data{color:var(--steel-faint); text-transform:uppercase; font-size:10px; letter-spacing:.04em}
+.lead-tel:hover{color:var(--cyan)}
+.lead-form .cta{width:100%}
+@media(min-width:600px){ .lead-form .cta{width:auto} }
+.lead-form .field input,.lead-form .field select{width:100%}
+@media(max-width:600px){ .fields.two,.fields.three{grid-template-columns:1fr} }
+.fields.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+/* ce este: fișa tehnică */
+.spec-grid{display:grid; gap:30px 56px}
+@media(min-width:960px){ .spec-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); align-items:start} }
+.spec{margin-top:0}
+.spec td.val{width:auto}
+.spec-side{display:flex; flex-direction:column; gap:16px; color:var(--steel); font-size:15px; line-height:1.6}
+.spec-side a{color:var(--ral9010)}
+.spec-img{margin:0; background:var(--ral9010)}
+.spec-img img{width:100%; height:auto; display:block; max-height:340px; object-fit:contain}
+.steps-5{display:grid}
+@media(min-width:960px){
+  .steps-5{grid-template-columns:repeat(5,minmax(0,1fr)); border-top:0}
+  .steps-5 li{display:flex; flex-direction:column; gap:6px; border-top:1px solid var(--rule); border-bottom:0; padding:16px 16px 0 0}
+  .steps-5 li::before{grid-row:auto}
+}
+.prose{color:var(--ral9010); font-size:clamp(16px,1.25vw,17.5px); line-height:1.7; max-width:70ch}
+.prose p + p{margin-top:14px}
+.prose a{color:var(--cyan)}
+.prose h2{font-size:clamp(20px,2.2vw,28px); margin:46px 0 14px; max-width:none}
+.prose h2:first-child{margin-top:0}
+.prose .conform,.prose .jobs-scroll{margin:20px 0}
+.prose-list{margin:10px 0; padding-left:20px; color:var(--steel)}
+.guide .prose{max-width:78ch}
+.guide-list{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule)}
+.guide-list a{display:flex; flex-direction:column; gap:6px; padding:22px 0; border-bottom:1px solid var(--rule-soft); text-decoration:none}
+.guide-list b{font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800; text-transform:uppercase; font-size:clamp(18px,2vw,24px); color:var(--ral9010); line-height:1.05}
+.guide-list span{color:var(--steel); font-size:15px; max-width:70ch}
+.guide-list a:hover b{color:var(--cyan)}
+
+/* comparația pe 20 de ani */
+.cmp tr.ok th{color:var(--ral9010)}
+.cmp td b{color:var(--ral9010); font-weight:500}
+.cmp tr.ok:last-child{background:rgba(36,191,204,.07)}
+.cmp tr.ok:last-child td b{color:var(--cyan)}
+.cmp .verdict{display:inline-block; font-family:var(--f-data); font-size:10px; text-transform:uppercase; padding:3px 7px; border:1.5px solid var(--cyan); color:var(--cyan); white-space:nowrap}
+.cmp tr.bad .verdict{border-color:var(--nonconform); color:var(--nonconform)}
+
+/* prețuri */
+.price-top{display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); margin-bottom:40px}
+@media(min-width:900px){ .price-top{grid-template-columns:1fr 1fr minmax(0,1.1fr)} }
+.price-big,.price-act{background:var(--ink); padding:20px 22px; display:flex; flex-direction:column; gap:6px}
+.price-big .data{color:var(--steel-dim); text-transform:uppercase}
+.price-big b{font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800; font-size:clamp(30px,3.6vw,46px); color:var(--ral9010); line-height:1}
+.price-big:nth-child(2) b{color:var(--cyan)}
+.price-act{justify-content:center; gap:10px}
+.price-act .cta{margin:0; text-align:center; text-decoration:none}
+.price-list tr.grp th{padding-top:26px; color:var(--cyan); font-family:var(--f-data); font-size:11px; text-transform:uppercase; font-weight:400}
+.price-list tbody th a{color:var(--ral9010); text-decoration:none}
+.price-list tbody th a:hover{color:var(--cyan)}
+.price-list td.num b{color:var(--ral9010); font-weight:500}
+
+/* produs */
+.prod{display:grid; gap:26px 48px}
+@media(min-width:900px){ .prod{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); align-items:start} }
+.prod-img{margin:0; background:var(--ral9010)}
+.prod-img img{width:100%; height:auto; display:block; aspect-ratio:1; object-fit:contain}
+.prod-main{display:flex; flex-direction:column; gap:14px}
+.prod-main .kicker{display:flex; gap:12px; color:var(--cyan)}
+.h1-prod{font-size:clamp(26px,3.2vw,42px); max-width:20ch}
+.prod-price{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; border-top:1px solid var(--rule); padding-top:16px}
+.prod-price b{font-family:var(--f-display); font-variation-settings:"wdth" 118; font-weight:800; font-size:clamp(30px,3.4vw,44px); color:var(--ral9010); line-height:1}
+.prod-price .data{color:var(--steel-dim)}
+.prod-buy{display:flex; flex-wrap:wrap; align-items:center; gap:10px}
+.prod-buy .cta{margin:0}
+.prod-terms{margin-top:8px}
+.kit{margin-top:40px; border:1px solid var(--rule); padding:22px clamp(16px,2.4vw,28px); max-width:760px}
+.kit > .data{color:var(--cyan); text-transform:uppercase; margin-bottom:14px}
+.kit .field input{width:100%}
+.kit .bom td.qty{width:auto}
+.rel{list-style:none; margin:0; padding:0; display:grid; gap:1px; background:var(--rule-soft); border:1px solid var(--rule-soft)}
+@media(min-width:760px){ .rel{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))} }
+.rel a{display:grid; grid-template-columns:72px 1fr; grid-template-rows:auto auto; gap:4px 14px; align-items:center; padding:14px; background:var(--ink); text-decoration:none; color:var(--ral9010)}
+.rel img{grid-row:span 2; background:var(--ral9010); width:72px; height:72px; object-fit:contain}
+.rel span{font-size:14.5px; line-height:1.35}
+.rel b{color:var(--steel-dim); font-weight:400}
+.rel a:hover span{color:var(--cyan)}
+.part-name a{color:inherit; text-decoration:none}
+.part-name a:hover{color:var(--cyan)}
+
+/* corecturi după capturi */
+.case-cards img,.case-gallery img,.case-cover img,.dom-fig img{height:auto}
+.case-cards img{aspect-ratio:4/3}
+.case-gallery img{aspect-ratio:3/4}
+.toast{visibility:hidden; transition:transform .4s cubic-bezier(.2,.8,.3,1), visibility 0s .4s}
+.toast.on{visibility:visible; transition:transform .4s cubic-bezier(.2,.8,.3,1)}
+.dom-top{display:grid; gap:28px 56px}
+@media(min-width:1000px){ .dom-top{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); align-items:start} }
+.dom-top .shead{margin-bottom:0}
+.dom-fig{margin:0}
+.dom-fig img{width:100%; aspect-ratio:4/3; object-fit:cover; display:block}
+.dom-fig figcaption{color:var(--steel-faint); margin-top:8px}
+.dom-fig figcaption a{color:var(--steel)}
+.case-top .h1-page{font-size:clamp(26px,3.4vw,46px); max-width:24ch; overflow-wrap:break-word}
+.case-src{font-size:11px}
+@media(max-width:700px){
+  .jobs tr.grp{display:block}
+  .jobs tr.grp th{display:block; padding-bottom:4px}
+  .jobs tr.job td[data-label="DSV"]{grid-column:1 / -1}
+  .price-list tbody th{font-size:15px}
+  .case-stamp{justify-self:end; margin-right:6px; font-size:14px}
+  .jobs caption{display:block}
+}
+.dom-pick{margin-top:clamp(36px,5vw,64px)}
+.dom-pick > .data{color:var(--steel-faint); text-transform:uppercase; margin-bottom:14px}
+@media(min-width:900px){ .dom-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }

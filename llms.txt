@@ -1,0 +1,61 @@
+# MedClyn
+
+> Placare antibacteriană pentru pereți și tavane: plăci din rășină poliesterică și fibră de sticlă cu GelCoat, 1,6–2 mm, montate peste suportul existent fără oprirea producției. Avizate DSV, garanție 20 de ani. România, cu sediul în Băicoi, Prahova. Telefon 0733 200 500.
+
+## Pagini
+- [Ce este MedClyn](https://elod3.github.io/medclyn-demo/ce-este-medclyn/): fișa tehnică, montajul, garanția
+- [Prețuri](https://elod3.github.io/medclyn-demo/preturi/): placa 252,88 lei/m² cu TVA; ~350 lei/m² cu manoperă
+- [Lucrări](https://elod3.github.io/medclyn-demo/lucrari/): 35 studii de caz, 24.821 m²
+- [Magazin](https://elod3.github.io/medclyn-demo/magazin.html)
+- [Întrebări](https://elod3.github.io/medclyn-demo/intrebari/)
+- [Contact](https://elod3.github.io/medclyn-demo/contact/)
+
+## Domenii
+- [Industria alimentară](https://elod3.github.io/medclyn-demo/industria-alimentara/)
+- [Spitale și clinici](https://elod3.github.io/medclyn-demo/domeniul-medical/)
+- [Industria farmaceutică](https://elod3.github.io/medclyn-demo/industria-farmaceutica/)
+- [Industria cosmetică](https://elod3.github.io/medclyn-demo/industria-cosmetica/)
+- [Bucătării profesionale](https://elod3.github.io/medclyn-demo/bucatarii-profesionale/)
+- [Săli de sport, vestiare, școli](https://elod3.github.io/medclyn-demo/alte-domenii/)
+
+## Ghiduri
+- [Ce verifică DSV la pereți și tavane](https://elod3.github.io/medclyn-demo/ghid/cerinte-dsv-pereti-tavane/)
+- [Panouri sandwich ruginite: revopsire sau placare?](https://elod3.github.io/medclyn-demo/ghid/renovare-panouri-sandwich/)
+- [Faianță sau plăci antibacteriene: costul pe 20 de ani](https://elod3.github.io/medclyn-demo/ghid/faianta-sau-placi-antibacteriene/)
+
+## Lucrări
+- [Ursus Breweries](https://elod3.github.io/medclyn-demo/lucrari/ursus-breweries-brasov/): 1.000 m², 40 de zile
+- [Abatorul de pui Bona Avis](https://elod3.github.io/medclyn-demo/lucrari/abatorul-bona-avis-ianca/): 616 m², 10 zile
+- [AYT Măcelărie & Market](https://elod3.github.io/medclyn-demo/lucrari/ayt-macelarie-bucuresti/): 300 m², 2 zile
+- [Elixir DC](https://elod3.github.io/medclyn-demo/lucrari/elixir-dc-procesare-peste/): 70 m², 2 zile
+- [Arena Group](https://elod3.github.io/medclyn-demo/lucrari/arena-group-farmaceutice/): 100 m²
+- [Sagrod](https://elod3.github.io/medclyn-demo/lucrari/sagrod-darabani/): 600 m², 5 zile
+- [Spitalul Orășenesc Cugir](https://elod3.github.io/medclyn-demo/lucrari/spitalul-orasenesc-cugir/): 200 m², 3 zile
+- [Sasha & Vlad Company](https://elod3.github.io/medclyn-demo/lucrari/sasha-vlad-vestiare/): 150 m²
+- [Vlasie Company](https://elod3.github.io/medclyn-demo/lucrari/vlasie-company-cascaval/): 400 m², 4 zile
+- [Clinică medicală din România](https://elod3.github.io/medclyn-demo/lucrari/clinica-medicala-200-mp-o-zi/): 200 m², 1 zi
+- [Hotel Anna](https://elod3.github.io/medclyn-demo/lucrari/hotel-anna-targu-jiu/): 100 m², 2 zile
+- [Spații de producție din județul Sibiu](https://elod3.github.io/medclyn-demo/lucrari/panouri-sandwich-sibiu/): 2.000 m²
+- [Pomarom](https://elod3.github.io/medclyn-demo/lucrari/pomarom-procesare-melci/): 1.200 m², 4 zile
+- [Lactate Monor](https://elod3.github.io/medclyn-demo/lucrari/monor-lactate-bistrita-nasaud/): 350 m², 5 zile
+- [Abatorul Safir](https://elod3.github.io/medclyn-demo/lucrari/abatorul-safir/): 85 m², 1 zi
+- [Souflet Malt](https://elod3.github.io/medclyn-demo/lucrari/souflet-malt-buzau/): 100 m², 1 zi
+- [Lactate Solomonescu](https://elod3.github.io/medclyn-demo/lucrari/lactate-solomonescu-botosani/): 400 m², 5 zile
+- [Swiss Caps România](https://elod3.github.io/medclyn-demo/lucrari/swiss-caps-romania/): 350 m², 3 zile
+- [Fazakas Prodcarmi](https://elod3.github.io/medclyn-demo/lucrari/carmangeria-fazakas-prodcarmi/): 400 m², o săptămână
+- [Lactate Brădet](https://elod3.github.io/medclyn-demo/lucrari/lactate-bradet-arges/): 1.000 m², 4 săptămâni
+- [Linie de îmbuteliere de miere](https://elod3.github.io/medclyn-demo/lucrari/linie-imbuteliere-miere-dambovita/): 300 m², circa 3 săptămâni
+- [Sanofi](https://elod3.github.io/medclyn-demo/lucrari/sanofi-centru-cercetare-paris/): 600 m², 4 săptămâni
+- [The Bistrot Benoit](https://elod3.github.io/medclyn-demo/lucrari/the-bistrot-benoit-luvru/): 500 m², 2 săptămâni
+- [Ladurée](https://elod3.github.io/medclyn-demo/lucrari/laduree-champs-elysees/): 400 m², 5–6 zile
+- [Chai 33](https://elod3.github.io/medclyn-demo/lucrari/chai-33-paris-bercy/): 2.500 m², 3 săptămâni
+- [Nestlé](https://elod3.github.io/medclyn-demo/lucrari/nestle-atelier-ciocolata-franta/): 250 m², 7 zile
+- [Fabrică de aditivi alimentari](https://elod3.github.io/medclyn-demo/lucrari/fabrica-aditivi-alimentari-amendata/): 4.000 m², 4 săptămâni
+- [Fabrică de mezeluri](https://elod3.github.io/medclyn-demo/lucrari/fabrica-mezeluri-2000-mp/): 2.000 m², 3 săptămâni
+- [Clinică de cardiologie](https://elod3.github.io/medclyn-demo/lucrari/clinica-cardiologie-paris/): 600 m², 3 săptămâni
+- [Centru sportiv al unui liceu](https://elod3.github.io/medclyn-demo/lucrari/sala-de-sport-liceu/): 500 m², 5 zile
+- [Liceu privat](https://elod3.github.io/medclyn-demo/lucrari/bucatarie-liceu-privat/): 200 m², 7 zile
+- [Firmă de catering](https://elod3.github.io/medclyn-demo/lucrari/bucatarie-catering/): 200 m², 4 zile
+- [Bianco](https://elod3.github.io/medclyn-demo/lucrari/restaurant-bianco-paris/): 150 m², 5 zile
+- [Abator din Rennes](https://elod3.github.io/medclyn-demo/lucrari/abator-rennes/): 1.000 m², 10 zile
+- [Abator de curcani](https://elod3.github.io/medclyn-demo/lucrari/abator-curcani-bignan/): 2.000 m², 3 săptămâni

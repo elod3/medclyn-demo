@@ -18,6 +18,14 @@
 <meta name="theme-color" content="#061a3a">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%20%20%3Cpolygon%20points%3D%224%2C4%2096%2C4%2072%2C28%2028%2C28%22%20fill%3D%22%2324BFCD%22/%3E%20%20%3Cpolygon%20points%3D%2296%2C4%2096%2C96%2072%2C72%2072%2C28%22%20fill%3D%22%231479B1%22/%3E%20%20%3Cpolygon%20points%3D%2296%2C96%204%2C96%2028%2C72%2072%2C72%22%20fill%3D%22%23203874%22/%3E%20%20%3Cpolygon%20points%3D%224%2C96%204%2C4%2028%2C28%2028%2C72%22%20fill%3D%22%231878A8%22/%3E%20%20%3Cline%20x1%3D%22100%22%20y1%3D%220%22%20x2%3D%2270%22%20y2%3D%2230%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22/%3E%20%20%3Cline%20x1%3D%220%22%20y1%3D%22100%22%20x2%3D%2230%22%20y2%3D%2270%22%20stroke%3D%22%23fff%22%20stroke-width%3D%225%22/%3E%3C/svg%3E">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three.module.min.js",
+    "three/addons/": "./vendor/jsm/"
+  }
+}
+</script>
 <link rel="modulepreload" href="vendor/three.module.min.js">
 <link rel="modulepreload" href="js/main.js">
 <link rel="modulepreload" href="js/wall.js">
@@ -35,14 +43,7 @@
 <link rel="preload" href="tex/tile_disp.webp" as="image" crossorigin="anonymous">
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="css/app.css">
-<script type="importmap">
-{
-  "imports": {
-    "three": "./vendor/three.module.min.js",
-    "three/addons/": "./vendor/jsm/"
-  }
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://elod3.github.io/medclyn-demo/#org","name":"MedClyn","legalName":"S.C. Multi Contrast Design S.R.L.","url":"https://elod3.github.io/medclyn-demo/","logo":"https://elod3.github.io/medclyn-demo/img/medclyn-mark.svg","vatID":"RO19063140","telephone":"+40733200500","email":"contact@medclyn.com","address":{"@type":"PostalAddress","streetAddress":"Strada Oltului 141","addressLocality":"Băicoi","addressRegion":"Prahova","postalCode":"105200","addressCountry":"RO"},"sameAs":["https://www.facebook.com/MedClynRomania/","https://www.instagram.com/MedClynRomania/"]},{"@type":"WebSite","@id":"https://elod3.github.io/medclyn-demo/#site","url":"https://elod3.github.io/medclyn-demo/","name":"MedClyn","inLanguage":"ro-RO","publisher":{"@id":"https://elod3.github.io/medclyn-demo/#org"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Trebuie să spargem ce e acum pe pereți?","acceptedAnswer":{"@type":"Answer","text":"Nu. Placa se lipește peste ce există: cărămidă, tencuială, faianță, zugrăveli, rigips sau panouri sandwich. Doar unde suportul e slab se curăță întâi, ca la Lactate Brădet, ca să nu se piardă garanția."}},{"@type":"Question","name":"Cât stă producția?","acceptedAnswer":{"@type":"Answer","text":"Depinde de câte ore îți permiți. La Bona Avis, liniile au mers 8 ore din 10, iar echipa a lucrat după-amiaza și noaptea. La Ursus, Chai 33 și la abatorul din Rennes, linia n-a oprit deloc. Swiss Caps lucrează în concediile colective."}},{"@type":"Question","name":"Cât costă pe metru pătrat?","acceptedAnswer":{"@type":"Answer","text":"Placa de 2 mm costă 252,88 lei/m² cu TVA în magazinul MedClyn. Cu accesorii și manoperă, MedClyn calculează aproximativ 350 lei/m², o singură dată pe 20 de ani. Prețul exact vine după măsurătoare."}},{"@type":"Question","name":"Ce garanție are?","acceptedAnswer":{"@type":"Answer","text":"20 de ani pe materiale și lucrare. Dacă apar probleme la folosire normală, echipa MedClyn înlocuiește porțiunile afectate."}},{"@type":"Question","name":"Cât de repede se montează?","acceptedAnswer":{"@type":"Answer","text":"Clinica medicală: 200 m² într-o zi. AYT: 300 m² în 2 zile. Pomarom: 1.200 m² în 4 zile. 80% din plăci se taie la depozitul din Băicoi după măsurători, iar pe șantier rămâne montajul."}}]}]}</script>
 </head>
 <body>
 
@@ -268,6 +269,18 @@
       <p class="src data">Cerințele sunt din Anexa 1 la Ordinul MS 1096/2016, art. 3, așa cum le citează MedClyn pe pagina pentru domeniul medical. Răspunsurile sunt datele publicate de MedClyn. Lucrare în domeniu: Spitalul Orășenesc Cugir, sala de chirurgie, 200 m² în 3 zile.</p>
     </div>
 
+    <nav class="dom-pick" aria-label="Domenii">
+      <p class="data">Pagina completă, cu norma și lucrările din domeniul tău</p>
+      <div class="dom-grid">
+        <a href="industria-alimentara/"><b>Industria alimentară</b><span class="data">21 lucrări · CE 852/2004</span></a>
+        <a href="domeniul-medical/"><b>Spitale și clinici</b><span class="data">3 lucrări · Ordin MS 1096/2016</span></a>
+        <a href="industria-farmaceutica/"><b>Industria farmaceutică</b><span class="data">3 lucrări · GMP Anexa 1</span></a>
+        <a href="industria-cosmetica/"><b>Industria cosmetică</b><span class="data">ISO 22716</span></a>
+        <a href="bucatarii-profesionale/"><b>Bucătării profesionale</b><span class="data">7 lucrări · peste faianță</span></a>
+        <a href="alte-domenii/"><b>Săli de sport, vestiare, școli</b><span class="data">1 lucrare</span></a>
+      </div>
+    </nav>
+
   </div>
 </section>
 
@@ -327,8 +340,8 @@
       <h3 class="films-h data">Ce au făcut după</h3>
       <div class="after-grid">
         <figure class="after-item" data-reveal data-reveal-group="after">
-          <p class="after-num">+3.000 m²</p>
-          <figcaption>Bona Avis a placat 616 m² ca probă. După un an, a comandat încă 3.000 m² în aceeași unitate.</figcaption>
+          <p class="after-num">3.000 m²</p>
+          <figcaption>Bona Avis a placat întâi 616 m², ca probă. Dacă sistemul trece de primul an, urmează peste 3.000 m² în tot abatorul.</figcaption>
         </figure>
         <blockquote class="case-quote after-item" data-reveal data-reveal-group="after">
           <p>„Suntem foarte mulțumiți de rezultate și urmează să continuăm renovările atunci când va fi posibil.”</p>
@@ -337,6 +350,7 @@
       </div>
     </div>
 
+    <p class="more"><a href="lucrari/">Toate cele 35 de lucrări, pe hartă</a> · <a href="lucrari/abatorul-bona-avis-ianca/">Bona Avis, pe larg</a> · <a href="lucrari/ursus-breweries-brasov/">Ursus, pe larg</a></p>
     <p class="src data">La Bona Avis, liniile automate de tranșare au fost reduse cu 2 ore dintr-un total de 10, iar echipa a lucrat în ture de după-amiază și noapte. Citatul și cifrele sunt din studiile de caz publicate de MedClyn.</p>
   </div>
 </section>
@@ -608,20 +622,17 @@
   <div class="wrap">
     <div class="foot-id">
       <p class="foot-brand"><b>M</b>ed<b>C</b>lyn</p>
+      <p class="foot-tel"><a href="tel:+40733200500">0733 200 500</a></p>
+      <p class="data">luni – vineri, 08:00 – 20:00 · <a href="mailto:contact@medclyn.com">contact@medclyn.com</a></p>
       <p class="data">S.C. Multi Contrast Design S.R.L. · CUI RO19063140 · J29/2121/2006<br>Strada Oltului 141, Băicoi, Prahova, 105200</p>
-      <p class="data"><a href="tel:+40733200500">0733 200 500</a> · <a href="mailto:contact@medclyn.com">contact@medclyn.com</a> · luni – vineri, 08:00 – 20:00</p>
+      <p class="data"><a href="https://www.facebook.com/MedClynRomania/" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/MedClynRomania/" rel="noopener">Instagram</a></p>
     </div>
-    <nav class="foot-nav data" aria-label="Pagini">
-      <a href="index.html#calcul">Calculator</a>
-      <a href="magazin.html">Magazin</a>
-      <a href="cos.html">Coș</a>
-      <a href="index.html#contact">Contact</a>
-      <a href="termeni.html">Termeni și condiții</a>
-      <a href="confidentialitate.html">Confidențialitate</a>
-      <a href="cookie.html">Cookie-uri</a>
-      <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">ANPC · SAL</a>
+    <nav class="foot-col data" aria-label="Domenii"><p>Domenii</p><a href="industria-alimentara/">Industria alimentară</a><a href="domeniul-medical/">Spitale și clinici</a><a href="industria-farmaceutica/">Industria farmaceutică</a><a href="industria-cosmetica/">Industria cosmetică</a><a href="bucatarii-profesionale/">Bucătării profesionale</a><a href="alte-domenii/">Săli de sport, vestiare, școli</a></nav>
+    <nav class="foot-col data" aria-label="Pagini"><p>Site</p><a href="ce-este-medclyn/">Ce este MedClyn</a><a href="lucrari/">Lucrări</a><a href="preturi/">Prețuri</a><a href="magazin.html">Magazin</a><a href="index.html#calcul">Calculator</a><a href="intrebari/">Întrebări</a><a href="ghid/">Ghiduri</a><a href="contact/">Contact</a></nav>
+    <nav class="foot-col data" aria-label="Legal"><p>Legal</p><a href="termeni.html">Termeni și condiții</a><a href="confidentialitate.html">Confidențialitate</a><a href="cookie.html">Cookie-uri</a>
+      <a class="anpc" href="https://anpc.ro/sal" target="_blank" rel="noopener"><img src="img/anpc-sal.png" width="201" height="50" alt="ANPC · Soluționarea alternativă a litigiilor" loading="lazy"></a>
     </nav>
-    <p class="data idx foot-demo">Demo de concept · realizat pe baza informațiilor publice de pe medclyn.com · nu este site-ul oficial · three.js, texturi ambientCG CC0, panoramă HDR Poly Haven CC0</p>
+    <p class="data idx foot-demo">Demo de concept · realizat pe baza informațiilor publice de pe medclyn.com · nu este site-ul oficial · three.js, texturi ambientCG CC0, panoramă HDR Poly Haven CC0, contur Natural Earth</p>
   </div>
 </footer>
 <!-- footer:end -->
