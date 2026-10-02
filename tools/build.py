@@ -69,6 +69,9 @@ ICON = (SITE / 'index.html').read_text().split('<link rel="icon" href="', 1)[1].
 def head(*, path, title, desc, depth, ld=(), og_img='img/og.jpg', kind='website'):
     url = BASE + '/' + path
     base = '../' * depth
+    # Google taie titlul pe la 60–65 de caractere și descrierea pe la 155–160.
+    if len(title) > 65 and title.endswith(' | MedClyn'): title = title[:-10]
+    if len(desc) > 158: desc = desc[:157].rsplit(' ', 1)[0].rstrip(',.;:') + '…'
     robots = 'index, follow, max-image-preview:large' if LIVE else 'noindex, nofollow'
     graph = [ORG] + list(ld)
     ldjson = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False, separators=(',', ':'))
