@@ -5,6 +5,7 @@ LABEL org.opencontainers.image.title="medclyn-demo" \
       org.opencontainers.image.description="Demo de concept WebGL pentru rebuild-ul site-ului MedClyn"
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx-redirects.conf /etc/nginx/conf.d/redirects.inc
 COPY site/ /usr/share/nginx/html/
 
 EXPOSE 80

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://elod3.github.io/medclyn-demo/sitemap.xml

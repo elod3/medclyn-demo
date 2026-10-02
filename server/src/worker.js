@@ -200,7 +200,7 @@ async function lead(req, env){
   const lines = Object.entries(clean).map(([k, v]) => `${k}: ${v}`).join('\n');
   await mail(env, {
     to: env.MAIL_TO,
-    subject: kind === 'oferta' ? `Cerere de ofertă · ${clean.company || clean.name} · ${clean.area || ''}` : `Mesaj de pe site · ${clean.subject || clean.name}`,
+    subject: kind === 'oferta' ? `Cerere de ofertă · ${clean.company || clean.name} · ${/^\d+([.,]\d+)?$/.test(clean.area || '') ? clean.area + ' m²' : (clean.area || '')}` : `Mesaj de pe site · ${clean.subject || clean.name}`,
     text: lines,
     replyTo: clean.email || undefined
   });

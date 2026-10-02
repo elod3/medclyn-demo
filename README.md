@@ -62,6 +62,36 @@ Identitatea vizuală e a lor: navy `#003a84`, cyan `#24bfcc`, Nunito Sans, simbo
 vectorial. Fotografiile produselor sunt cele din magazinul lor. Notele de pitch (`research/`,
 `CLAUDE.md`) stau doar local și nu sunt în repo.
 
+## Paginile generate și SEO
+
+Pe lângă prima pagină și magazin, site-ul are 60 de pagini statice generate din
+`tools/content.py` (lucrări, domenii, ghiduri, întrebări) și `site/js/catalog.js` (produse):
+
+```bash
+python3 tools/build.py                  # demo: noindex, adrese pe GitHub Pages
+MEDCLYN_LIVE=1 python3 tools/build.py   # producție: indexabil, adrese pe www.medclyn.com
+```
+
+| Pagini | Ce sunt |
+|---|---|
+| `industria-alimentara/` și celelalte 5 domenii | aceleași adrese ca pe medclyn.com; norma, lucrările din domeniu, întrebări, formular scurt |
+| `lucrari/` + 35 de lucrări | toate studiile lor de caz, cu cifrele și fotografiile lor, pe hartă |
+| `ce-este-medclyn/`, `preturi/` | fișa tehnică, montajul, garanția, lista de prețuri, costul pe 20 de ani |
+| `magazin/<produs>/` × 12 | pagină pe produs; la placă, necesarul pe încăpere pus direct în coș |
+| `ghid/` × 3, `intrebari/`, `contact/`, `404.html` | ghiduri pe căutări reale (DSV, panouri sandwich, faianță) |
+
+Fiecare pagină are titlu, descriere, canonical și date structurate (Organization, Product cu
+preț pe unitate și politică de retur, Article, FAQPage, BreadcrumbList, ItemList). Build-ul
+scrie și `sitemap.xml` (cu imagini), `robots.txt`, `llms.txt` și redirecturile 301 de la
+adresele vechi de pe medclyn.com (`redirects.txt` pentru Netlify/Cloudflare,
+`nginx-redirects.conf` pentru nginx).
+
+**Demo-ul de pe GitHub Pages rămâne `noindex`**: e o copie neoficială și n-are voie să concureze
+cu medclyn.com în Google. Pentru lansare: `MEDCLYN_LIVE=1`, apoi sitemap-ul trimis în Search Console.
+
+Fotografiile de șantier (`site/img/lucrari/`) sunt cele publicate de MedClyn în articolele lor.
+Conturul României din harta lucrărilor e din Natural Earth (domeniu public).
+
 ## Plăți
 
 Site-ul e static; tot ce încasează sau trimite trece prin `server/`, un Cloudflare Worker fără
